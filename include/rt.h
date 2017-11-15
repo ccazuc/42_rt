@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:12:02 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/15 15:13:47 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@
 # define RECTANGLE 2
 # define SPHERE 3
 # define CYLINDRE 4
+# define WINDOW_WIDTH 500
+# define WINDOW_HEIGHT 500
+# define FOV 60
+
+typedef struct			s_vector
+{
+	double				x;
+	double				y;
+	double				z;
+}						t_vector;
 
 typedef struct			s_object
 {

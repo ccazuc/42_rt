@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:31:23 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/15 13:59:18 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,19 @@ void	parse(t_env *env, int argc, char **argv)
 {
 	int		fd;
 
-	printf("parse start\n");
 	if (argc != 2)
 		ft_exit("Error, invalid arguments.", -1);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
 		ft_exit("Error, invalid file.", -1);
 	parse_args(env, fd);
-	printf("parse end\n");
 }
 
 void	parse_line(t_env *env, char *datas)
 {
 	char	**result;
 
-	printf("parse_line start\n");
-	if (!datas[0] || datas[0] == ' ')
+	if (!datas[0] || datas[0] == ' ' || !(result = ft_strsplit(datas, ' ')))
 		return ;
-	if (!(result = ft_strsplit(datas, ' ')))
-		return ;
-	//printf("split result: '%s'\n", result[0]);
 	if (!ft_strcmp_ignrcase(result[0], "cube") ||
 	!ft_strcmp_ignrcase(result[0], "cylindre") ||
 	!ft_strcmp_ignrcase(result[0], "triangle"))
@@ -53,7 +47,7 @@ void	parse_line(t_env *env, char *datas)
 void	parse_args(t_env *env, int fd)
 {
 	char	*result;
-	printf("pars_args start\n");
+	printf("parse_args start\n");
 	while (get_next_line(fd, &result) == 1)
 	{
 		printf("result: '%s'\n", result);
