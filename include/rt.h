@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 15:13:47 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/16 09:15:37 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define CYLINDRE 4
 # define WINDOW_WIDTH 500
 # define WINDOW_HEIGHT 500
-# define FOV 60
+# define FOV_X 60
+# define FOV_Y 60
 
 typedef struct			s_vector
 {
@@ -74,5 +75,7 @@ void					parse_rotation(t_object *object, char **datas, int *start);
 void					parse_args(t_env *env, int fd);
 void					list_add_object(t_env *env, t_object *object);
 void					init_env(t_env *env);
+char					*replace_tab_by_space(char *str);
+void					free_2d_array(char **str);
 
 #endif

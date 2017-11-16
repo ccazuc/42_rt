@@ -15,6 +15,7 @@ SRCS_NAME = main.c \
 			get_next_line.c \
 			list_utils.c \
 			init_env.c \
+			str_utils.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

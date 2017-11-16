@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:26:27 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:15:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/16 08:58:29 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_position(t_object *object, char **datas, int *start)
 	object->pos_x = ft_atoi(datas[*start + 1]);
 	object->pos_y = ft_atoi(datas[*start + 2]);
 	object->pos_z = ft_atoi(datas[*start + 3]);
-	start += 3;
+	*start += 3;
 }
 
 void	parse_rotation(t_object *object, char **datas, int *start)

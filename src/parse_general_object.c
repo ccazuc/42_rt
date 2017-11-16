@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:24:34 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/16 08:58:04 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,18 @@ void	parse_general_object(t_env *env, char **datas)
 	i = 0;
 	while (++i < len)
 	{
+		printf("word: %s\n", datas[i]);
 		if (!ft_strcmp_ignrcase(datas[i], "color"))
 			parse_color(object, datas, &i);
 		else if (!ft_strcmp_ignrcase(datas[i], "pos"))
 			parse_position(object, datas, &i);
 		else if (!ft_strcmp_ignrcase(datas[i], "rot"))
 			parse_rotation(object, datas, &i);
+		else
+		{
+			ft_exit("Error, invalid file.", -1);
+		}
 	}
+	free_2d_array(datas);
 	list_add_object(env, object);
 }

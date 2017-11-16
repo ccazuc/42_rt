@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:59:18 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/16 08:55:29 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	parse_line(t_env *env, char *datas)
 {
 	char	**result;
 
-	if (!datas[0] || datas[0] == ' ' || !(result = ft_strsplit(datas, ' ')))
+	if (!datas[0] || datas[0] == ' ' || !(result = ft_strsplit(replace_tab_by_space(datas), ' ')))
 		return ;
 	if (!ft_strcmp_ignrcase(result[0], "cube") ||
 	!ft_strcmp_ignrcase(result[0], "cylindre") ||
