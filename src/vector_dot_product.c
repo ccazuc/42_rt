@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_quadratic.c                                  :+:      :+:    :+:   */
+/*   vector_dot_product.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 07:21:02 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 11:13:54 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/16 11:19:57 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/11/16 11:22:27 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	solve_quadratic(t_quadratic quadratic, double *distance)
+double	dot_product(t_vector *v1, t_vector *v2)
 {
-	double	delta;
-
-	delta = quadratic.b * quadratic.b - 4 * quadratic.a * quadratic.c;
-	*distance = 0;
-	if (delta < 0)
-		return ;
-	if (delta == 0)
-		*distance = -quadratic.b / (2 * quadratic.a)
-	else
-		*distance = min((-quadratic.b + sqrt(d)) / (2 * quadratic.a),
-		(-quadratic.b - sqrt(d)) / (2 * quadratic.a));
+	return (v1->x * v2->x + v1->y * v2->y + v1->z * v2->z);
 }

@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve_quadratic.c                                  :+:      :+:    :+:   */
+/*   check_collision.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 07:21:02 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 11:13:54 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/11/16 12:20:43 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	solve_quadratic(t_quadratic quadratic, double *distance)
+int		check_collision(t_env *env, t_ray *ray)
 {
-	double	delta;
+	t_rtlist	*list;
+	double		dist;
+	double		tmp_dist;
 
-	delta = quadratic.b * quadratic.b - 4 * quadratic.a * quadratic.c;
-	*distance = 0;
-	if (delta < 0)
-		return ;
-	if (delta == 0)
-		*distance = -quadratic.b / (2 * quadratic.a)
-	else
-		*distance = min((-quadratic.b + sqrt(d)) / (2 * quadratic.a),
-		(-quadratic.b - sqrt(d)) / (2 * quadratic.a));
+	list = env->object_list;
+	dist = 10000;
+	while (list)
+	{
+		if (list->object->type == SPHERE && collide_sphere(ray, list->object, &tmp_dist) && tmp_dist > dist)
+			dist = tmp_dist;
+		list = list->next;
+	}
 }

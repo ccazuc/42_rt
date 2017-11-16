@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 09:15:37 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/16 11:14:27 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,13 @@ typedef struct			s_object
 	int					rot_z;
 	int					scale;
 }						t_object;
+
+typedef struct			s_quadratic
+{
+	double				a;
+	double				b;
+	double				c;
+}						t_quadratic;
 
 typedef struct			s_rtlist
 {
