@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 09:09:40 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 15:12:14 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ void	parse_general_object(t_env *env, char **datas)
 			parse_scale(object, datas, &i);
 		else
 			ft_exit("Error, invalid file.", -1);
-	free_2d_array(datas);
 	check_object_state(object);
 	list_add_object(env, object);
 }

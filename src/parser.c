@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 08:48:42 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 15:35:24 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,14 @@ void	parse_line(t_env *env, char *datas)
 		parse_general_object(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "camera"))
 		parse_camera(env, result);
+	else if (!ft_strcmp_ignrcase(result[0], "light"))
+		parse_light(env, result);
 	else if (result[0][0] != '#')
 	{
 		printf("result[0][0]: %c\n", result[0][0]);
 		ft_exit("Error, invalid file.", -1);
 	}
+	free_2d_array(result);
 	printf("parse_line end\n");
 }
 
@@ -57,6 +60,7 @@ void	parse_args(t_env *env, int fd)
 	{
 		printf("result: '%s'\n", result);
 		parse_line(env, result);
+		free(result);
 	}
 	printf("parse_args end\n");
 }

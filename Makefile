@@ -29,6 +29,9 @@ SRCS_NAME = main.c \
 			solve_quadratic.c \
 			math_utils.c \
 			parse_camera.c \
+			parse_light.c \
+			get_pixel_color.c \
+			cylinder.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

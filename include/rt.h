@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 13:57:25 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 16:29:48 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define WINDOW_NAME "cc"
 # define FOV_X 60
 # define FOV_Y 60
+# define BG_COLOR 0
 
 typedef struct			s_vector
 {
@@ -54,6 +55,24 @@ typedef struct			s_camera
 	int					rot_y;
 	int					rot_z;
 }						t_camera;
+
+typedef struct			s_light
+{
+	int					power;
+	int					color_r;
+	int					color_g;
+	int					color_b;
+	int					pos_x;
+	int					pos_y;
+	int					pos_z;
+	int					rot_x;
+	int					rot_y;
+	int					rot_z;
+	char				has_parsed_position;
+	char				has_parsed_color;
+	char				has_parsed_rotation;
+	char				has_parsed_power;
+}						t_light;
 
 typedef struct			s_object
 {
@@ -87,6 +106,12 @@ typedef struct			s_rtlist
 	struct s_object		*object;
 }						t_rtlist;
 
+typedef struct			s_rtllist
+{
+	struct s_rtllist	*next;
+	struct s_light		*light;
+}						t_rtllist;
+
 typedef struct			s_env
 {
 	void				*mlx_ptr;
@@ -95,12 +120,14 @@ typedef struct			s_env
 	char				*mlx_img_data;
 	int					bpp;
 	t_rtlist			*object_list;
+	t_rtllist			*light_list;
 	t_camera			*camera;
 }						t_env;
 
 void					parse(t_env *env, int argc, char **argv);
 void					parse_general_object(t_env *env, char **datas);
 void					parse_color(t_object *object, char **datas, int *start);
+void					parse_light(t_env *env, char **datas);
 void					parse_position(t_object *object, char **datas,
 						int *start);
 void					parse_rotation(t_object *object, char **datas,
@@ -108,6 +135,7 @@ void					parse_rotation(t_object *object, char **datas,
 void					parse_scale(t_object *object, char **datas, int *start);
 void					parse_args(t_env *env, int fd);
 void					list_add_object(t_env *env, t_object *object);
+void					list_add_light(t_env *env, t_light *light);
 void					init_env(t_env *env);
 char					*replace_tab_by_space(char *str);
 void					free_2d_array(char **str);
@@ -123,10 +151,13 @@ int						check_collision(t_env *env, t_ray *ray, t_object **object);
 t_ray					*create_camera_ray(t_env *env);
 int						collide_sphere(t_ray *ray, t_object *object,
 						double *distance);
+int						collide_cylinder(t_ray *ray, t_object *object,
+						double *disntance);
 double					dot_product(t_vector *v1, t_vector *v2);
 void					solve_quadratic(t_quadratic quadratic,
 						double *distance);
 double					dmin(double a, double b);
 void					parse_camera(t_env *env, char **datas);
 unsigned int			conv_rgb_to_int(int r, int g, int b);
+unsigned int			get_pixel_color(t_env *env, t_ray *ray);
 #endif

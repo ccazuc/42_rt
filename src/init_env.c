@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 07:28:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 15:34:11 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,5 @@ void	init_env(t_env *env)
 {
 	env->object_list = NULL;
 	env->camera = NULL;
+	env->light_list = NULL;
 }

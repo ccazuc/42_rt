@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 13:57:58 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 16:33:31 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ int		check_collision(t_env *env, t_ray *ray, t_object **object)
 	while (list)
 	{
 		if (list->object->type == SPHERE && collide_sphere(ray, list->object, &tmp_dist) && tmp_dist < dist)
+		{
+			dist = tmp_dist;
+			*object = list->object;
+		}
+		else if (list->object->type == CYLINDRE && collide_cylinder(ray, list->object, &tmp_dist) && tmp_dist < dist)
 		{
 			dist = tmp_dist;
 			*object = list->object;
