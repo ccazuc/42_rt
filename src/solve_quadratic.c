@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 07:21:02 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 11:13:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 08:52:19 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@ void	solve_quadratic(t_quadratic quadratic, double *distance)
 
 	delta = quadratic.b * quadratic.b - 4 * quadratic.a * quadratic.c;
 	*distance = 0;
+	printf("delta: %f\n", delta);
 	if (delta < 0)
 		return ;
 	if (delta == 0)
-		*distance = -quadratic.b / (2 * quadratic.a)
+		*distance = -quadratic.b / (2 * quadratic.a);
 	else
-		*distance = min((-quadratic.b + sqrt(d)) / (2 * quadratic.a),
-		(-quadratic.b - sqrt(d)) / (2 * quadratic.a));
+		*distance = dmin((-quadratic.b + sqrt(delta)) / (2 * quadratic.a),
+		(-quadratic.b - sqrt(delta)) / (2 * quadratic.a));
 }

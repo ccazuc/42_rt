@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vec_normalize.c                                    :+:      :+:    :+:   */
+/*   math_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 15:05:37 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 07:06:11 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/17 07:26:42 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/11/17 07:27:09 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	vector_normalize(t_vector *vector)
+double	dmin(double a, double b)
 {
-	double		length;
-
-	length = vector_length(vector);
-	if (length == 0)
-		return;
-	vector->x = vector->x / length;
-	vector->y = vector->y / length;
-	vector->z = vector->z / length;
+	return (a > b ? a : b);
 }

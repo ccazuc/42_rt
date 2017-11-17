@@ -16,6 +16,19 @@ SRCS_NAME = main.c \
 			list_utils.c \
 			init_env.c \
 			str_utils.c \
+			init_window.c \
+			draw_window.c \
+			pixel_put.c \
+			vector_dot_product.c \
+			vector_length.c \
+			vector_rotate.c \
+			vector_normalize.c \
+			check_collision.c \
+			sphere.c \
+			create_ray.c \
+			solve_quadratic.c \
+			math_utils.c \
+			parse_camera.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

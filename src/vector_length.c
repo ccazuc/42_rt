@@ -6,9 +6,11 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 15:06:34 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 15:08:28 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 07:04:17 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "rt.h"
 
 double		vector_length(t_vector *vector)
 {

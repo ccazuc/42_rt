@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 12:20:43 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 09:17:53 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int		check_collision(t_env *env, t_ray *ray)
 	dist = 10000;
 	while (list)
 	{
-		if (list->object->type == SPHERE && collide_sphere(ray, list->object, &tmp_dist) && tmp_dist > dist)
+		if (list->object->type == SPHERE && collide_sphere(ray, list->object, &tmp_dist) && tmp_dist < dist)
 			dist = tmp_dist;
 		list = list->next;
 	}
+	printf("final dist: %f\n", dist);
+	return (dist != 10000);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 13:15:40 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 08:44:32 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int		main(int argc, char **argv)
 		ft_exit("Error, out of memory.", -1);
 	init_env(env);
 	parse(env, argc, argv);
+	init_window(env);
 	list = env->object_list;
 	while (list)
 	{
@@ -31,5 +32,9 @@ int		main(int argc, char **argv)
 		printf("\n\n\n");
 		list = list->next;
 	}
+	printf("Camera:\n");
+	printf("Position | x: %d, y: %d, z: %d\n", env->camera->pos_x, env->camera->pos_y, env->camera->pos_z);
+	printf("Orientation | x: %d, y: %d, z: %d\n", env->camera->rot_x, env->camera->rot_y, env->camera->rot_z);
+	render(env);
 	return (0);
 }

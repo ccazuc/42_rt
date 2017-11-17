@@ -6,9 +6,11 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 15:29:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/16 09:07:35 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 07:05:04 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "rt.h"
 
 void		vector_rotate_x(t_vector *vector, float angle)
 {
@@ -25,7 +27,7 @@ void		vector_rotate_y(t_vector *vector, float angle)
 
 	tmp_x = vector->x;
 	vector->x = vector->x * cos(angle) + vector->z * sin(angle);
-	vector->z = -tmp_x * sin(angle) + z * cos(angle);
+	vector->z = -tmp_x * sin(angle) + vector->z * cos(angle);
 }
 
 void		vector_rotate_z(t_vector *vector, float angle)
