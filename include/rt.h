@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 11:44:31 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 13:57:25 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ double					vector_length(t_vector *vector);
 void					vector_normalize(t_vector *vector);
 void					render(t_env *env);
 void					pixel_put(t_env *env, int x, int y, unsigned int color);
-int						check_collision(t_env *env, t_ray *ray);
+int						check_collision(t_env *env, t_ray *ray, t_object **object);
 t_ray					*create_camera_ray(t_env *env);
 int						collide_sphere(t_ray *ray, t_object *object,
 						double *distance);

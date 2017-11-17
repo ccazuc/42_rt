@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 07:21:02 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 10:57:20 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 13:46:18 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ void	solve_quadratic(t_quadratic quadratic, double *distance)
 		delta_sq = sqrt(delta);
 		t0 = (-quadratic.b + delta_sq) / quad_a;
 		t1 = (-quadratic.b - delta_sq) / quad_a;
-		if (t0 < 0 && t1 < 0)
+		if (t0 < 0.1 && t1 < 0.1)
 			return ;
-		if (t0 < 0)
+		if (t0 < 0.1)
 			*distance = t1;
 		else
 			*distance = t0;

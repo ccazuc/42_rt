@@ -6,13 +6,13 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 10:49:07 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 13:57:58 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		check_collision(t_env *env, t_ray *ray)
+int		check_collision(t_env *env, t_ray *ray, t_object **object)
 {
 	t_rtlist	*list;
 	double		dist;
@@ -23,7 +23,10 @@ int		check_collision(t_env *env, t_ray *ray)
 	while (list)
 	{
 		if (list->object->type == SPHERE && collide_sphere(ray, list->object, &tmp_dist) && tmp_dist < dist)
+		{
 			dist = tmp_dist;
+			*object = list->object;
+		}
 		list = list->next;
 	}
 	//printf("final dist: %f\n", dist);
