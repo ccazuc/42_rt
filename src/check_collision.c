@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 09:17:53 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 10:49:07 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int		check_collision(t_env *env, t_ray *ray)
 			dist = tmp_dist;
 		list = list->next;
 	}
-	printf("final dist: %f\n", dist);
+	//printf("final dist: %f\n", dist);
+	if (dist != 10000)
+		printf("Collision distance: %f\n", dist);
 	return (dist != 10000);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:46:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 09:29:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 11:15:41 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 int				get_next_line(const int fd, char **line);
 
-typedef struct 	s_gnl
+typedef struct	s_gnl
 {
 	char		*datas;
 	int			start;

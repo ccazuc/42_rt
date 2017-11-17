@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 08:44:32 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 11:17:35 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		main(int argc, char **argv)
 {
-	t_env	*env;
+	t_env		*env;
 	t_rtlist	*list;
 
 	if (!(env = malloc(sizeof(*env))))

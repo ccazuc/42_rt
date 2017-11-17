@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 07:30:58 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 08:38:58 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 11:19:33 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ void	parse_camera(t_env *env, char **datas)
 		else if (!ft_strcmp_ignrcase(datas[i], "rot"))
 			parse_camera_rotation(camera, datas, &i);
 		else
-		{
 			ft_exit("Error, invalid file.", -1);
-		}
 	}
 	free_2d_array(datas);
 	env->camera = camera;

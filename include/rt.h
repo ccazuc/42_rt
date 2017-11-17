@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 09:03:12 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/17 11:44:31 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,10 @@ typedef struct			s_env
 void					parse(t_env *env, int argc, char **argv);
 void					parse_general_object(t_env *env, char **datas);
 void					parse_color(t_object *object, char **datas, int *start);
-void					parse_position(t_object *object, char **datas, int *start);
-void					parse_rotation(t_object *object, char **datas, int *start);
+void					parse_position(t_object *object, char **datas,
+						int *start);
+void					parse_rotation(t_object *object, char **datas,
+						int *start);
 void					parse_scale(t_object *object, char **datas, int *start);
 void					parse_args(t_env *env, int fd);
 void					list_add_object(t_env *env, t_object *object);
@@ -119,9 +121,12 @@ void					render(t_env *env);
 void					pixel_put(t_env *env, int x, int y, unsigned int color);
 int						check_collision(t_env *env, t_ray *ray);
 t_ray					*create_camera_ray(t_env *env);
-int						collide_sphere(t_ray *ray, t_object *object, double *distance);
+int						collide_sphere(t_ray *ray, t_object *object,
+						double *distance);
 double					dot_product(t_vector *v1, t_vector *v2);
-void					solve_quadratic(t_quadratic quadratic, double *distance);
+void					solve_quadratic(t_quadratic quadratic,
+						double *distance);
 double					dmin(double a, double b);
 void					parse_camera(t_env *env, char **datas);
+unsigned int			conv_rgb_to_int(int r, int g, int b);
 #endif
