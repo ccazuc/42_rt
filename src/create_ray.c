@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 07:15:05 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 07:18:45 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/23 08:38:29 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ t_ray	*create_camera_ray(t_env *env)
 	t_ray	*result;
 
 	if (!(result = malloc(sizeof(*result))))
-		ft_exit("Error, out of memory.", -1);
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	if (!(result->dir = malloc(sizeof(*result->dir))))
-		ft_exit("Error, out of memory.", -1);
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	if (!(result->pos = malloc(sizeof(*result->pos))))
-		ft_exit("Error, out of memory.", -1);
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	result->pos->x = env->camera->pos_x;
 	result->pos->y = env->camera->pos_y;
 	result->pos->z = env->camera->pos_z;

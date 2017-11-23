@@ -6,21 +6,28 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 15:12:14 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/23 08:37:57 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"	
 
-void	set_has_parsed(t_object *object)
+static void	init_object(t_object *object)
 {
 	object->has_parsed_color = 0;
 	object->has_parsed_position = 0;
 	object->has_parsed_rotation = 0;
 	object->has_parsed_scale = 0;
+	object->rot_x = 0;
+	object->rot_y = 0;
+	object->rot_z = 0;
+	object->color_r = DEFAULT_COLOR_R;
+	object->color_g = DEFAULT_COLOR_G;
+	object->color_b = DEFAULT_COLOR_B;
+	object->scale = 1;
 }
 
-void	set_object_type(t_object *object, char *datas)
+static void	set_object_type(t_object *object, char *datas)
 {
 	if (!ft_strcmp_ignrcase(datas, "cube"))
 		object->type = CUBE;
@@ -32,19 +39,20 @@ void	set_object_type(t_object *object, char *datas)
 		object->type = TRIANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "rectangle"))
 		object->type = RECTANGLE;
-	set_has_parsed(object);
+	init_object(object);
 }
 
-void	check_object_state(t_object *object)
+static void	check_object_state(t_object *object)
 {
 	if (!object->has_parsed_color)
-		ft_exit("Error, invalid file. Color not found for an object.", -1);
+		ft_putstr("Warning, found object without color.\n");
 	if (!object->has_parsed_position)
-		ft_exit("Error, invalid file. Position not found for an object.", -1);
+		ft_exit("Error, invalid file. Position not found for an object.",
+		EXIT_FAILURE);
 	if (!object->has_parsed_rotation)
-		ft_exit("Error, invalid file. Rotation not found for an object.", -1);
+		ft_putrstr("Warning, found an object without rotation.\n");
 	if (!object->has_parsed_scale)
-		ft_exit("Error, invalid file. Scale not found for an object.", -1);
+		ft_putstr("Warning, found an object without scale.\n");
 }
 
 void	parse_general_object(t_env *env, char **datas)
@@ -55,7 +63,7 @@ void	parse_general_object(t_env *env, char **datas)
 
 	len = ft_array_len(datas);
 	if (!(object = malloc(sizeof(*object))))
-		ft_exit("Error, of out memory.", -1);
+		ft_exit("Error, of out memory.", EXIT_FAILURE);
 	set_object_type(object, datas[0]);
 	i = 0;
 	while (++i < len)
@@ -68,7 +76,7 @@ void	parse_general_object(t_env *env, char **datas)
 		else if (!ft_strcmp_ignrcase(datas[i], "scale"))
 			parse_scale(object, datas, &i);
 		else
-			ft_exit("Error, invalid file.", -1);
+			ft_exit("Error, invalid file.", EXIT_FAILURE);
 	check_object_state(object);
 	list_add_object(env, object);
 }

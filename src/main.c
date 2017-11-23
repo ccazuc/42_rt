@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 15:38:00 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/23 08:38:10 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int		main(int argc, char **argv)
 	t_rtlist	*list;
 
 	if (!(env = malloc(sizeof(*env))))
-		ft_exit("Error, out of memory.", -1);
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	init_env(env);
 	parse(env, argc, argv);
 	init_window(env);

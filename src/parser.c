@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 15:35:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/23 08:45:18 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	parse(t_env *env, int argc, char **argv)
 	int		fd;
 
 	if (argc != 2)
-		ft_exit("Error, invalid arguments.", -1);
+		ft_exit("Error, invalid arguments.", EXIT_FAILURE);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		ft_exit("Error, invalid file.", -1);
+		ft_exit("Error, invalid file.", EXIT_FAILURE);
 	parse_args(env, fd);
 	if (!env->camera)
-		ft_exit("Error, no camera found.", -1);
+		ft_exit("Error, no camera found.", EXIT_FAILURE);
 }
 
 void	parse_line(t_env *env, char *datas)
@@ -30,7 +30,8 @@ void	parse_line(t_env *env, char *datas)
 	char	**result;
 
 	printf("parse_line start\n");
-	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' ')) || !result[0])
+	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' '))
+	|| !result[0])
 		return ;
 	printf("parse_line after split\n");
 	printf("result[0]: %s\n", result[0]);
@@ -44,10 +45,7 @@ void	parse_line(t_env *env, char *datas)
 	else if (!ft_strcmp_ignrcase(result[0], "light"))
 		parse_light(env, result);
 	else if (result[0][0] != '#')
-	{
-		printf("result[0][0]: %c\n", result[0][0]);
-		ft_exit("Error, invalid file.", -1);
-	}
+		ft_exit("Error, invalid file.", EXIT_FAILURE);
 	free_2d_array(result);
 	printf("parse_line end\n");
 }
