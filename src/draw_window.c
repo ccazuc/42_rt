@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 16:00:59 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 17:25:45 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	render(t_env *env)
 		while (++j < WINDOW_WIDTH)
 		{
 			fill_ray(env, ray, j, i);
-			vector_normalize(ray->dir);
+			//vector_normalize(ray->dir);
 			pixel_put(env, j, i, get_pixel_color(env, ray));
 			//pixel_put(env, j, i, conv_rgb_to_int((int)(255 * ft_math_dabs(ray->dir->x)), (int)(255 * ft_math_dabs(ray->dir->y)), (int)(255 * ft_math_dabs(ray->dir->z))));
 		}

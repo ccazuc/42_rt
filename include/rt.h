@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 15:30:25 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 17:25:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
 # define WINDOW_NAME "cc"
-# define FOV_X 180
-# define FOV_Y 180
+# define FOV_X 22
+# define FOV_Y 90
 # define BG_COLOR 0
 # define DEFAULT_COLOR_R 0xFF
 # define DEFAULT_COLOR_G 0
