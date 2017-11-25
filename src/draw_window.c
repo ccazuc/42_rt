@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 15:58:48 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 16:00:59 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 	double	angle_x;
 	double	angle_y;
 
-	angle_y = (double)(x - WINDOW_WIDTH / 2.0) / (double)(WINDOW_WIDTH / 2.0) * ft_toradians(FOV_X) + ft_toradians(env->camera->rot_y);
-	angle_x = (double)(y - WINDOW_HEIGHT / 2.0) / (double)(WINDOW_HEIGHT / 2.0) * ft_toradians(FOV_Y) + ft_toradians(env->camera->rot_x);
+	angle_y = (double)(x - WINDOW_WIDTH / 2.0) / (double)(WINDOW_WIDTH / 2.0) * ft_toradians(FOV_X / 2.) + ft_toradians(env->camera->rot_y);
+	angle_x = (double)(y - WINDOW_HEIGHT / 2.0) / (double)(WINDOW_HEIGHT / 2.0) * -ft_toradians(FOV_Y / 2.) + ft_toradians(env->camera->rot_x);
 	//printf("x: %d, y: %d, angle_y: %f, angle_x: %f\n", x, y, angle_y, angle_x);
 	ray->dir->x = sin(angle_y);
 	ray->dir->y = sin(angle_x);
@@ -42,8 +42,9 @@ void	render(t_env *env)
 		while (++j < WINDOW_WIDTH)
 		{
 			fill_ray(env, ray, j, i);
+			vector_normalize(ray->dir);
 			pixel_put(env, j, i, get_pixel_color(env, ray));
-			//pixel_put(env, j, i, conv_rgb_to_int((int)(ray->dir->x * 255), (int)(ray->dir->y * 255), (int)(ray->dir->z * 255)));
+			//pixel_put(env, j, i, conv_rgb_to_int((int)(255 * ft_math_dabs(ray->dir->x)), (int)(255 * ft_math_dabs(ray->dir->y)), (int)(255 * ft_math_dabs(ray->dir->z))));
 		}
 	}
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);

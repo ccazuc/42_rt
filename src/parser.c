@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/23 08:45:18 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:25:37 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	parse_line(t_env *env, char *datas)
 void	parse_args(t_env *env, int fd)
 {
 	char	*result;
+
 	printf("parse_args start\n");
 	while (get_next_line(fd, &result) == 1)
 	{

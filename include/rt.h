@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 16:29:48 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:30:25 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,15 @@
 # define RECTANGLE 2
 # define SPHERE 3
 # define CYLINDRE 4
-# define WINDOW_WIDTH 500
-# define WINDOW_HEIGHT 500
+# define WINDOW_WIDTH 1000
+# define WINDOW_HEIGHT 1000
 # define WINDOW_NAME "cc"
-# define FOV_X 60
-# define FOV_Y 60
+# define FOV_X 180
+# define FOV_Y 180
 # define BG_COLOR 0
+# define DEFAULT_COLOR_R 0xFF
+# define DEFAULT_COLOR_G 0
+# define DEFAULT_COLOR_B 0xFF
 
 typedef struct			s_vector
 {
@@ -39,6 +42,13 @@ typedef struct			s_vector
 	double				y;
 	double				z;
 }						t_vector;
+
+typedef struct			s_light_mask
+{
+	int					r;
+	int					g;
+	int					b;
+}						t_light_mask;
 
 typedef struct			s_ray
 {

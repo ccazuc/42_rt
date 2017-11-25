@@ -6,11 +6,11 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/23 08:37:57 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/25 15:25:58 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rt.h"	
+#include "rt.h"
 
 static void	init_object(t_object *object)
 {
@@ -50,12 +50,12 @@ static void	check_object_state(t_object *object)
 		ft_exit("Error, invalid file. Position not found for an object.",
 		EXIT_FAILURE);
 	if (!object->has_parsed_rotation)
-		ft_putrstr("Warning, found an object without rotation.\n");
+		ft_putstr("Warning, found an object without rotation.\n");
 	if (!object->has_parsed_scale)
 		ft_putstr("Warning, found an object without scale.\n");
 }
 
-void	parse_general_object(t_env *env, char **datas)
+void		parse_general_object(t_env *env, char **datas)
 {
 	int			i;
 	t_object	*object;
