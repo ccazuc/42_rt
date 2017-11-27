@@ -6,13 +6,18 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 07:26:42 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 15:48:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 12:58:00 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-double	dmin(double a, double b)
+double	dmax(double a, double b)
 {
 	return (a > b ? a : b);
+}
+
+double	dmin(double a, double b)
+{
+	return (a > b ? b : a);
 }

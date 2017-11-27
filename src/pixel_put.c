@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:25:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/17 06:51:31 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 07:40:52 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,21 @@
 unsigned int	conv_rgb_to_int(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
+}
+
+int				get_color_r(unsigned int color)
+{
+	return ((color & 0xFF0000) >> 16);
+}
+
+int				get_color_g(unsigned int color)
+{
+	return ((color & 0x00FF00) >> 8);
+}
+
+int				get_color_b(unsigned int color)
+{
+	return (color & 0x0000FF);
 }
 
 void			pixel_put(t_env *env, int x, int y, unsigned int color)

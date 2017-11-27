@@ -32,6 +32,11 @@ SRCS_NAME = main.c \
 			parse_light.c \
 			get_pixel_color.c \
 			cylinder.c \
+			collision.c \
+			vector_angle.c \
+			calculate_light.c \
+			vector_normal.c \
+			create_object.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 17:25:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 15:15:14 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,14 @@
 # define WINDOW_WIDTH 1000
 # define WINDOW_HEIGHT 1000
 # define WINDOW_NAME "cc"
-# define FOV_X 22
-# define FOV_Y 90
+# define FOV_X 60
+# define FOV_Y 60
 # define BG_COLOR 0
 # define DEFAULT_COLOR_R 0xFF
 # define DEFAULT_COLOR_G 0
 # define DEFAULT_COLOR_B 0xFF
+
+typedef struct			s_object t_object;
 
 typedef struct			s_vector
 {
@@ -45,16 +47,31 @@ typedef struct			s_vector
 
 typedef struct			s_light_mask
 {
-	int					r;
-	int					g;
-	int					b;
+	unsigned int		r;
+	unsigned int		g;
+	unsigned int		b;
 }						t_light_mask;
+
+typedef struct			s_color_mask
+{
+	unsigned int		r;
+	unsigned int		g;
+	unsigned int		b;
+}						t_color_mask;
 
 typedef struct			s_ray
 {
 	t_vector			*pos;
 	t_vector			*dir;
 }						t_ray;
+
+typedef struct			s_collision
+{
+	t_color_mask		color;
+	t_vector			pos;
+	double				distance;
+	t_object			*object;
+}						t_collision;
 
 typedef struct			s_camera
 {
@@ -90,9 +107,6 @@ typedef struct			s_object
 	int					color_r;
 	int					color_g;
 	int					color_b;
-	int					pos_x;
-	int					pos_y;
-	int					pos_z;
 	int					rot_x;
 	int					rot_y;
 	int					rot_z;
@@ -101,6 +115,7 @@ typedef struct			s_object
 	char				has_parsed_color;
 	char				has_parsed_scale;
 	char				has_parsed_rotation;
+	t_vector			*pos;
 }						t_object;
 
 typedef struct			s_quadratic
@@ -132,6 +147,7 @@ typedef struct			s_env
 	t_rtlist			*object_list;
 	t_rtllist			*light_list;
 	t_camera			*camera;
+	unsigned int		light_ambient;
 }						t_env;
 
 void					parse(t_env *env, int argc, char **argv);
@@ -157,17 +173,30 @@ double					vector_length(t_vector *vector);
 void					vector_normalize(t_vector *vector);
 void					render(t_env *env);
 void					pixel_put(t_env *env, int x, int y, unsigned int color);
-int						check_collision(t_env *env, t_ray *ray, t_object **object);
+int						check_collision(t_env *env, t_ray *ray, t_collision *collision);
 t_ray					*create_camera_ray(t_env *env);
 int						collide_sphere(t_ray *ray, t_object *object,
-						double *distance);
+						t_collision *collision);
 int						collide_cylinder(t_ray *ray, t_object *object,
-						double *disntance);
+						t_collision *collision);
 double					dot_product(t_vector *v1, t_vector *v2);
-void					solve_quadratic(t_quadratic quadratic,
+int						solve_quadratic(t_quadratic *quadratic,
 						double *distance);
+double					dmax(double a, double b);
 double					dmin(double a, double b);
 void					parse_camera(t_env *env, char **datas);
 unsigned int			conv_rgb_to_int(int r, int g, int b);
 unsigned int			get_pixel_color(t_env *env, t_ray *ray);
+int						get_color_r(unsigned int color);
+int						get_color_g(unsigned int color);
+int						get_color_b(unsigned int color);
+t_collision				*create_collision(void);
+void					free_collision(t_collision *collision);
+unsigned int			get_light_color(t_env *env, t_collision *collision);
+double					vector_angle(t_vector *v1, t_vector *v2);
+t_vector				*get_sphere_normal(t_object *object, t_vector *pos);
+t_vector				*get_normal_vector(t_object *object, t_vector *vector);
+t_object				*create_object(void);
+t_vector				*get_cylinder_normal(t_object *object, t_vector *pos);
+
 #endif

@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   vector_angle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 10:28:08 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/27 09:35:23 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/11/27 10:18:16 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+double	vector_angle(t_vector *v1, t_vector *v2)
 {
-	env->object_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->light_ambient = 0;
+	return (acos((dot_product(v1, v2)) / (vector_length(v1) * vector_length(v2))));
 }

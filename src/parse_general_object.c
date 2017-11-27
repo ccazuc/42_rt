@@ -6,26 +6,11 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 15:25:58 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 11:05:59 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-static void	init_object(t_object *object)
-{
-	object->has_parsed_color = 0;
-	object->has_parsed_position = 0;
-	object->has_parsed_rotation = 0;
-	object->has_parsed_scale = 0;
-	object->rot_x = 0;
-	object->rot_y = 0;
-	object->rot_z = 0;
-	object->color_r = DEFAULT_COLOR_R;
-	object->color_g = DEFAULT_COLOR_G;
-	object->color_b = DEFAULT_COLOR_B;
-	object->scale = 1;
-}
 
 static void	set_object_type(t_object *object, char *datas)
 {
@@ -39,7 +24,8 @@ static void	set_object_type(t_object *object, char *datas)
 		object->type = TRIANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "rectangle"))
 		object->type = RECTANGLE;
-	init_object(object);
+	else
+		ft_exit("Error, invalid file. Unknown object type.", EXIT_FAILURE);
 }
 
 static void	check_object_state(t_object *object)
@@ -62,8 +48,7 @@ void		parse_general_object(t_env *env, char **datas)
 	int			len;
 
 	len = ft_array_len(datas);
-	if (!(object = malloc(sizeof(*object))))
-		ft_exit("Error, of out memory.", EXIT_FAILURE);
+	object = create_object();
 	set_object_type(object, datas[0]);
 	i = 0;
 	while (++i < len)

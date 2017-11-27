@@ -6,14 +6,21 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
-#    Updated: 2017/11/25 17:29:18 by ccazuc           ###   ########.fr        #
+#    Updated: 2017/11/27 15:47:54 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 trIanGLE	color	1	2	3	pos	4	5	5			scale	1
-#sphere		color	180	0	100	pos	0	0	10	rot	0	0	0	scale	9
-cylindre	color	255	0	0	pos	0	0	120	rot	120	120	120	scale	2
-
+sphere		color	180	0	100	pos	-8	-2	57	rot	0	0	0	scale	2
+sphere		color	120	100	0	pos	-17	-5	50	scale 7
+#cylindre	color	255	0	0	pos	-15	-5	50	rot	120	120	120	scale	2
+light		color	255	255	255	pos	0	0	60	power	600
+#light		color	255	255	255	pos	0	0	80	power	600
+#light		color	255	255	255	pos	1	1	17	power	1
+#light		color	255	255	255	pos	1	1	17	power	1
+#light		color	255	255	255	pos	1	1	17	power	1
+#light		color	130	130	130	pos	-3	-3	-2	power	1
+#light		color	255	255	255	pos	0	0	5	power	4
 CAMEra			pos 0	0	0		rot 0 0 0
 
 

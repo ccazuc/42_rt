@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:48:47 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 15:40:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 11:46:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 unsigned int	get_pixel_color(t_env *env, t_ray *ray)
 {
 	unsigned int	color;
-	t_object		*collided;
+	t_collision		collision;
 
 	color = BG_COLOR;
-	//printf("Ray | x: %d, y: %d, dir_x: %f, dir_y: %f, dir_z: %f\n", j, i, ray->dir->x, ray->dir->y, ray->dir->z);
-	if (check_collision(env, ray, &collided))
+	if (check_collision(env, ray, &collision) && collision.object)
 	{
-	//	printf("Collision found x: %d, y: %d\n", j, i);
-		color = conv_rgb_to_int(collided->color_r, collided->color_g, collided->color_b);
-		//color = get_light_color( 
+		color = conv_rgb_to_int(collision.object->color_r, collision.object->color_g, collision.object->color_b);
+		//printf("pre light color x: %f, y: %f, z: %f\n", collision.pos.x, collision.pos.y, collision.pos.z);
+		color = get_light_color(env, &collision);
 	}
-	//pixel_put(env, j, i, conv_rgb_to_int((int)(ray->dir->x * 255), (int)(ray->dir->y * 255), (int)(ray->dir->z * 255)));
 	return (color);
 }

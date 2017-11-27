@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/23 08:38:10 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/11/27 11:01:06 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		main(int argc, char **argv)
 	{
 		printf("Type: %d\n", list->object->type);
 		printf("Color | r: %d, g: %d, b: %d\n", list->object->color_r, list->object->color_g, list->object->color_b);
-		printf("Position | x: %d, y: %d, z: %d\n", list->object->pos_x, list->object->pos_y, list->object->pos_z);
+		printf("Position | x: %f, y: %f, z: %f\n", list->object->pos->x, list->object->pos->y, list->object->pos->z);
 		printf("Orientation | x: %d, y: %d, z: %d\n", list->object->rot_x, list->object->rot_y, list->object->rot_z);
 		printf("\n\n\n");
 		list = list->next;

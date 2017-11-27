@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   vector_normal.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 10:28:08 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/27 10:54:43 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/11/27 15:15:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+t_vector	*get_normal_vector(t_object *object, t_vector *pos)
 {
-	env->object_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->light_ambient = 0;
+	if (object->type == SPHERE)
+		return (get_sphere_normal(object, pos));
+	if (object->type == CYLINDRE)
+		return (get_cylinder_normal(object, pos));
+	return (NULL);
 }
