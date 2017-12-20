@@ -37,6 +37,7 @@ SRCS_NAME = main.c \
 			calculate_light.c \
 			vector_normal.c \
 			create_object.c \
+			ft_strncmp_ignrcase.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:26:27 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 15:05:52 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 09:20:46 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	parse_position(t_object *object, char **datas, int *start)
 	|| !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Position's parameters are invalid."
 		, EXIT_FAILURE);
-	object->pos->x = ft_atoi(datas[*start + 1]);
-	object->pos->y = ft_atoi(datas[*start + 2]);
-	object->pos->z = ft_atoi(datas[*start + 3]);
+	object->pos.x = ft_atoi(datas[*start + 1]);
+	object->pos.y = ft_atoi(datas[*start + 2]);
+	object->pos.z = ft_atoi(datas[*start + 3]);
 	*start += 3;
 	object->has_parsed_position = 1;
 }
@@ -45,9 +45,9 @@ void	parse_rotation(t_object *object, char **datas, int *start)
 	|| !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Rotation's parameters are invalid."
 		, EXIT_FAILURE);
-	object->rot_x = ft_atoi(datas[*start + 1]);
-	object->rot_y = ft_atoi(datas[*start + 2]);
-	object->rot_z = ft_atoi(datas[*start + 3]);
+	object->rot.x = ft_atoi(datas[*start + 1]);
+	object->rot.y = ft_atoi(datas[*start + 2]);
+	object->rot.z = ft_atoi(datas[*start + 3]);
 	*start += 3;
 	object->has_parsed_rotation = 1;
 }

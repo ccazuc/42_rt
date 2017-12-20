@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 15:37:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 09:16:58 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 	normal = get_normal_vector(collision->object, &collision->pos);
 	while (list)
 	{
-		ray->dir->x = list->light->pos_x - collision->pos.x;
-		ray->dir->y = list->light->pos_y - collision->pos.y;
-		ray->dir->z = list->light->pos_z - collision->pos.z;
+		ray->dir->x = list->light->pos.x - collision->pos.x;
+		ray->dir->y = list->light->pos.y - collision->pos.y;
+		ray->dir->z = list->light->pos.z - collision->pos.z;
 		vector_normalize(ray->dir);
 		if (check_collision(env, ray, &find_collision) && find_collision.object)
 		{

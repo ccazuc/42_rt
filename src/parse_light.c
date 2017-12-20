@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:07:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 15:30:09 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 09:16:46 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	parse_light_position(t_light *light, char **datas, int *start)
 	|| !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Light's Position parameters are invalid.",
 		EXIT_FAILURE);
-	light->pos_x = ft_atoi(datas[*start + 1]);
-	light->pos_y = ft_atoi(datas[*start + 2]);
-	light->pos_z = ft_atoi(datas[*start + 3]);
+	light->pos.x = ft_atoi(datas[*start + 1]);
+	light->pos.y = ft_atoi(datas[*start + 2]);
+	light->pos.z = ft_atoi(datas[*start + 3]);
 	*start += 3;
 	light->has_parsed_position = 1;
 }
@@ -43,9 +43,9 @@ void	parse_light_rotation(t_light *light, char **datas, int *start)
 	!ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Light's Rotation parameters are invalid."
 		, EXIT_FAILURE);
-	light->rot_x = ft_atoi(datas[*start + 1]);
-	light->rot_y = ft_atoi(datas[*start + 2]);
-	light->rot_z = ft_atoi(datas[*start + 3]);
+	light->rot.x = ft_atoi(datas[*start + 1]);
+	light->rot.y = ft_atoi(datas[*start + 2]);
+	light->rot.z = ft_atoi(datas[*start + 3]);
 	*start += 3;
 	light->has_parsed_rotation = 1;
 }
@@ -107,17 +107,15 @@ void	parse_light(t_env *env, char **datas)
 	light->has_parsed_power = 0;
 	light->power = 1;
 	while (++i < len)
-	{
-		if (!ft_strcmp_ignrcase(datas[i], "pos"))
+		if (check_piece_attribut_name(datas[i], "position"))
 			parse_light_position(light, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "rot"))
+		else if (check_piece_attribut_name(datas[i], "rotation"))
 			parse_light_rotation(light, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "color"))
+		else if (check_piece_attribut_name(datas[i], "color"))
 			parse_light_color(light, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "power"))
+		else if (check_piece_attribut_name(datas[i], "power"))
 			parse_light_power(light, datas, &i);
 		else
-			ft_exit("Error, invalid file.", EXIT_FAILURE);
-	}
+			ft_exit("Error, invalid file. Unknown light attribut.", EXIT_FAILURE);
 	list_add_light(env, light);
 }

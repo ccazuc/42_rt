@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 11:05:59 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 08:48:07 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,16 @@ void		parse_general_object(t_env *env, char **datas)
 	set_object_type(object, datas[0]);
 	i = 0;
 	while (++i < len)
-		if (!ft_strcmp_ignrcase(datas[i], "color"))
+		if (check_piece_attribut_name(datas[i], "color"))
 			parse_color(object, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "pos"))
+		else if (check_piece_attribut_name(datas[i], "position"))
 			parse_position(object, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "rot"))
+		else if (check_piece_attribut_name(datas[i], "rotation"))
 			parse_rotation(object, datas, &i);
-		else if (!ft_strcmp_ignrcase(datas[i], "scale"))
+		else if (check_piece_attribut_name(datas[i], "scale"))
 			parse_scale(object, datas, &i);
 		else
-			ft_exit("Error, invalid file.", EXIT_FAILURE);
+			ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
 	check_object_state(object);
 	list_add_object(env, object);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 15:15:14 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 09:19:25 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define RECTANGLE 2
 # define SPHERE 3
 # define CYLINDRE 4
-# define WINDOW_WIDTH 1000
+# define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 1000
 # define WINDOW_NAME "cc"
 # define FOV_X 60
@@ -75,12 +75,8 @@ typedef struct			s_collision
 
 typedef struct			s_camera
 {
-	int					pos_x;
-	int					pos_y;
-	int					pos_z;
-	int					rot_x;
-	int					rot_y;
-	int					rot_z;
+	t_vector			pos;
+	t_vector			rot;
 }						t_camera;
 
 typedef struct			s_light
@@ -89,12 +85,8 @@ typedef struct			s_light
 	int					color_r;
 	int					color_g;
 	int					color_b;
-	int					pos_x;
-	int					pos_y;
-	int					pos_z;
-	int					rot_x;
-	int					rot_y;
-	int					rot_z;
+	t_vector			pos;
+	t_vector			rot;
 	char				has_parsed_position;
 	char				has_parsed_color;
 	char				has_parsed_rotation;
@@ -107,15 +99,13 @@ typedef struct			s_object
 	int					color_r;
 	int					color_g;
 	int					color_b;
-	int					rot_x;
-	int					rot_y;
-	int					rot_z;
+	t_vector			rot;
 	int					scale;
 	char				has_parsed_position;
 	char				has_parsed_color;
 	char				has_parsed_scale;
 	char				has_parsed_rotation;
-	t_vector			*pos;
+	t_vector			pos;
 }						t_object;
 
 typedef struct			s_quadratic
@@ -198,5 +188,7 @@ t_vector				*get_sphere_normal(t_object *object, t_vector *pos);
 t_vector				*get_normal_vector(t_object *object, t_vector *vector);
 t_object				*create_object(void);
 t_vector				*get_cylinder_normal(t_object *object, t_vector *pos);
+int						check_piece_attribut_name(char *s1, char *s2);
+int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
 
 #endif
