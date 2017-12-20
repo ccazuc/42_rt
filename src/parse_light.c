@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:07:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 09:16:46 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 10:44:11 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parse_light_position(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_position)
-		ft_exit("Error, invalid file. Position duplicate for a light.", EXIT_FAILURE); 
+		ft_exit("Error, invalid file. Position duplicate for a light.", EXIT_FAILURE);
 	printf("Light Position: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for light's position."
@@ -34,7 +34,7 @@ void	parse_light_position(t_light *light, char **datas, int *start)
 void	parse_light_rotation(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_rotation)
-		ft_exit("Error, invalid file. Rotation duplicate for a light.", EXIT_FAILURE); 
+		ft_exit("Error, invalid file. Rotation duplicate for a light.", EXIT_FAILURE);
 	printf("Light Rotation: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for light's rotation."
@@ -102,7 +102,7 @@ void	parse_light(t_env *env, char **datas)
 		ft_exit("Error, of out memory.", EXIT_FAILURE);
 	i = 0;
 	light->has_parsed_rotation = 0;
-	light->has_parsed_position  = 0;
+	light->has_parsed_position = 0;
 	light->has_parsed_color = 0;
 	light->has_parsed_power = 0;
 	light->power = 1;

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 09:16:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 11:46:07 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,10 @@ void	parse_line(t_env *env, char *datas)
 	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' '))
 	|| !result[0])
 		return ;
-	if (!ft_strcmp_ignrcase(result[0], "cube") ||
+	if (!ft_strcmp_ignrcase(result[0], "plane") ||
 	!ft_strcmp_ignrcase(result[0], "cylindre") ||
 	!ft_strcmp_ignrcase(result[0], "triangle") ||
+	!ft_strcmp_ignrcase(result[0], "cone") ||
 	!ft_strcmp_ignrcase(result[0], "sphere"))
 		parse_general_object(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "camera"))

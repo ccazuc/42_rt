@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 09:19:25 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 12:07:42 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,12 @@
 # include <unistd.h>
 # include <math.h>
 
-# define CUBE 0
+# define PLANE 0
 # define TRIANGLE 1
 # define RECTANGLE 2
 # define SPHERE 3
 # define CYLINDRE 4
+# define CONE 5
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 1000
 # define WINDOW_NAME "cc"
@@ -69,6 +70,7 @@ typedef struct			s_collision
 {
 	t_color_mask		color;
 	t_vector			pos;
+	t_vector			dir;
 	double				distance;
 	t_object			*object;
 }						t_collision;
@@ -165,9 +167,9 @@ void					render(t_env *env);
 void					pixel_put(t_env *env, int x, int y, unsigned int color);
 int						check_collision(t_env *env, t_ray *ray, t_collision *collision);
 t_ray					*create_camera_ray(t_env *env);
-int						collide_sphere(t_ray *ray, t_object *object,
+void					collide_sphere(t_ray *ray, t_object *object,
 						t_collision *collision);
-int						collide_cylinder(t_ray *ray, t_object *object,
+void					collide_cylinder(t_ray *ray, t_object *object,
 						t_collision *collision);
 double					dot_product(t_vector *v1, t_vector *v2);
 int						solve_quadratic(t_quadratic *quadratic,
@@ -185,10 +187,17 @@ void					free_collision(t_collision *collision);
 unsigned int			get_light_color(t_env *env, t_collision *collision);
 double					vector_angle(t_vector *v1, t_vector *v2);
 t_vector				*get_sphere_normal(t_object *object, t_vector *pos);
-t_vector				*get_normal_vector(t_object *object, t_vector *vector);
+t_vector				*get_normal_vector(t_object *object, t_collision *collision);
 t_object				*create_object(void);
 t_vector				*get_cylinder_normal(t_object *object, t_vector *pos);
 int						check_piece_attribut_name(char *s1, char *s2);
 int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
+void					collide_cone(t_ray *ray, t_object *object,
+						t_collision *collision);
+t_vector				*get_cone_normal(t_object *object, t_vector *pos);
+void					collide_plane(t_ray *ray, t_object *object,
+						t_collision *collision);
+t_vector				*get_plane_normal(t_object *object, t_collision *collision);
+void					vector_rotate(t_vector *vector, t_vector *angle);
 
 #endif

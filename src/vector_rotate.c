@@ -6,11 +6,18 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 15:29:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/25 15:24:55 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 12:07:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+void		vector_rotate(t_vector *vector, t_vector *angle)
+{
+	vector_rotate_x(vector, ft_toradians(angle->x));
+	vector_rotate_y(vector, ft_toradians(angle->y));
+	vector_rotate_z(vector, ft_toradians(angle->z));
+}
 
 void		vector_rotate_x(t_vector *vector, float angle)
 {

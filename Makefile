@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Wextra -Werror -O2
+CFLAGS = -Wall -Wextra -Werror -g
 
 CC = gcc
 
@@ -24,20 +24,22 @@ SRCS_NAME = main.c \
 			vector_rotate.c \
 			vector_normalize.c \
 			check_collision.c \
-			sphere.c \
+			shape_sphere.c \
 			create_ray.c \
 			solve_quadratic.c \
 			math_utils.c \
 			parse_camera.c \
 			parse_light.c \
 			get_pixel_color.c \
-			cylinder.c \
+			shape_cylinder.c \
 			collision.c \
 			vector_angle.c \
 			calculate_light.c \
 			vector_normal.c \
 			create_object.c \
 			ft_strncmp_ignrcase.c \
+			shape_cone.c \
+			shape_plane.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

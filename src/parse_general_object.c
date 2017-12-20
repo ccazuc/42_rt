@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 08:48:07 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 11:46:28 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static void	set_object_type(t_object *object, char *datas)
 {
-	if (!ft_strcmp_ignrcase(datas, "cube"))
-		object->type = CUBE;
+	if (!ft_strcmp_ignrcase(datas, "plane"))
+		object->type = PLANE;
 	else if (!ft_strcmp_ignrcase(datas, "sphere"))
 		object->type = SPHERE;
 	else if (!ft_strcmp_ignrcase(datas, "cylindre"))
@@ -24,6 +24,8 @@ static void	set_object_type(t_object *object, char *datas)
 		object->type = TRIANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "rectangle"))
 		object->type = RECTANGLE;
+	else if (!ft_strcmp_ignrcase(datas, "cone"))
+		object->type = CONE;
 	else
 		ft_exit("Error, invalid file. Unknown object type.", EXIT_FAILURE);
 }

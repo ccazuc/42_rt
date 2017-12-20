@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 09:15:02 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/20 10:55:25 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 {
-	double	angle_x;
-	double	angle_y;
+	//double	angle_x;
+	//double	angle_y;
 
-	angle_y = (double)(x - WINDOW_WIDTH / 2.0) / (double)(WINDOW_WIDTH / 2.0) * ft_toradians(FOV_X / 2.) + ft_toradians(env->camera->rot.y);
-	angle_x = (double)(y - WINDOW_HEIGHT / 2.0) / (double)(WINDOW_HEIGHT / 2.0) * -ft_toradians(FOV_Y / 2.) + ft_toradians(env->camera->rot.x);
+	env = NULL;
+	//angle_y = (double)(x - WINDOW_WIDTH / 2.0) / (double)(WINDOW_WIDTH / 2.0) * ft_toradians(FOV_X / 2.) + ft_toradians(env->camera->rot.y);
+	//angle_x = (double)(y - WINDOW_HEIGHT / 2.0) / (double)(WINDOW_HEIGHT / 2.0) * -ft_toradians(FOV_Y / 2.) + ft_toradians(env->camera->rot.x);
 	//printf("x: %d, y: %d, angle_y: %f, angle_x: %f\n", x, y, angle_y, angle_x);
 	//ray->dir->x = sin(angle_y);
 	//ray->dir->y = sin(angle_x);
