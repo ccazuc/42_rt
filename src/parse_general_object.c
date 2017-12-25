@@ -43,6 +43,24 @@ static void	check_object_state(t_object *object)
 		ft_putstr("Warning, found an object without scale.\n");
 }
 
+static void	check_attribut(t_object *object, char **datas, int *i)
+{
+	t_material	*tmp;
+
+	if (check_piece_attribut_name(datas[*i], "color"))
+		parse_object_color(object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "position"))
+		parse_object_position(object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "rotation"))
+		parse_object_rotation(object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "scale"))
+		parse_object_scale(object, datas, &);
+	else if ((tmp = find_material(datas[*i]))
+		fill_object_with_material(object, material, i);
+	else
+		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
+}
+
 void		parse_general_object(t_env *env, char **datas)
 {
 	int			i;
@@ -54,16 +72,7 @@ void		parse_general_object(t_env *env, char **datas)
 	set_object_type(object, datas[0]);
 	i = 0;
 	while (++i < len)
-		if (check_piece_attribut_name(datas[i], "color"))
-			parse_color(object, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "position"))
-			parse_position(object, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "rotation"))
-			parse_rotation(object, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "scale"))
-			parse_scale(object, datas, &i);
-		else
-			ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
+		check_attribut(object, datas, &i);
 	check_object_state(object);
 	list_add_object(env, object);
 }

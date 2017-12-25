@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-void	parse_position(t_object *object, char **datas, int *start)
+void	parse_object_position(t_object *object, char **datas, int *start)
 {
 	if (object->has_parsed_position)
 		ft_exit("Error, invalid file. Position duplicate for an object."
@@ -32,7 +32,7 @@ void	parse_position(t_object *object, char **datas, int *start)
 	object->has_parsed_position = 1;
 }
 
-void	parse_rotation(t_object *object, char **datas, int *start)
+void	parse_object_rotation(t_object *object, char **datas, int *start)
 {
 	if (object->has_parsed_rotation)
 		ft_exit("Error, invalid file. Rotation duplicate for an object."
@@ -52,7 +52,7 @@ void	parse_rotation(t_object *object, char **datas, int *start)
 	object->has_parsed_rotation = 1;
 }
 
-void	parse_color(t_object *object, char **datas, int *start)
+void	parse_object_color(t_object *object, char **datas, int *start)
 {
 	if (object->has_parsed_color)
 		ft_exit("Error, invalid file. Color duplicate for an object."
@@ -74,17 +74,17 @@ void	parse_color(t_object *object, char **datas, int *start)
 	object->has_parsed_color = 1;
 }
 
-void	parse_scale(t_object *object, char **datas, int *start)
+void	parse_object_scale(t_object *object, char **datas, int *start)
 {
 	if (object->has_parsed_scale)
 		ft_exit("Error, invalid file. Scale duplicate for an object."
 		, EXIT_FAILURE);
 	printf("Scale: %s\n", datas[*start + 1]);
 	if (!datas[*start + 1])
-		ft_exit("Error, invalid file. Not enough parameters for color."
+		ft_exit("Error, invalid file. Not enough parameters for scale."
 		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]))
-		ft_exit("Error, invalid file. Color's parameters are invalid."
+		ft_exit("Error, invalid file. Scale's parameters are invalid."
 		, EXIT_FAILURE);
 	object->scale = ft_atoi(datas[*start + 1]);
 	if (object->scale <= 0)

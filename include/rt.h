@@ -62,8 +62,8 @@ typedef struct			s_color_mask
 
 typedef struct			s_ray
 {
-	t_vector			*pos;
-	t_vector			*dir;
+	t_vector			pos;
+	t_vector			dir;
 }						t_ray;
 
 typedef struct			s_collision
@@ -95,6 +95,21 @@ typedef struct			s_light
 	char				has_parsed_power;
 }						t_light;
 
+typedef struct			s_material
+{
+	char				*name;
+	int					color_r;
+	int					color_g;
+	int					color_b;
+	t_vector			pos;
+	t_vector			rot;
+	int					scale;
+	char				has_parsed_position;
+	char				has_parsed_color;
+	char				has_parsed_scale;
+	char				has_parsed_rotation;	
+}						t_material;
+
 typedef struct			s_object
 {
 	int					type;
@@ -117,17 +132,23 @@ typedef struct			s_quadratic
 	double				c;
 }						t_quadratic;
 
-typedef struct			s_rtlist
+typedef struct				s_object_list
 {
-	struct s_rtlist		*next;
-	struct s_object		*object;
-}						t_rtlist;
+	struct s_object_list	*next;
+	struct s_object			*object;
+}							t_object_list;
 
-typedef struct			s_rtllist
+typedef struct				s_material_list
 {
-	struct s_rtllist	*next;
+	struct s_material_list	*next;
+	struct s_material		*material;
+}							t_material;
+
+typedef struct			s_light_list
+{
+	struct s_light_list	*next;
 	struct s_light		*light;
-}						t_rtllist;
+}						t_light_list;
 
 typedef struct			s_env
 {
@@ -136,21 +157,22 @@ typedef struct			s_env
 	void				*mlx_img_ptr;
 	char				*mlx_img_data;
 	int					bpp;
-	t_rtlist			*object_list;
-	t_rtllist			*light_list;
+	t_object_list		*object_list;
+	t_light_list		*light_list;
+	t_material_list		*material_list;
 	t_camera			*camera;
 	unsigned int		light_ambient;
 }						t_env;
 
 void					parse(t_env *env, int argc, char **argv);
 void					parse_general_object(t_env *env, char **datas);
-void					parse_color(t_object *object, char **datas, int *start);
-void					parse_light(t_env *env, char **datas);
-void					parse_position(t_object *object, char **datas,
+void					parse_object_color(t_object *object, char **datas, int *start);
+void					parse_object_light(t_env *env, char **datas);
+void					parse_object_position(t_object *object, char **datas,
 						int *start);
-void					parse_rotation(t_object *object, char **datas,
+void					parse_object_rotation(t_object *object, char **datas,
 						int *start);
-void					parse_scale(t_object *object, char **datas, int *start);
+void					parse_object_scale(t_object *object, char **datas, int *start);
 void					parse_args(t_env *env, int fd);
 void					list_add_object(t_env *env, t_object *object);
 void					list_add_light(t_env *env, t_light *light);
@@ -186,18 +208,19 @@ t_collision				*create_collision(void);
 void					free_collision(t_collision *collision);
 unsigned int			get_light_color(t_env *env, t_collision *collision);
 double					vector_angle(t_vector *v1, t_vector *v2);
-t_vector				*get_sphere_normal(t_object *object, t_vector *pos);
+t_vector				*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
 t_vector				*get_normal_vector(t_object *object, t_collision *collision);
 t_object				*create_object(void);
-t_vector				*get_cylinder_normal(t_object *object, t_vector *pos);
+t_vector				*get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
 int						check_piece_attribut_name(char *s1, char *s2);
 int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
 void					collide_cone(t_ray *ray, t_object *object,
 						t_collision *collision);
-t_vector				*get_cone_normal(t_object *object, t_vector *pos);
+t_vector				*get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					collide_plane(t_ray *ray, t_object *object,
 						t_collision *collision);
-t_vector				*get_plane_normal(t_object *object, t_collision *collision);
+t_vector				*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
 void					vector_rotate(t_vector *vector, t_vector *angle);
+void					list_add_material(t_env *env, t_material *material);
 
 #endif

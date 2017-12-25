@@ -25,13 +25,8 @@ void	parse(t_env *env, int argc, char **argv)
 		ft_exit("Error, no camera found.", EXIT_FAILURE);
 }
 
-void	parse_line(t_env *env, char *datas)
+static void	parse_line2(t_env *env, char **str)
 {
-	char	**result;
-
-	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' '))
-	|| !result[0])
-		return ;
 	if (!ft_strcmp_ignrcase(result[0], "plane") ||
 	!ft_strcmp_ignrcase(result[0], "cylindre") ||
 	!ft_strcmp_ignrcase(result[0], "triangle") ||
@@ -42,8 +37,22 @@ void	parse_line(t_env *env, char *datas)
 		parse_camera(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "light"))
 		parse_light(env, result);
+	else if (!ft_strcmp_ignrcase(result[0], "material"))
+		parse_material(env, result);
+	else if (!ft_strcmp_ignrcase(result[0], "define"))
+		parse_define(env, result);
 	else if (result[0][0] != '#')
-		ft_exit("Error, invalid file.", EXIT_FAILURE);
+		ft_exit("Error, invalid file.", EXIT_FAILURE)
+}
+
+static void	parse_line(t_env *env, char *datas)
+{
+	char	**result;
+
+	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' '))
+	|| !result[0])
+		return ;
+	parse_line2(env, result);
 	free_2d_array(result);
 }
 

@@ -14,31 +14,30 @@
 
 unsigned int	find_light(t_env *env, t_collision *collision)
 {
-	t_rtllist		*list;
-	t_ray			*ray;
+	t_light_list	*list;
+	t_ray			ray;
 	t_collision		find_collision;
-	t_vector		*normal;
+	t_vector		normal;
 	double			norm_angle;
 
 	list = env->light_list;
-	ray = create_camera_ray(env);
-	ray->pos->x = collision->pos.x;
-	ray->pos->y = collision->pos.y;
-	ray->pos->z = collision->pos.z;
-	normal = get_normal_vector(collision->object, collision);
-	vector_normalize(normal);
+	ray.pos.x = collision->pos.x;
+	ray.pos.y = collision->pos.y;
+	ray.pos.z = collision->pos.z;
+	get_normal_vector(&normal, collision->object, collision);
+	vector_normalize(&normal);
 	while (list)
 	{
-		ray->dir->x = list->light->pos.x - collision->pos.x;
-		ray->dir->y = list->light->pos.y - collision->pos.y;
-		ray->dir->z = list->light->pos.z - collision->pos.z;
-		vector_normalize(ray->dir);
-		if (check_collision(env, ray, &find_collision) && find_collision.object)
+		ray.dir.x = list->light->pos.x - collision->pos.x;
+		ray.dir.y = list->light->pos.y - collision->pos.y;
+		ray.dir.z = list->light->pos.z - collision->pos.z;
+		vector_normalize(&ray.dir);
+		if (check_collision(env, &ray, &find_collision) && find_collision.object)
 		{
 			list = list->next;
 			continue ;
 		}
-		norm_angle = dmax(0, cos(vector_angle(ray->dir, normal)));
+		norm_angle = dmax(0, cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{
 			collision->color.r = dmin(255, collision->color.r + norm_angle * list->light->power * list->light->color_r / 255 * collision->object->color_r / 255);
@@ -48,8 +47,6 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		}
 		list = list->next;
 	}
-	free(normal);
-	free(ray);
 	return (conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b));
 }
 

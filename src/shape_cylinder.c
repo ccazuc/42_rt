@@ -12,12 +12,8 @@
 
 #include "rt.h"
 
-t_vector	*get_cylinder_normal(t_object *object, t_vector *pos)
+t_vector	*get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos)
 {
-	t_vector	*vector;
-
-	if (!(vector = malloc(sizeof(*vector))))
-		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	vector->x = pos->x - object->pos.x;
 	vector->z = pos->z - object->pos.z;
 	return (vector);

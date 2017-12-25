@@ -12,13 +12,10 @@
 
 #include "rt.h"
 
-t_vector	*get_plane_normal(t_object *object, t_collision *collision)
+t_vector	*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision)
 {
-	t_vector	*vector;
 	double		angle;
 
-	if (!(vector = malloc(sizeof(*vector))))
-		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	vector->x = 0;
 	vector->y = 1;
 	vector->z = 0;

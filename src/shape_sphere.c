@@ -12,16 +12,12 @@
 
 #include "rt.h"
 
-t_vector	*get_sphere_normal(t_object *object, t_vector *pos)
+t_vector	*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
 {
-	t_vector	*result;
-
-	if (!(result = malloc(sizeof(*result))))
-		ft_exit("Error, out of memory.", EXIT_FAILURE);
-	result->x = pos->x - object->pos.x;
-	result->y = pos->y - object->pos.y;
-	result->z = pos->z - object->pos.z;
-	return (result);
+	vector->x = pos->x - object->pos.x;
+	vector->y = pos->y - object->pos.y;
+	vector->z = pos->z - object->pos.z;
+	return (vector);
 }
 
 void		collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
