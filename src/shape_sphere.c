@@ -12,15 +12,14 @@
 
 #include "rt.h"
 
-t_vector	*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
+void	*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
 {
 	vector->x = pos->x - object->pos.x;
 	vector->y = pos->y - object->pos.y;
 	vector->z = pos->z - object->pos.z;
-	return (vector);
 }
 
-void		collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
+void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
 {
 	t_vector	new;
 	t_quadratic	quadratic;

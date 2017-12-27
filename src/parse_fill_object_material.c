@@ -4,7 +4,8 @@ static void	fill_object_with_material2(t_object *object, t_material *material, i
 {
 	if (material->has_parsed_scale)
 		if (object->has_parsed_scale)
-			ft_exit("Error, invalid file. Scale duplicate for an object.", EXIT_FAILURE);
+			//ft_exit("Error, invalid file. Scale duplicate for an object.", EXIT_FAILURE);
+			;
 		else
 		{
 			object->scale = material->scale;
@@ -17,7 +18,8 @@ void	fill_object_with_material(t_object *object, t_material *material, int *i)
 {
 	if (material->has_parsed_color)
 		if (object->has_parsed_color)
-			ft_exit("Error, invalid file. Color duplicate for an object.", EXIT_FAILURE);
+			//ft_exit("Error, invalid file. Color duplicate for an object.", EXIT_FAILURE);
+			;
 		else
 		{
 			object->color_r = material->color_r
@@ -27,7 +29,8 @@ void	fill_object_with_material(t_object *object, t_material *material, int *i)
 		}
 	if (material->has_parsed_position)
 		if (object->has_parsed_position)
-			ft_exit("Error, invalid file. Position duplicate for an object.", EXIT_FAILURE);
+			//ft_exit("Error, invalid file. Position duplicate for an object.", EXIT_FAILURE);
+			;
 		else
 		{
 			object->pos.x = material->pos.x;
@@ -37,7 +40,8 @@ void	fill_object_with_material(t_object *object, t_material *material, int *i)
 		}
 	if (material->has_parsed_rotation)
 		if (object->has_parsed_rotation)
-			ft_exit("Error, invalid file. Rotation duplicate for an object.", EXIT_FAILURE);
+			//ft_exit("Error, invalid file. Rotation duplicate for an object.", EXIT_FAILURE);
+			;
 		else
 		{
 			object->rot.x = material->rot.x;

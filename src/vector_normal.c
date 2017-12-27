@@ -12,15 +12,14 @@
 
 #include "rt.h"
 
-t_vector	*get_normal_vector(t_vector *result, t_object *object, t_collision *collision)
+void	*get_normal_vector(t_vector *result, t_object *object, t_collision *collision)
 {
 	if (object->type == SPHERE)
-		return (get_sphere_normal(result, object, &collision->pos));
-	if (object->type == CYLINDRE)
-		return (get_cylinder_normal(result, object, &collision->pos));
-	if (object->type == CONE)
-		return (get_cone_normal(result, object, &collision->pos));
-	if (object->type == PLANE)
-		return (get_plane_normal(result, object, collision));
-	return (NULL);
+		get_sphere_normal(result, object, &collision->pos);
+	else if (object->type == CYLINDRE)
+		get_cylinder_normal(result, object, &collision->pos);
+	else if (object->type == CONE)
+		get_cone_normal(result, object, &collision->pos);
+	else if (object->type == PLANE)
+		get_plane_normal(result, object, collision);
 }

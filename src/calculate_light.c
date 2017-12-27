@@ -40,8 +40,10 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		norm_angle = dmax(0, cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{
-			collision->color.r = dmin(255, collision->color.r + norm_angle * list->light->power * list->light->color_r / 255 * collision->object->color_r / 255);
-			collision->color.g = dmin(255, collision->color.g + norm_angle * list->light->power * list->light->color_g / 255 * collision->object->color_g / 255);
+			collision->color.r = dmin(255, collision->color.r + norm_angle *
+			list->light->power * list->light->color_r / 255 * collision->object->color_r / 255);
+			collision->color.g = dmin(255, collision->color.g + norm_angle *
+			list->light->power * list->light->color_g / 255 * collision->object->color_g / 255);
 			collision->color.b = dmin(255, collision->color.b + norm_angle *
 			list->light->power * list->light->color_b / 255 * collision->object->color_b / 255);
 		}

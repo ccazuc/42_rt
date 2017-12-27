@@ -208,18 +208,18 @@ t_collision				*create_collision(void);
 void					free_collision(t_collision *collision);
 unsigned int			get_light_color(t_env *env, t_collision *collision);
 double					vector_angle(t_vector *v1, t_vector *v2);
-t_vector				*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
-t_vector				*get_normal_vector(t_object *object, t_collision *collision);
+void					*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					*get_normal_vector(t_object *object, t_collision *collision);
 t_object				*create_object(void);
-t_vector				*get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					*get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
 int						check_piece_attribut_name(char *s1, char *s2);
 int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
 void					collide_cone(t_ray *ray, t_object *object,
 						t_collision *collision);
-t_vector				*get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					*get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					collide_plane(t_ray *ray, t_object *object,
 						t_collision *collision);
-t_vector				*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
+void					*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
 void					vector_rotate(t_vector *vector, t_vector *angle);
 void					list_add_material(t_env *env, t_material *material);
 

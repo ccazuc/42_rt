@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-t_vector	*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision)
+void	*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision)
 {
 	double		angle;
 
@@ -27,7 +27,6 @@ t_vector	*get_plane_normal(t_vector *vector, t_object *object, t_collision *coll
 		vector->y = -vector->y;
 		vector->z = -vector->z;
 	}
-	return (vector);
 }
 
 void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
