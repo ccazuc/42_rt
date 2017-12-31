@@ -6,13 +6,13 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 10:54:43 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 12:02:05 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 13:01:22 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	*get_normal_vector(t_vector *result, t_object *object, t_collision *collision)
+void	get_normal_vector(t_vector *result, t_object *object, t_collision *collision)
 {
 	if (object->type == SPHERE)
 		get_sphere_normal(result, object, &collision->pos);

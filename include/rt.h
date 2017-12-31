@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 12:07:42 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 13:06:38 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ typedef struct				s_material_list
 {
 	struct s_material_list	*next;
 	struct s_material		*material;
-}							t_material;
+}							t_material_list;
 
 typedef struct			s_light_list
 {
@@ -208,19 +208,25 @@ t_collision				*create_collision(void);
 void					free_collision(t_collision *collision);
 unsigned int			get_light_color(t_env *env, t_collision *collision);
 double					vector_angle(t_vector *v1, t_vector *v2);
-void					*get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
-void					*get_normal_vector(t_object *object, t_collision *collision);
+void					get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					get_normal_vector(t_vector *result, t_object *object, t_collision *collision);
 t_object				*create_object(void);
-void					*get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
 int						check_piece_attribut_name(char *s1, char *s2);
 int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
 void					collide_cone(t_ray *ray, t_object *object,
 						t_collision *collision);
-void					*get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
+void					get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					collide_plane(t_ray *ray, t_object *object,
 						t_collision *collision);
-void					*get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
+void					get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
 void					vector_rotate(t_vector *vector, t_vector *angle);
 void					list_add_material(t_env *env, t_material *material);
+t_material				*find_material(t_env *env, char *str);
+void					fill_object_with_material(t_object *object,
+						t_material *material, int *i);
+void					parse_light(t_env *env, char **datas);
+void					parse_material(t_env *env, char **str);
+t_material				*create_material(void);
 
 #endif

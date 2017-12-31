@@ -40,6 +40,9 @@ SRCS_NAME = main.c \
 			ft_strncmp_ignrcase.c \
 			shape_cone.c \
 			shape_plane.c \
+			parse_material.c \
+			parse_fill_object_material.c \
+			material.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 11:46:28 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 12:52:18 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ static void	check_object_state(t_object *object)
 		ft_putstr("Warning, found an object without scale.\n");
 }
 
-static void	check_attribut(t_object *object, char **datas, int *i)
+static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 {
-	t_material	*tmp;
+	t_material	*material;
 
 	if (check_piece_attribut_name(datas[*i], "color"))
 		parse_object_color(object, datas, i);
@@ -54,8 +54,8 @@ static void	check_attribut(t_object *object, char **datas, int *i)
 	else if (check_piece_attribut_name(datas[*i], "rotation"))
 		parse_object_rotation(object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "scale"))
-		parse_object_scale(object, datas, &);
-	else if ((tmp = find_material(datas[*i]))
+		parse_object_scale(object, datas, i);
+	else if ((material = find_material(env, datas[*i])))
 		fill_object_with_material(object, material, i);
 	else
 		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
@@ -72,7 +72,7 @@ void		parse_general_object(t_env *env, char **datas)
 	set_object_type(object, datas[0]);
 	i = 0;
 	while (++i < len)
-		check_attribut(object, datas, &i);
+		check_attribut(env, object, datas, &i);
 	check_object_state(object);
 	list_add_object(env, object);
 }

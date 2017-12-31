@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 12:47:51 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 12:47:14 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		main(int argc, char **argv)
 {
-	t_env		*env;
-	t_rtlist	*list;
+	t_env			*env;
+	t_object_list	*list;
 
 	/*printf("%d\n", check_piece_attribut_name("PoS", "posITIon"));
 	printf("%d\n", check_piece_attribut_name("pop", "posITIon"));

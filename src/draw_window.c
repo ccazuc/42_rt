@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 10:55:25 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 13:26:41 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 	//ray->dir->x = sin(angle_y);
 	//ray->dir->y = sin(angle_x);
 	//ray->dir->z = cos(angle_x) * cos(angle_y);
-	ray->dir->x = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * tan(FOV_X / 2 * M_PI / 180) * (WINDOW_WIDTH / WINDOW_HEIGHT);
-	ray->dir->y = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * tan(FOV_Y / 2 * M_PI / 180);
-	ray->dir->z = 1;
+	ray->dir.x = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * tan(FOV_X / 2 * M_PI / 180) * (WINDOW_WIDTH / WINDOW_HEIGHT);
+	ray->dir.y = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * tan(FOV_Y / 2 * M_PI / 180);
+	ray->dir.z = 1;
 	//vector_rotate(ray->dir, env->camera->rot);
-	vector_normalize(ray->dir);
+	vector_normalize(&ray->dir);
 	//printf("dir_x: %f, dir_y: %f, dir_z: %f\n", ray->dir->x, ray->dir->y, ray->dir->z);
 }
 
@@ -50,6 +50,7 @@ void	render(t_env *env)
 			//pixel_put(env, j, i, conv_rgb_to_int((int)(255 * ft_math_dabs(ray->dir->x)), (int)(255 * ft_math_dabs(ray->dir->y)), (int)(255 * ft_math_dabs(ray->dir->z))));
 		}
 	}
+	free(ray);
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
 	mlx_loop(env->mlx_ptr);
 }

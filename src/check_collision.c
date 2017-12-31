@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 12:11:26 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 12:57:10 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ t_collision *tmp, t_object *object)
 
 int			check_collision(t_env *env, t_ray *ray, t_collision *collision)
 {
-	t_rtlist	*list;
-	t_collision	*tmp_collision;
+	t_object_list	*list;
+	t_collision		*tmp_collision;
 
 	list = env->object_list;
 	tmp_collision = create_collision();
@@ -47,11 +47,8 @@ int			check_collision(t_env *env, t_ray *ray, t_collision *collision)
 			collide_cylinder(ray, list->object, tmp_collision);
 		else if (list->object->type == CONE)
 			collide_cone(ray, list->object, tmp_collision);
-		else if (list->object->type == PLANE) {
+		else if (list->object->type == PLANE)
 			collide_plane(ray, list->object, tmp_collision);
-			//if (tmp_collision->distance)
-			//printf("plane dist: %f, min dist: %f\n", tmp_collision->distance, collision->distance);
-}
 		if (tmp_collision->distance > 0
 		&& tmp_collision->distance < collision->distance)
 			fill_collision_datas(collision, tmp_collision, list->object);

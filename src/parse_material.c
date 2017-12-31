@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parse_material.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/12/31 13:09:17 by ccazuc            #+#    #+#             */
+/*   Updated: 2017/12/31 13:09:19 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 static void	parse_material_name(t_material *material, char *str)
@@ -23,10 +35,10 @@ static void	parse_material_color(t_material *material, char **datas, int *start)
 	|| !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Color's parameters are invalid."
 		, EXIT_FAILURE);
-	object->color_r = ft_atoi(datas[*start + 1]);
-	object->color_g = ft_atoi(datas[*start + 2]);
-	object->color_b = ft_atoi(datas[*start + 3]);
-	if (object->color_r < 0 || object->color_g < 0 || object->color_b < 0)
+	material->color_r = ft_atoi(datas[*start + 1]);
+	material->color_g = ft_atoi(datas[*start + 2]);
+	material->color_b = ft_atoi(datas[*start + 3]);
+	if (material->color_r < 0 || material->color_g < 0 || material->color_b < 0)
 		ft_exit("Error, invalid file. Color's value is invalid."
 		, EXIT_FAILURE);
 	*start += 3;
@@ -73,7 +85,7 @@ static void		parse_material_position(t_material *material, char **datas, int *st
 	material->has_parsed_position = 1;
 }
 
-void		parse_material(t_env *env, char **str)
+void		parse_material(t_env *env, char **datas)
 {
 	int			i;
 	t_material	*material;
@@ -83,7 +95,7 @@ void		parse_material(t_env *env, char **str)
 	if (len <= 1)
 		ft_exit("Error, invalid file. Invalid material.", EXIT_FAILURE);
 	material = create_material();
-	check_material_name(str[1]);
+	parse_material_name(material, datas[1]);
 	i = 1;
 	while (++i < len)
 		if (check_piece_attribut_name(datas[i], "color"))
@@ -92,12 +104,12 @@ void		parse_material(t_env *env, char **str)
 			parse_material_position(material, datas, &i);
 		else if (check_piece_attribut_name(datas[i], "rotation"))
 			parse_material_rotation(material, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "scale"))
-			parse_material_scale(material, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "reflection"))
-			parse_material_reflection(material, datas, &i);
-		else if (check_piece_attribut_name(datas[i], "refraction"))
-			parse_material_refraction(material, datas, &i);
+		//else if (check_piece_attribut_name(datas[i], "scale"))
+		//	parse_material_scale(material, datas, &i);
+		//else if (check_piece_attribut_name(datas[i], "reflection"))
+		//	parse_material_reflection(material, datas, &i);
+		//else if (check_piece_attribut_name(datas[i], "refraction"))
+		//	parse_material_refraction(material, datas, &i);
 		else
 			ft_exit("Error, invalid file. Unknown material attribut.", EXIT_FAILURE);
 	list_add_material(env, material);
