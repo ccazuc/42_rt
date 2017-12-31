@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 18:18:09 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 19:18:57 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		vector_normalize(&ray.dir);
 		//printf("collision pos.x: %f, pos.y: %f, pos.z: %f\nray dir.x: %f, dir.y: %f, dir.z: %f\nnorm dir.x: %f, dir.y: %f, dir.z: %f\n\n", collision->pos.x, collision->pos.y, collision->pos.z, ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z);
 		if (check_collision(env, &ray, &find_collision) && find_collision.object
-		&& find_collision.distance > vector_distance(&list->light->pos, &collision->pos))
+		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
 		{
 			//printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
 			list = list->next;
@@ -62,12 +62,12 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 
 void			check_ambient(t_env *env, t_collision *collision)
 {
-	if (collision->color.r < env->light_ambient)
-		collision->color.r = get_color_r(env->light_ambient);
-	if (collision->color.g < env->light_ambient)
-		collision->color.g = get_color_g(env->light_ambient);
-	if (collision->color.b < env->light_ambient)
-		collision->color.b = get_color_b(env->light_ambient);
+	if (collision->color.r < get_color_r(env->light_ambient))
+		collision->color.r = dmin(255, collision->color.r + get_color_r(env->light_ambient) * .2);
+	if (collision->color.g < get_color_g(env->light_ambient))
+		collision->color.g = dmin(255, collision->color.g + get_color_g(env->light_ambient) * .2);
+	if (collision->color.b < get_color_b(env->light_ambient))
+		collision->color.b = dmin(255, collision->color.b + get_color_b(env->light_ambient) * .2);
 }
 
 unsigned int	get_light_color(t_env *env, t_collision *collision)
