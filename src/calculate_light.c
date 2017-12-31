@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 15:27:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 16:48:36 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,17 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
 		if (check_collision(env, &ray, &find_collision) && find_collision.object
-		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
+		&& find_collision.distance > vector_distance(&list->light->pos, &collision->pos) + .000001)
 		{
+			printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
 			list = list->next;
 			continue ;
 		}
-		norm_angle = dmax(0, cos(vector_angle(&ray.dir, &normal)));
+		norm_angle = dmax(0, -cos(vector_angle(&ray.dir, &normal)));
+		//printf("ray.dir.x: %f, ray.dir.y: %f, ray.dir.z: %f, normal.x: %f, normal.y: %f, normal.z: %f, norm_angle: %f, vector_angle: %f, cos: %f\n", ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z, norm_angle, vector_angle(&ray.dir, &normal), cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{
+			//printf("angle: %f\n", norm_angle);
 			collision->color.r = dmin(255, collision->color.r + norm_angle *
 			list->light->power * list->light->color_r / 255. * collision->object->color_r / 255.);
 			collision->color.g = dmin(255, collision->color.g + norm_angle *

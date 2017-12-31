@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 14:59:01 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 16:46:24 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 	if (!result)
 		return ;
 	dist = dot_product(&norm, &new) / result;	
-	if (dist < 0.0000001)
+	if (dist < 0.001)
 		return ;
 	collision->distance = dist;
 	//printf("plan dist: %f\n", dist);

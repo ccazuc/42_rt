@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:26:41 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 16:42:19 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,14 @@ void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 	//double	angle_x;
 	//double	angle_y;
 
-	env = NULL;
 	//angle_y = (double)(x - WINDOW_WIDTH / 2.0) / (double)(WINDOW_WIDTH / 2.0) * ft_toradians(FOV_X / 2.) + ft_toradians(env->camera->rot.y);
 	//angle_x = (double)(y - WINDOW_HEIGHT / 2.0) / (double)(WINDOW_HEIGHT / 2.0) * -ft_toradians(FOV_Y / 2.) + ft_toradians(env->camera->rot.x);
 	//printf("x: %d, y: %d, angle_y: %f, angle_x: %f\n", x, y, angle_y, angle_x);
 	//ray->dir->x = sin(angle_y);
 	//ray->dir->y = sin(angle_x);
 	//ray->dir->z = cos(angle_x) * cos(angle_y);
-	ray->dir.x = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * tan(FOV_X / 2 * M_PI / 180) * (WINDOW_WIDTH / WINDOW_HEIGHT);
-	ray->dir.y = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * tan(FOV_Y / 2 * M_PI / 180);
+	ray->dir.x = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * tan(FOV_X / 2 * M_PI / 180) * (WINDOW_WIDTH / WINDOW_HEIGHT) + ft_toradians(env->camera->rot.y);
+	ray->dir.y = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * tan(FOV_Y / 2 * M_PI / 180) + ft_toradians(env->camera->rot.x);
 	ray->dir.z = 1;
 	//vector_rotate(ray->dir, env->camera->rot);
 	vector_normalize(&ray->dir);
