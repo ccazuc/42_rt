@@ -6,13 +6,18 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 14:54:23 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 17:45:57 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int		main(int argc, char **argv)
+/*static void	print_usage(void)
+{
+	
+}*/
+
+int			main(int argc, char **argv)
 {
 	t_env			*env;
 	t_object_list	*list;

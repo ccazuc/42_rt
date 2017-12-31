@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 17:12:43 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 18:18:09 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		ray.dir.y = list->light->pos.y - collision->pos.y;
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
+		//printf("collision pos.x: %f, pos.y: %f, pos.z: %f\nray dir.x: %f, dir.y: %f, dir.z: %f\nnorm dir.x: %f, dir.y: %f, dir.z: %f\n\n", collision->pos.x, collision->pos.y, collision->pos.z, ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z);
 		if (check_collision(env, &ray, &find_collision) && find_collision.object
-		&& find_collision.distance > vector_distance(&list->light->pos, &collision->pos) + .000001)
+		&& find_collision.distance > vector_distance(&list->light->pos, &collision->pos))
 		{
 			//printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
 			list = list->next;
 			continue ;
 		}
-		norm_angle = dmax(0, -cos(vector_angle(&ray.dir, &normal)));
+		norm_angle = dmax(0, cos(vector_angle(&ray.dir, &normal)));
 		//printf("ray.dir.x: %f, ray.dir.y: %f, ray.dir.z: %f, normal.x: %f, normal.y: %f, normal.z: %f, norm_angle: %f, vector_angle: %f, cos: %f\n", ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z, norm_angle, vector_angle(&ray.dir, &normal), cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{

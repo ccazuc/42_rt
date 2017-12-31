@@ -6,24 +6,24 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
-#    Updated: 2017/12/31 17:21:14 by ccazuc           ###   ########.fr        #
+#    Updated: 2017/12/31 18:33:08 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-plane		color	255	255	255	pos	0	-10	40	
+plane		color	255	255	255	pos	0	-1	40	
 #cone		color	180	0	100	pos	0	0	20	scale	4
 trIanGLE	color	1	2	3	pos	4	5	5			scale	1
-sphere		color	180	0	100	pos	0	7	40	rot	0	0	0	scale	5
+sphere		color	180	0	100	pos	0	7	20	rot	0	0	0	scale	5
 #sphere		color	120	100	0	pos	5	9	25	scale 5
 #cylindre	color	255	0	0	pos	0	0	60	rot	120	120	120	scale	2
-#light		color	255	255	255	pos	-5	-5	40	power	1
-#light		color	255	255	255	pos	5	-5	40	power	1
-light		color	255	255	255	pos	0	1	40	power	2
+light		color	255	255	255	pos	0	25	25	power	2
+#light		color	255	255	255	pos	20	5	40	power	1
+#light		color	255	255	255	pos	0	13	40	power	2
 #light		color	255	255	255	pos	1	1	17	power	1
 #light		color	255	255	255	pos	1	1	17	power	1
 #light		color	130	130	130	pos	-3	-3	-2	power	1
 #light		color	255	255	255	pos	0	0	5	power	4
-CAMEra			pos 0	10	0		rot 0	00	00
+CAMEra			pos 0	10	-10		rot 0	0	0
 
 
 #
