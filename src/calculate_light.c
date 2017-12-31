@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 16:48:36 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 17:12:43 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		if (check_collision(env, &ray, &find_collision) && find_collision.object
 		&& find_collision.distance > vector_distance(&list->light->pos, &collision->pos) + .000001)
 		{
-			printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
+			//printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
 			list = list->next;
 			continue ;
 		}
