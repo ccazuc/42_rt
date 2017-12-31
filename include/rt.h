@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:06:38 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 14:54:06 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ typedef struct			s_light_mask
 
 typedef struct			s_color_mask
 {
-	unsigned int		r;
-	unsigned int		g;
-	unsigned int		b;
+	float				r;
+	float				g;
+	float				b;
 }						t_color_mask;
 
 typedef struct			s_ray
@@ -113,9 +113,9 @@ typedef struct			s_material
 typedef struct			s_object
 {
 	int					type;
-	int					color_r;
-	int					color_g;
-	int					color_b;
+	float				color_r;
+	float				color_g;
+	float				color_b;
 	t_vector			rot;
 	int					scale;
 	char				has_parsed_position;
@@ -228,5 +228,6 @@ void					fill_object_with_material(t_object *object,
 void					parse_light(t_env *env, char **datas);
 void					parse_material(t_env *env, char **str);
 t_material				*create_material(void);
+double					vector_distance(t_vector *pos1, t_vector *pos2);
 
 #endif

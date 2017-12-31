@@ -43,6 +43,7 @@ SRCS_NAME = main.c \
 			parse_material.c \
 			parse_fill_object_material.c \
 			material.c \
+			vector_distance.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:16:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 15:27:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		ray.dir.y = list->light->pos.y - collision->pos.y;
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
-		if (check_collision(env, &ray, &find_collision) && find_collision.object)
+		if (check_collision(env, &ray, &find_collision) && find_collision.object
+		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
 		{
 			list = list->next;
 			continue ;
@@ -41,14 +42,17 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 		if (norm_angle)
 		{
 			collision->color.r = dmin(255, collision->color.r + norm_angle *
-			list->light->power * list->light->color_r / 255 * collision->object->color_r / 255);
+			list->light->power * list->light->color_r / 255. * collision->object->color_r / 255.);
 			collision->color.g = dmin(255, collision->color.g + norm_angle *
-			list->light->power * list->light->color_g / 255 * collision->object->color_g / 255);
+			list->light->power * list->light->color_g / 255. * collision->object->color_g / 255.);
 			collision->color.b = dmin(255, collision->color.b + norm_angle *
-			list->light->power * list->light->color_b / 255 * collision->object->color_b / 255);
+			list->light->power * list->light->color_b / 255. * collision->object->color_b / 255.);
 		}
 		list = list->next;
-	}
+	}	
+	collision->color.r = dmin(255, collision->color.r * 255);
+	collision->color.g = dmin(255, collision->color.g * 255);
+	collision->color.b = dmin(255, collision->color.b * 255);
 	return (conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b));
 }
 
