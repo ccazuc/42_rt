@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 16:46:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2017/12/31 17:01:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 
 	norm.x = 0;
 	norm.y = 1;
-	norm.z = 1;
+	norm.z = 0;
 	new.x = object->pos.x - ray->pos.x;
 	new.y = object->pos.y - ray->pos.y;
 	new.z = object->pos.z - ray->pos.z;
-	vector_rotate(&norm, &object->rot);
+	//vector_rotate(&norm, &object->rot);
 	result = dot_product(&norm, &ray->dir);
 	if (!result)
 		return ;
@@ -50,7 +50,6 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 	if (dist < 0.001)
 		return ;
 	collision->distance = dist;
-	//printf("plan dist: %f\n", dist);
 	collision->pos.x = ray->pos.x + ray->dir.x * dist;
 	collision->pos.y = ray->pos.y + ray->dir.y * dist;
 	collision->pos.z = ray->pos.z + ray->dir.z * dist;
