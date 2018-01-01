@@ -12,20 +12,17 @@
 
 #include "rt.h"
 
-unsigned int	find_light(t_env *env, t_collision *collision)
+static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 {
 	t_light_list	*list;
 	t_ray			ray;
 	t_collision		find_collision;
-	t_vector		normal;
 	double			norm_angle;
 
 	list = env->light_list;
 	ray.pos.x = collision->pos.x;
 	ray.pos.y = collision->pos.y;
 	ray.pos.z = collision->pos.z;
-	get_normal_vector(&normal, collision->object, collision);
-	vector_normalize(&normal);
 	while (list)
 	{
 		ray.dir.x = list->light->pos.x - collision->pos.x;
@@ -52,12 +49,12 @@ unsigned int	find_light(t_env *env, t_collision *collision)
 			collision->color.b = dmin(255, collision->color.b + norm_angle *
 			list->light->power * list->light->color_b / 255. * collision->object->color_b / 255.);
 		}
+		add_specular(env, collision, normal, &ray.dir);
 		list = list->next;
 	}	
 	collision->color.r = dmin(255, collision->color.r * 255);
 	collision->color.g = dmin(255, collision->color.g * 255);
 	collision->color.b = dmin(255, collision->color.b * 255);
-	return (conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b));
 }
 
 void			check_ambient(t_env *env, t_collision *collision)
@@ -72,12 +69,15 @@ void			check_ambient(t_env *env, t_collision *collision)
 
 unsigned int	get_light_color(t_env *env, t_collision *collision)
 {
-	unsigned int	color;
+	t_vector		normal;
 
+	get_normal_vector(&normal, collision->object, collision);
+	vector_normalize(&normal);
 	collision->color.r = 0;
 	collision->color.g = 0;
 	collision->color.b = 0;
-	color = find_light(env, collision);
+	find_light(env, collision, &normal);
+	add_specular(env, collision, &normal);
 	//if (color != 0)
 	//printf("light final value: %u\n", find_light(env, collision));
 	//check_ambient(env, collision);
