@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 12:52:18 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 17:01:23 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,17 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 {
 	t_material	*material;
 
+	printf("object attribut: %s\n", datas[*i]);
 	if (check_piece_attribut_name(datas[*i], "color"))
-		parse_object_color(object, datas, i);
+		parse_object_color(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "position"))
-		parse_object_position(object, datas, i);
+		parse_object_position(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "rotation"))
-		parse_object_rotation(object, datas, i);
+		parse_object_rotation(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "scale"))
-		parse_object_scale(object, datas, i);
+		parse_object_scale(env, object, datas, i);
 	else if ((material = find_material(env, datas[*i])))
-		fill_object_with_material(object, material, i);
+		fill_object_with_material(object, material);
 	else
 		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:39:50 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 16:25:36 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse(t_env *env, int argc, char **argv)
 	if (argc != 2)
 		ft_exit("Error, invalid arguments.", EXIT_FAILURE);
 	if ((fd = open(argv[1], O_RDONLY)) == -1)
-		ft_exit("Error, invalid file.", EXIT_FAILURE);
+		ft_exit("Error, can't open file.", EXIT_FAILURE);
 	parse_args(env, fd);
 	if (!env->camera)
 		ft_exit("Error, no camera found.", EXIT_FAILURE);
@@ -39,10 +39,10 @@ static void	parse_line2(t_env *env, char **result)
 		parse_light(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "material"))
 		parse_material(env, result);
-	//else if (!ft_strcmp_ignrcase(result[0], "define"))
-	//	parse_define(env, result);
+	else if (!ft_strcmp_ignrcase(result[0], "define"))
+		parse_define(env, result);
 	else if (result[0][0] != '#')
-		ft_exit("Error, invalid file.", EXIT_FAILURE);
+		ft_exit("Error, invalid file. Unknown object type.", EXIT_FAILURE);
 }
 
 static void	parse_line(t_env *env, char *datas)

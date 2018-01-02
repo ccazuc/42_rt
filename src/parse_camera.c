@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 07:30:58 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/20 09:15:33 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 12:59:58 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	parse_camera_position(t_camera *camera, char **datas, int *start)
 {
-	printf("Camera Position: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for camera's position.", -1);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2]) ||
@@ -28,7 +27,6 @@ void	parse_camera_position(t_camera *camera, char **datas, int *start)
 
 void	parse_camera_rotation(t_camera *camera, char **datas, int *start)
 {
-	printf("Camera Rotation: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for camera's rotation.", -1);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2]) ||

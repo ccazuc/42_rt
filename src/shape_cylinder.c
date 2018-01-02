@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:18 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 18:39:44 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 14:53:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 void	get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos)
 {
 	vector->x = pos->x - object->pos.x;
+	vector->y = pos->y - object->pos.y;
 	vector->z = pos->z - object->pos.z;
+	vector_unrotate(vector, &object->rot);
+	vector->y = 0;
+	vector_rotate(vector, &object->rot);
 }
 
 void	collide_cylinder(t_ray *ray, t_object *object, t_collision *collision)
@@ -27,9 +31,12 @@ void	collide_cylinder(t_ray *ray, t_object *object, t_collision *collision)
 	new.x = ray->pos.x - object->pos.x;
 	new.y = ray->pos.y - object->pos.y;
 	new.z = ray->pos.z - object->pos.z;
+	vector_unrotate(&new, &object->rot);
+	vector_unrotate(&ray->dir, &object->rot);
 	quadratic.a = ray->dir.x * ray->dir.x + ray->dir.z * ray->dir.z;
 	quadratic.b = 2.0 * ray->dir.x * new.x + 2.0 * ray->dir.z * new.z;
 	quadratic.c = new.x * new.x + new.z * new.z - object->scale * object->scale;
+	vector_rotate(&ray->dir, &object->rot);
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
 	collision->distance = result;

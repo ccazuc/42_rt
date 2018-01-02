@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 17:37:42 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 15:53:32 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,10 @@ void	render(t_env *env)
 	int			i;
 	int			j;
 	t_ray		*ray;
+	long		start;
 
 	i = -1;
+	start = epoch_millis();
 	ray = create_camera_ray(env);
 	while (++i < WINDOW_HEIGHT)
 	{
@@ -51,5 +53,6 @@ void	render(t_env *env)
 	}
 	free(ray);
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
+	put_timer(start, epoch_millis(), "Scene rendered");
 	mlx_loop(env->mlx_ptr);
 }

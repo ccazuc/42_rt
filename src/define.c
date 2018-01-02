@@ -1,23 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   define.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 15:35:28 by ccazuc           ###   ########.fr       */
+/*   Created: 2018/01/02 15:59:31 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/01/02 16:54:01 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+t_define	*find_define(t_env *env, char *str)
 {
-	env->material_list = NULL;
-	env->object_list = NULL;
-	env->define_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->light_ambient = conv_rgb_to_int(255, 255, 255);
+	t_define_list	*list;
+
+	list = env->define_list;
+	while (list)
+	{
+		printf("define_name: %s, current_name: %s, match: %d\n", str, list->define->name, ft_strcmp_ignrcase(list->define->name, str));
+		if (!ft_strcmp_ignrcase(list->define->name, str))
+			return (list->define);
+		list = list->next;
+	}
+	return (NULL);
 }

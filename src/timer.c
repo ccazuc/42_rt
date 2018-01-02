@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   timer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 15:35:28 by ccazuc           ###   ########.fr       */
+/*   Created: 2018/01/02 15:54:05 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/01/02 15:55:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+long	epoch_millis(void)
 {
-	env->material_list = NULL;
-	env->object_list = NULL;
-	env->define_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->light_ambient = conv_rgb_to_int(255, 255, 255);
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
+}
+
+ void	put_timer(long start, long end, char *str)
+{
+	ft_putstr(str);
+	ft_putstr(" in ");
+	ft_putnbr(end - start);
+	ft_putstr("ms\n");
 }

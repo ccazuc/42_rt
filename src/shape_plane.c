@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 18:27:46 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 14:58:12 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	get_plane_normal(t_vector *vector, t_object *object, t_collision *collision
 	vector->x = 0;
 	vector->y = 1;
 	vector->z = 0;
+	vector_rotate(vector, &object->rot);
 	object = NULL;
 	angle = vector_angle(vector, &collision->dir) / 180. * M_PI;
 	if (angle <= 90)

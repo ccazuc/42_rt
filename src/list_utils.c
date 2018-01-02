@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:49:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/23 08:39:20 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 15:51:30 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,26 @@ void	list_add_material(t_env *env, t_material *material)
 		return ;
 	}
 	list = env->material_list;
+	while (list->next)
+		list = list->next;
+	list->next = new;
+}
+
+void	list_add_define(t_env *env, t_define *define)
+{
+	t_define_list	*list;
+	t_define_list	*new;
+
+	if (!(new = malloc(sizeof(*new))))
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
+	new->next = NULL;
+	new->define = define;
+	if (!env->define_list)
+	{
+		env->define_list = new;
+		return ;
+	}
+	list = env->define_list;
 	while (list->next)
 		list = list->next;
 	list->next = new;

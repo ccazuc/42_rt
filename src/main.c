@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 17:45:57 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 15:55:07 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,14 @@ int			main(int argc, char **argv)
 {
 	t_env			*env;
 	t_object_list	*list;
+	long			start;
 
-	/*printf("%d\n", check_piece_attribut_name("PoS", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("pop", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("Po", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("P", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("PoSiTiON", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("PoSiTi", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("PoSiTions", "posITIon"));
-	printf("%d\n", check_piece_attribut_name("PoSiiTion", "posITIon"));*/
 	if (!(env = malloc(sizeof(*env))))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	init_env(env);
+	start = epoch_millis();
 	parse(env, argc, argv);
+	put_timer(start, epoch_millis(), "File parsed");
 	init_window(env);
 	list = env->object_list;
 	while (list)

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:09:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 17:06:31 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,17 @@ static void	parse_material_color(t_material *material, char **datas, int *start)
 	if (material->has_parsed_color)
 		ft_exit("Error, invalid file. Color duplicate for a material."
 		, EXIT_FAILURE);
-	printf("Color: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for color.", -1);
+		ft_exit("Error, invalid file. Not enough parameters for material's color.", -1);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
 	|| !ft_str_isdigit(datas[*start + 3]))
-		ft_exit("Error, invalid file. Color's parameters are invalid."
+		ft_exit("Error, invalid file. Material color parameters are invalid."
 		, EXIT_FAILURE);
 	material->color_r = ft_atoi(datas[*start + 1]);
 	material->color_g = ft_atoi(datas[*start + 2]);
 	material->color_b = ft_atoi(datas[*start + 3]);
 	if (material->color_r < 0 || material->color_g < 0 || material->color_b < 0)
-		ft_exit("Error, invalid file. Color's value is invalid."
+		ft_exit("Error, invalid file. Material color value is invalid."
 		, EXIT_FAILURE);
 	*start += 3;
 	material->has_parsed_color = 1;
@@ -50,13 +49,12 @@ static	void	parse_material_rotation(t_material *material, char **datas, int *sta
 	if (material->has_parsed_rotation)
 		ft_exit("Error, invalid file. Rotation duplicate for a material."
 		, EXIT_FAILURE);
-	printf("Rotation: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for rotation."
+		ft_exit("Error, invalid file. Not enough parameters for material's rotation."
 		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
 	|| !ft_str_isdigit(datas[*start + 3]))
-		ft_exit("Error, invalid file. Rotation's parameters are invalid."
+		ft_exit("Error, invalid file. Material rotation parameters are invalid."
 		, EXIT_FAILURE);
 	material->rot.x = ft_atoi(datas[*start + 1]);
 	material->rot.y = ft_atoi(datas[*start + 2]);
@@ -70,13 +68,12 @@ static void		parse_material_position(t_material *material, char **datas, int *st
 	if (material->has_parsed_position)
 		ft_exit("Error, invalid file. Position duplicate for a material."
 		, EXIT_FAILURE);
-	printf("Position: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for position."
+		ft_exit("Error, invalid file. Not enough parameters for material's position."
 		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
 	|| !ft_str_isdigit(datas[*start + 3]))
-		ft_exit("Error, invalid file. Position's parameters are invalid."
+		ft_exit("Error, invalid file. Material position parameters are invalid."
 		, EXIT_FAILURE);
 	material->pos.x = ft_atoi(datas[*start + 1]);
 	material->pos.y = ft_atoi(datas[*start + 2]);
@@ -96,6 +93,8 @@ void		parse_material(t_env *env, char **datas)
 		ft_exit("Error, invalid file. Invalid material.", EXIT_FAILURE);
 	material = create_material();
 	parse_material_name(material, datas[1]);
+	if (find_material(env, material->name))
+		ft_exit("Error, invalid file. Two materials have the same name.", EXIT_FAILURE);
 	i = 1;
 	while (++i < len)
 		if (check_piece_attribut_name(datas[i], "color"))
@@ -109,7 +108,7 @@ void		parse_material(t_env *env, char **datas)
 		//else if (check_piece_attribut_name(datas[i], "reflection"))
 		//	parse_material_reflection(material, datas, &i);
 		//else if (check_piece_attribut_name(datas[i], "refraction"))
-		//	parse_material_refraction(material, datas, &i);
+		//	parse_material_refraction(material, datas, &i);		
 		else
 			ft_exit("Error, invalid file. Unknown material attribut.", EXIT_FAILURE);
 	list_add_material(env, material);

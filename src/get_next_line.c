@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 09:17:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:23:17 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 12:57:59 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,5 @@ int				get_next_line(const int fd, char **line)
 	env->end = -1;
 	if (!(*line = get_n_line(env)))
 		return (-1);
-	printf("line: %s\n", *line);
 	return (1);
 }

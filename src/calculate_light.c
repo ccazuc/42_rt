@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 19:18:57 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 15:25:37 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 			list = list->next;
 			continue ;
 		}
-		norm_angle = dmax(0, cos(vector_angle(&ray.dir, &normal)));
+		norm_angle = dmax(0, cos(vector_angle(&ray.dir, normal)));
 		//printf("ray.dir.x: %f, ray.dir.y: %f, ray.dir.z: %f, normal.x: %f, normal.y: %f, normal.z: %f, norm_angle: %f, vector_angle: %f, cos: %f\n", ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z, norm_angle, vector_angle(&ray.dir, &normal), cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{
 			//printf("angle: %f\n", norm_angle);
 			collision->color.r = dmin(255, collision->color.r + norm_angle *
-			list->light->power * list->light->color_r / 255. * collision->object->color_r / 255.);
+			list->light->power / 5. * list->light->color_r / 255. * collision->object->color_r / 255.);
 			collision->color.g = dmin(255, collision->color.g + norm_angle *
-			list->light->power * list->light->color_g / 255. * collision->object->color_g / 255.);
+			list->light->power / 5. * list->light->color_g / 255. * collision->object->color_g / 255.);
 			collision->color.b = dmin(255, collision->color.b + norm_angle *
-			list->light->power * list->light->color_b / 255. * collision->object->color_b / 255.);
+			list->light->power / 5. * list->light->color_b / 255. * collision->object->color_b / 255.);
+			add_specular(collision, normal, &ray.dir);
 		}
-		add_specular(env, collision, normal, &ray.dir);
 		list = list->next;
 	}	
 	collision->color.r = dmin(255, collision->color.r * 255);
@@ -77,7 +77,6 @@ unsigned int	get_light_color(t_env *env, t_collision *collision)
 	collision->color.g = 0;
 	collision->color.b = 0;
 	find_light(env, collision, &normal);
-	add_specular(env, collision, &normal);
 	//if (color != 0)
 	//printf("light final value: %u\n", find_light(env, collision));
 	//check_ambient(env, collision);

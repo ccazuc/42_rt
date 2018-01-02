@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:07:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 12:53:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/01/02 12:59:44 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	parse_light_position(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_position)
 		ft_exit("Error, invalid file. Position duplicate for a light.", EXIT_FAILURE);
-	printf("Light Position: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for light's position."
 		, EXIT_FAILURE);
@@ -35,7 +34,6 @@ void	parse_light_rotation(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_rotation)
 		ft_exit("Error, invalid file. Rotation duplicate for a light.", EXIT_FAILURE);
-	printf("Light Rotation: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for light's rotation."
 		, EXIT_FAILURE);
@@ -55,7 +53,6 @@ void	parse_light_color(t_light *light, char **datas, int *start)
 	if (light->has_parsed_color)
 		ft_exit("Error, invalid file. Color duplicate for a light."
 		, EXIT_FAILURE);
-	printf("Color: 1: %s, 2: %s, 3: %s\n", datas[*start + 1], datas[*start + 2], datas[*start + 3]);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
 		ft_exit("Error, invalid file. Not enough parameters for color.", EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
@@ -77,7 +74,6 @@ void	parse_light_power(t_light *light, char **datas, int *start)
 	if (light->has_parsed_power)
 		ft_exit("Error, invalid file. Power duplicate for a light."
 		, EXIT_FAILURE);
-	printf("Color: %s\n", datas[*start + 1]);
 	if (!datas[*start + 1])
 		ft_exit("Error, invalid file. Not enough parameters for power.", EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]))

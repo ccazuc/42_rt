@@ -1,4 +1,33 @@
-sphere	color	255	255	255	pos	0	0	20	scale	5
-sphere	color	100	100	100	pos	5	0	12	scale	2
-light	color	255	255	255	pos	5	5	55	power	80
-camera	pos	0	0	0	rot	0	0	0	 
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    test2.map                                          :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/01/02 15:01:27 by ccazuc            #+#    #+#              #
+#    Updated: 2018/01/02 15:23:51 by ccazuc           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+cylindre	pos	-5	0	5	color	255	255	255	scale	1
+cylindre	pos	5	0	5	color	255	255	255	scale	1
+sphere	pos	-5	5	5	color	255	255	255	scale	2
+sphere	pos	-5	-5	5	color	255	255	255	scale	2
+sphere	pos	5	5	5	color	255	255	255	scale	2
+sphere	pos	5	-5	5	color	255	255	255	scale	2
+
+cylindre	pos	-5	0	30	color	255	255	255	scale	1
+cylindre	pos	5	0	30	color	255	255	255	scale	1
+sphere	pos	-5	5	30	color	255	255	255	scale	2
+sphere	pos	-5	-5	30	color	255	255	255	scale	2
+sphere	pos	5	5	30	color	255	255	255	scale	2
+sphere	pos	5	-5	30	color	255	255	255	scale	2
+
+#plane	pos	0	-5	0	color	255	255	255	rot	0	0	0
+plane	pos	0	0	50	color	255	255	255	rot	90	0	0
+#plane	pos	0	5	0	color	255	255	255	rot	0	0	0
+
+camera	pos	0	0	-20	rot	0	0	0
+light	pos	14	4	-30	power	3	color	255	255	255
+light	pos	-14	4	-30	power	3	color	255	255	255
