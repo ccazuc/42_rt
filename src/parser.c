@@ -42,7 +42,10 @@ static void	parse_line2(t_env *env, char **result)
 	else if (!ft_strcmp_ignrcase(result[0], "define"))
 		parse_define(env, result);
 	else if (result[0][0] != '#')
+	{
+		printf("object type: '%s'\n", result[0]);
 		ft_exit("Error, invalid file. Unknown object type.", EXIT_FAILURE);
+	}
 }
 
 static void	parse_line(t_env *env, char *datas)

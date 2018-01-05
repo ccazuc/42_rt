@@ -98,7 +98,6 @@ void	parse_object_color(t_env *env, t_object *object, char **datas, int *start)
 
 void	parse_object_scale(t_env *env, t_object *object, char **datas, int *start)
 {
-	env = NULL;
 	if (object->has_parsed_scale)
 		ft_exit("Error, invalid file. Scale duplicate for an object."
 		, EXIT_FAILURE);
@@ -113,5 +112,6 @@ void	parse_object_scale(t_env *env, t_object *object, char **datas, int *start)
 		ft_exit("Error, invalid file. Scale's value is invalid."
 		, EXIT_FAILURE);
 	*start += 1;
+	object->has_parsed_scale = env->bpp;
 	object->has_parsed_scale = 1;
 }

@@ -27,6 +27,9 @@ t_collision *tmp, t_object *object)
 	collision->pos.x = tmp->pos.x;
 	collision->pos.y = tmp->pos.y;
 	collision->pos.z = tmp->pos.z;
+	collision->dir.x = tmp->dir.x;
+	collision->dir.y = tmp->dir.y;
+	collision->dir.z = tmp->dir.z;
 	init_collision_color(collision);
 }
 
