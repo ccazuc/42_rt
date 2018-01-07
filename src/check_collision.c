@@ -12,49 +12,26 @@
 
 #include "rt.h"
 
-void		init_collision_color(t_collision *collision)
-{
-	collision->color.r = collision->object->color_r;
-	collision->color.g = collision->object->color_g;
-	collision->color.b = collision->object->color_b;
-}
-
-static void	fill_collision_datas(t_collision *collision,
-t_collision *tmp, t_object *object)
-{
-	collision->distance = tmp->distance;
-	collision->object = object;
-	collision->pos.x = tmp->pos.x;
-	collision->pos.y = tmp->pos.y;
-	collision->pos.z = tmp->pos.z;
-	collision->dir.x = tmp->dir.x;
-	collision->dir.y = tmp->dir.y;
-	collision->dir.z = tmp->dir.z;
-	init_collision_color(collision);
-}
-
 int			check_collision(t_env *env, t_ray *ray, t_collision *collision)
 {
 	t_object_list	*list;
-	t_collision		tmp_collision;
 
 	list = env->object_list;
-	tmp_collision.distance = 0;
 	collision->distance = 1000000;
 	collision->object = NULL;
 	while (list)
 	{
 		if (list->object->type == SPHERE)
-			collide_sphere(ray, list->object, &tmp_collision);
+		{
+			collide_sphere(ray, list->object, collision);
+			//printf("collide sphere \n");
+		}
 		else if (list->object->type == CYLINDRE)
-			collide_cylinder(ray, list->object, &tmp_collision);
+			collide_cylinder(ray, list->object, collision);
 		else if (list->object->type == CONE)
-			collide_cone(ray, list->object, &tmp_collision);
+			collide_cone(ray, list->object, collision);
 		else if (list->object->type == PLANE)
-			collide_plane(ray, list->object, &tmp_collision);
-		if (tmp_collision.distance > 0
-		&& tmp_collision.distance < collision->distance)
-			fill_collision_datas(collision, &tmp_collision, list->object);
+			collide_plane(ray, list->object, collision);
 		list = list->next;
 	}
 	return (collision->object ? 1 : 0);

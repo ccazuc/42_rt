@@ -48,7 +48,7 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 	if (!result)
 		return ;
 	dist = dot_product(&norm, &new) / result;	
-	if (dist < 0.001)
+	if (dist < 0.001 || dist >= collision->distance)
 		return ;
 	collision->distance = dist;
 	collision->pos.x = ray->pos.x + ray->dir.x * dist;
@@ -57,4 +57,5 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 	collision->dir.x = ray->dir.x;
 	collision->dir.y = ray->dir.y;
 	collision->dir.z = ray->dir.z;
+	collision->object = object;
 }

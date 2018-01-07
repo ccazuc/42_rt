@@ -18,6 +18,9 @@ unsigned int	get_pixel_color(t_env *env, t_ray *ray)
 	t_collision		collision;
 
 	color = BG_COLOR;
+	collision.color.r = 0;
+	collision.color.g = 0;
+	collision.color.b = 0;
 	if (check_collision(env, ray, &collision) && collision.object)
 	{
 	//	printf("collision found in pixel color\n");
