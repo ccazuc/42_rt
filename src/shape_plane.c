@@ -54,8 +54,5 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 	collision->pos.x = ray->pos.x + ray->dir.x * dist;
 	collision->pos.y = ray->pos.y + ray->dir.y * dist;
 	collision->pos.z = ray->pos.z + ray->dir.z * dist;
-	collision->dir.x = ray->dir.x;
-	collision->dir.y = ray->dir.y;
-	collision->dir.z = ray->dir.z;
 	collision->object = object;
 }

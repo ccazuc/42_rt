@@ -39,8 +39,5 @@ void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
 	collision->pos.x = ray->pos.x + ray->dir.x * result;
 	collision->pos.y = ray->pos.y + ray->dir.y * result;
 	collision->pos.z = ray->pos.z + ray->dir.z * result;
-	collision->dir.x = ray->dir.x;
-	collision->dir.y = ray->dir.y;
-	collision->dir.z = ray->dir.z;
 	collision->object = object;
 }

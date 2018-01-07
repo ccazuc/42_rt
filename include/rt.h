@@ -167,6 +167,18 @@ typedef struct				s_define_list
 	struct s_define			*define;
 }							t_define_list;
 
+typedef struct					s_obj_vertex_list
+{
+	struct s_obj_vertex_list	*next;
+	t_vector					vertex;
+}								t_object_vertex_list;
+
+typedef struct					s_obj_normal_list
+{
+	struct s_obj_normal_list	*next;
+	t_vector					normal;
+}								t_obj_normal_list;
+
 typedef struct			s_env
 {
 	void				*mlx_ptr;
@@ -181,6 +193,8 @@ typedef struct			s_env
 	t_camera			*camera;
 	unsigned int		light_ambient;
 	int					specular;
+	t_obj_vertex_list	obj_vertex_list;
+	t_obj_normal_list	obj_normal_list;
 }						t_env;
 
 void					parse(t_env *env, int argc, char **argv);
