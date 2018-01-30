@@ -49,6 +49,9 @@ SRCS_NAME = main.c \
 			define.c \
 			parse_define.c \
 			parse_fill_object_define.c \
+			light_reflection.c \
+			color_add.c \
+			color_factor.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

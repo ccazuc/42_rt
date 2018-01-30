@@ -26,7 +26,7 @@ void	add_specular(t_collision *collision, t_vector *normal, t_vector *light_dir)
 	//dot = dot_product(&collision->dir, &reflect);
 	//printf("dot: %f\n", dot);
 	//value = powf(dot, 1);
-	value = dmax(0.0, pow(cos(ft_math_dabs(vector_angle(light_dir, &reflect))), 200));
+	value = dmax(0.0, pow(cos(ft_math_dabs(vector_angle(light_dir, &reflect))), 600));
 	//value = pow(cos(ft_math_dabs(vector_angle(&collision->dir, normal) - vector_angle(light_dir, normal))), 200);
 	//if (value > 0.00001)
 		//printf("specular_value: %f, collis_angle: %f, light_dir_angle: %f, abs: %f, cos: %f\n", value, ft_todegrees(vector_angle(&collision->dir, &reflect)), ft_todegrees(vector_angle(light_dir, &reflect)), ft_math_dabs(vector_angle(light_dir, &reflect)), cos(ft_math_dabs(vector_angle(&collision->dir, normal) - vector_angle(light_dir, normal))));

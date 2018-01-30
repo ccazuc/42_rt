@@ -67,16 +67,19 @@ void			check_ambient(t_env *env, t_collision *collision)
 		collision->color.b = dmin(255, collision->color.b + get_color_b(env->light_ambient) * .2);
 }
 
-unsigned int	get_light_color(t_env *env, t_collision *collision)
+unsigned int	get_light_color(t_env *env, t_collision *collision, int recursion)
 {
 	t_vector		normal;
 
+	if (recursion > REFLECTION_DEPTH)
+		return (0);
 	get_normal_vector(&normal, collision->object, collision);
 	vector_normalize(&normal);
 	collision->color.r = 0;
 	collision->color.g = 0;
 	collision->color.b = 0;
 	find_light(env, collision, &normal);
+	check_reflection(env, collision, &normal, recursion);
 	//if (color != 0)
 	//printf("light final value: %u\n", find_light(env, collision));
 	//check_ambient(env, collision);

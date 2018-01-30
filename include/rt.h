@@ -38,6 +38,7 @@
 # define DEFAULT_COLOR_R 0xFF
 # define DEFAULT_COLOR_G 0
 # define DEFAULT_COLOR_B 0xFF
+# define REFLECTION_DEPTH 3
 
 typedef struct			s_object t_object;
 
@@ -193,7 +194,7 @@ typedef struct			s_env
 	t_camera			*camera;
 	unsigned int		light_ambient;
 	int					specular;
-	t_obj_vertex_list	obj_vertex_list;
+//	t_obj_vertex_list	obj_vertex_list;
 	t_obj_normal_list	obj_normal_list;
 }						t_env;
 
@@ -234,13 +235,13 @@ double					dmax(double a, double b);
 double					dmin(double a, double b);
 void					parse_camera(t_env *env, char **datas);
 unsigned int			conv_rgb_to_int(int r, int g, int b);
-unsigned int			get_pixel_color(t_env *env, t_ray *ray);
+unsigned int			get_pixel_color(t_env *env, t_ray *ray, int recursion);
 int						get_color_r(unsigned int color);
 int						get_color_g(unsigned int color);
 int						get_color_b(unsigned int color);
 t_collision				*create_collision(void);
 void					free_collision(t_collision *collision);
-unsigned int			get_light_color(t_env *env, t_collision *collision);
+unsigned int			get_light_color(t_env *env, t_collision *collision, int recursion);
 double					vector_angle(t_vector *v1, t_vector *v2);
 void					get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					get_normal_vector(t_vector *result, t_object *object, t_collision *collision);
@@ -253,6 +254,8 @@ void					collide_cone(t_ray *ray, t_object *object,
 void					get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					collide_plane(t_ray *ray, t_object *object,
 						t_collision *collision);
+int						color_add(int c1, int c2);
+int						check_reflection(t_env *env, t_collision *collision, t_vector *normal, int recursion);
 void					get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
 void					vector_rotate(t_vector *vector, t_vector *angle);
 void					vector_unrotate(t_vector *vector, t_vector *angle);
@@ -273,5 +276,5 @@ void					parse_define(t_env *env, char **datas);
 void					fill_object_color_define(t_object *object, t_define *define, int *i);
 void					fill_object_position_define(t_object *object, t_define *define, int *i);
 void					fill_object_rotation_define(t_object *object, t_define *define, int *i);
-
+int						color_factor(int color, double factor);
 #endif

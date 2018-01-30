@@ -17,6 +17,7 @@
 #cone		color	180	0	100	pos	0	0	20	scale	4
 #trIanGLE	color	1	2	3	pos	4	5	5			scale	1
 sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1
+sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
 #sphere		color	120	100	0	pos	1	0	5	scale 1
 #cylindre	color	255	0	0	pos	0	0	20	rot	0	0	0	scale	1
 #light		color	255	255	255	pos	2	2	2	power	1
@@ -25,7 +26,7 @@ sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1
 #light		color	255	255	255	pos	1	1	17	power	1
 #light		color	255	255	255	pos	1	1	17	power	1
 #light		color	130	130	130	pos	-3	-3	-2	power	1
-light		color	255	255	255	pos	0	0	4	power	5
+light		color	255	255	255	pos	0	0	4	power	2
 camera			pos 0	0	0		rot 0	0	0
 
 
