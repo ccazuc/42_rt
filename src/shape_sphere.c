@@ -19,7 +19,7 @@ void	get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
 	vector->z = pos->z - object->pos.z;
 }
 
-void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
+void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
 {
 	t_vector	new;
 	t_quadratic	quadratic;
@@ -34,6 +34,8 @@ void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision)
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
 	if (result >= collision->distance)
+		return ;
+	if (object == previous_object)
 		return ;
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;

@@ -12,7 +12,7 @@
 
 #include "rt.h"
 
-int	check_collision(t_env *env, t_ray *ray, t_collision *collision)
+int	check_collision(t_env *env, t_ray *ray, t_collision *collision, t_object *previous_object)
 {
 	t_object_list	*list;
 
@@ -25,14 +25,16 @@ int	check_collision(t_env *env, t_ray *ray, t_collision *collision)
 	while (list)
 	{
 		if (list->object->type == SPHERE)
-			collide_sphere(ray, list->object, collision);
+			collide_sphere(ray, list->object, collision, previous_object);
 		else if (list->object->type == CYLINDRE)
-			collide_cylinder(ray, list->object, collision);
+			collide_cylinder(ray, list->object, collision, previous_object);
 		else if (list->object->type == CONE)
-			collide_cone(ray, list->object, collision);
+			collide_cone(ray, list->object, collision, previous_object);
 		else if (list->object->type == PLANE)
-			collide_plane(ray, list->object, collision);
+			collide_plane(ray, list->object, collision, previous_object);
 		list = list->next;
 	}
+	if (collision->object == previous_object)
+		return (0);
 	return (collision->object ? 1 : 0);
 }

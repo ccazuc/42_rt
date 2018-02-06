@@ -47,7 +47,7 @@ void	render(t_env *env)
 		while (++j < WINDOW_WIDTH)
 		{
 			fill_ray(env, ray, j, i);
-			pixel_put(env, j, i, get_pixel_color(env, ray, 0));
+			pixel_put(env, j, i, get_pixel_color(env, ray, 0, NULL));
 			//pixel_put(env, j, i, conv_rgb_to_int((int)(255 * ft_math_dabs(ray->dir->x)), (int)(255 * ft_math_dabs(ray->dir->y)), (int)(255 * ft_math_dabs(ray->dir->z))));
 		}
 	}

@@ -30,7 +30,7 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
 		//printf("collision pos.x: %f, pos.y: %f, pos.z: %f\nray dir.x: %f, dir.y: %f, dir.z: %f\nnorm dir.x: %f, dir.y: %f, dir.z: %f\n\n", collision->pos.x, collision->pos.y, collision->pos.z, ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z);
-		if (check_collision(env, &ray, &find_collision) && find_collision.object
+		if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
 		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
 		{
 			//printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
@@ -80,6 +80,7 @@ unsigned int	get_light_color(t_env *env, t_collision *collision, int recursion)
 	collision->color.b = 0;
 	find_light(env, collision, &normal);
 	check_reflection(env, collision, &normal, recursion);
+	light_transparency(env, collision, recursion);
 	//if (color != 0)
 	//printf("light final value: %u\n", find_light(env, collision));
 	//check_ambient(env, collision);

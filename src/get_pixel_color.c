@@ -12,18 +12,19 @@
 
 #include "rt.h"
 
-unsigned int	get_pixel_color(t_env *env, t_ray *ray, int recursion)
+unsigned int	get_pixel_color(t_env *env, t_ray *ray, int recursion, t_object *previous_object)
 {
 	unsigned int	color;
 	t_collision		collision;
 
 	color = BG_COLOR;
+	printf("depth: %d\n", recursion);
 	if (recursion > REFLECTION_DEPTH)
 		return (color);
 	collision.color.r = 0;
 	collision.color.g = 0;
 	collision.color.b = 0;
-	if (check_collision(env, ray, &collision) && collision.object)
+	if (check_collision(env, ray, &collision, previous_object) && collision.object)
 	{
 	//	printf("collision found in pixel color\n");
 		color = conv_rgb_to_int(collision.object->color_r, collision.object->color_g, collision.object->color_b);

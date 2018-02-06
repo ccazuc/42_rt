@@ -222,12 +222,12 @@ double					vector_length(t_vector *vector);
 void					vector_normalize(t_vector *vector);
 void					render(t_env *env);
 void					pixel_put(t_env *env, int x, int y, unsigned int color);
-int						check_collision(t_env *env, t_ray *ray, t_collision *collision);
+int						check_collision(t_env *env, t_ray *ray, t_collision *collision, t_object *previous_object);
 t_ray					*create_camera_ray(t_env *env);
 void					collide_sphere(t_ray *ray, t_object *object,
-						t_collision *collision);
+						t_collision *collision, t_object *previous_object);
 void					collide_cylinder(t_ray *ray, t_object *object,
-						t_collision *collision);
+						t_collision *collision, t_object *previous_object);
 double					dot_product(t_vector *v1, t_vector *v2);
 int						solve_quadratic(t_quadratic *quadratic,
 						double *distance);
@@ -235,7 +235,7 @@ double					dmax(double a, double b);
 double					dmin(double a, double b);
 void					parse_camera(t_env *env, char **datas);
 unsigned int			conv_rgb_to_int(int r, int g, int b);
-unsigned int			get_pixel_color(t_env *env, t_ray *ray, int recursion);
+unsigned int			get_pixel_color(t_env *env, t_ray *ray, int recursion, t_object *previous_object);
 int						get_color_r(unsigned int color);
 int						get_color_g(unsigned int color);
 int						get_color_b(unsigned int color);
@@ -250,10 +250,10 @@ void					get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos);
 int						check_piece_attribut_name(char *s1, char *s2);
 int						ft_strncmp_ignrcase(char *s1, char *s2, int n);
 void					collide_cone(t_ray *ray, t_object *object,
-						t_collision *collision);
+						t_collision *collision, t_object *previous_object);
 void					get_cone_normal(t_vector *vector, t_object *object, t_vector *pos);
 void					collide_plane(t_ray *ray, t_object *object,
-						t_collision *collision);
+						t_collision *collision, t_object *previous_object);
 int						color_add(int c1, int c2);
 int						check_reflection(t_env *env, t_collision *collision, t_vector *normal, int recursion);
 void					get_plane_normal(t_vector *vector, t_object *object, t_collision *collision);
@@ -277,4 +277,6 @@ void					fill_object_color_define(t_object *object, t_define *define, int *i);
 void					fill_object_position_define(t_object *object, t_define *define, int *i);
 void					fill_object_rotation_define(t_object *object, t_define *define, int *i);
 int						color_factor(int color, double factor);
+void					light_transparency(t_env *env, t_collision *collision, int recursion);
+
 #endif

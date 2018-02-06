@@ -52,6 +52,7 @@ SRCS_NAME = main.c \
 			light_reflection.c \
 			color_add.c \
 			color_factor.c \
+			light_transparency.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

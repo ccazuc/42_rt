@@ -30,7 +30,7 @@ void	get_plane_normal(t_vector *vector, t_object *object, t_collision *collision
 	}
 }
 
-void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
+void	collide_plane(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
 {
 	double		result;
 	t_vector	new;
@@ -49,6 +49,8 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision)
 		return ;
 	dist = dot_product(&norm, &new) / result;	
 	if (dist < 0.001 || dist >= collision->distance)
+		return ;
+	if (previous_object == object && dist <= 1)
 		return ;
 	collision->distance = dist;
 	collision->pos.x = ray->pos.x + ray->dir.x * dist;
