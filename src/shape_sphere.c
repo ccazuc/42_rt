@@ -33,9 +33,9 @@ void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision, t_obje
 	quadratic.c = dot_product(&new, &new) - object->scale * object->scale;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
-	if (result >= collision->distance)
+	if (result >= collision->distance || result < 0)
 		return ;
-	if (object == previous_object)
+	if (object == previous_object && result < 0.0001)
 		return ;
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;

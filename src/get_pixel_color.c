@@ -18,7 +18,7 @@ unsigned int	get_pixel_color(t_env *env, t_ray *ray, int recursion, t_object *pr
 	t_collision		collision;
 
 	color = BG_COLOR;
-	printf("depth: %d\n", recursion);
+//	printf("depth: %d\n", recursion);
 	if (recursion > REFLECTION_DEPTH)
 		return (color);
 	collision.color.r = 0;

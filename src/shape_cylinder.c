@@ -39,9 +39,9 @@ void	collide_cylinder(t_ray *ray, t_object *object, t_collision *collision, t_ob
 	vector_rotate(&ray->dir, &object->rot);
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
-	if (result >= collision->distance)
+	if (result >= collision->distance || result < 0)
 		return ;
-	if (previous_object == object)
+	if (previous_object == object && result < 0.0001)
 		return ;
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;

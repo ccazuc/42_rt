@@ -33,9 +33,9 @@ void	collide_cone(t_ray *ray, t_object *object, t_collision *collision, t_object
 	quadratic.c = new.x * new.x - new.y * new.y + new.z * new.z;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
-	if (result >= collision->distance)
+	if (result >= collision->distance || result < 0)
 		return ;
-	if (previous_object == object)
+	if (previous_object == object && result < 0.001)
 		return ;
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;

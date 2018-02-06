@@ -8,7 +8,9 @@ void	light_transparency(t_env *env, t_collision *collision, int recursion)
 
 	//if (collision->object->type != CYLINDRE && collision->object->type != SPHERE)
 	//	return ;
-	printf("transp recur: %d\n", recursion);
+	if (collision->distance <= .000000001)
+		return ;
+//	printf("transp recur: %d\n", recursion);
 	ray.dir.x = collision->dir.x;
 	ray.dir.y = collision->dir.y;
 	ray.dir.z = collision->dir.z;
