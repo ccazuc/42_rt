@@ -1,19 +1,5 @@
 #include "rt.h"
 
-static void	draw_progress_bar(t_env *env, float percentage)
-{
-	int		i;
-	int		j;
-
-	i = 199;
-	while (++i < 400)
-	{
-		j = WINDOW_WIDTH / 4 - 1;
-		while (++j < percentage * 3 * WINDOW_WIDTH / 4)
-			mlx_pixel_put(env->mlx_ptr, env->mlx_win, j, i, 16777215);
-	}
-}
-
 void	reset_window(t_env *env)
 {
 	int		i;
@@ -40,10 +26,10 @@ int		loop_handler(void *data)
 	i = -1;
 	line_drawn = 0;
 	while (++i < env->nb_thread)
-		line_drawn += env->thread_list[i].current_index;
-	//printf("line_drawn: %d\n", line_drawn);
-	reset_window(env);
-	draw_progress_bar(env, line_drawn / WINDOW_HEIGHT);
+		line_drawn += env->thread_list[i].line_drawn;
+//	printf("line_drawn: %d\n", line_drawn);
+	//reset_window(env);
+	draw_progress_bar(env, line_drawn);
 	i = -1;
 	while (++i < env->nb_thread)
 		if (!env->thread_list[i].draw_finished)

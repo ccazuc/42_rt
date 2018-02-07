@@ -31,7 +31,7 @@
 # define CYLINDRE 4
 # define CONE 5
 # define WINDOW_WIDTH 1200
-# define WINDOW_HEIGHT 1000
+# define WINDOW_HEIGHT 900
 # define WINDOW_NAME "cc"
 # define FOV_X 60
 # define FOV_Y 60
@@ -213,6 +213,7 @@ typedef struct					s_worker
 	t_env						*env;
 	pthread_t					thread;
 	int							id;
+	int							line_drawn;
 }								t_worker;
 
 void					parse(t_env *env, int argc, char **argv);
@@ -298,5 +299,6 @@ void					light_transparency(t_env *env, t_collision *collision, int recursion);
 void					create_thread(t_env *env);
 int						loop_handler(void *data);
 void					fill_ray(t_env *env, t_ray *ray, int x, int y);
+void					draw_progress_bar(t_env *env, int line_drawn);
 
 #endif

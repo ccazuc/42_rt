@@ -12,6 +12,11 @@
 
 #include "rt.h"
 
+static int	get_shadow_color(t_env *env, t_collision *collision)
+{
+	return 
+}
+
 static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 {
 	t_light_list	*list;
@@ -29,19 +34,15 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 		ray.dir.y = list->light->pos.y - collision->pos.y;
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
-		//printf("collision pos.x: %f, pos.y: %f, pos.z: %f\nray dir.x: %f, dir.y: %f, dir.z: %f\nnorm dir.x: %f, dir.y: %f, dir.z: %f\n\n", collision->pos.x, collision->pos.y, collision->pos.z, ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z);
 		if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
 		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
 		{
-			//printf("object: %p, collision_distance: %f, vector_distance: %f\n", find_collision.object, find_collision.distance, vector_distance(&list->light->pos, &collision->pos));
 			list = list->next;
 			continue ;
 		}
 		norm_angle = dmax(0, cos(vector_angle(&ray.dir, normal)));
-		//printf("ray.dir.x: %f, ray.dir.y: %f, ray.dir.z: %f, normal.x: %f, normal.y: %f, normal.z: %f, norm_angle: %f, vector_angle: %f, cos: %f\n", ray.dir.x, ray.dir.y, ray.dir.z, normal.x, normal.y, normal.z, norm_angle, vector_angle(&ray.dir, &normal), cos(vector_angle(&ray.dir, &normal)));
 		if (norm_angle)
 		{
-			//printf("angle: %f\n", norm_angle);
 			collision->color.r = dmin(255, collision->color.r + norm_angle *
 			list->light->power / 5. * list->light->color_r / 255. * collision->object->color_r / 255.);
 			collision->color.g = dmin(255, collision->color.g + norm_angle *

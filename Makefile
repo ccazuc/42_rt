@@ -55,6 +55,7 @@ SRCS_NAME = main.c \
 			light_transparency.c \
 			thread.c \
 			loop_handler.c \
+			draw_progress_bar.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
