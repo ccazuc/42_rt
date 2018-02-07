@@ -33,7 +33,7 @@ void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 
 void	render(t_env *env)
 {
-	int			i;
+	/*int			i;
 	int			j;
 	t_ray		*ray;
 	long		start;
@@ -51,8 +51,11 @@ void	render(t_env *env)
 			//pixel_put(env, j, i, conv_rgb_to_int((int)(255 * ft_math_dabs(ray->dir->x)), (int)(255 * ft_math_dabs(ray->dir->y)), (int)(255 * ft_math_dabs(ray->dir->z))));
 		}
 	}
-	free(ray);
-	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
-	put_timer(start, epoch_millis(), "Scene rendered");
+	free(ray);*/
+	env->render_start = epoch_millis();
+	create_thread(env);
+	//mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
+	//put_timer(start, epoch_millis(), "Scene rendered");
+	mlx_loop_hook(env->mlx_ptr, loop_handler, env);
 	mlx_loop(env->mlx_ptr);
 }

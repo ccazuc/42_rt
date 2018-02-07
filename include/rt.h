@@ -22,6 +22,7 @@
 # include <math.h>
 # include <time.h>
 # include <sys/time.h>
+# include <pthread.h>
 
 # define PLANE 0
 # define TRIANGLE 1
@@ -41,6 +42,7 @@
 # define REFLECTION_DEPTH 3
 
 typedef struct			s_object t_object;
+typedef struct			s_worker t_worker;
 
 typedef struct			s_vector
 {
@@ -196,7 +198,22 @@ typedef struct			s_env
 	int					specular;
 //	t_obj_vertex_list	obj_vertex_list;
 	t_obj_normal_list	obj_normal_list;
+	t_worker			*thread_list;
+	int					nb_thread;
+	int					draw_finished;
+	long				render_start;
 }						t_env;
+
+typedef struct					s_worker
+{
+	int							current_index;
+	int							start;
+	int							end;
+	char						draw_finished;
+	t_env						*env;
+	pthread_t					thread;
+	int							id;
+}								t_worker;
 
 void					parse(t_env *env, int argc, char **argv);
 void					parse_general_object(t_env *env, char **datas);
@@ -278,5 +295,8 @@ void					fill_object_position_define(t_object *object, t_define *define, int *i)
 void					fill_object_rotation_define(t_object *object, t_define *define, int *i);
 int						color_factor(int color, double factor);
 void					light_transparency(t_env *env, t_collision *collision, int recursion);
+void					create_thread(t_env *env);
+int						loop_handler(void *data);
+void					fill_ray(t_env *env, t_ray *ray, int x, int y);
 
 #endif

@@ -19,5 +19,8 @@ void	init_env(t_env *env)
 	env->define_list = NULL;
 	env->camera = NULL;
 	env->light_list = NULL;
+	env->thread_list = NULL;
+	env->draw_finished = 0;
+	env->nb_thread = 8;
 	env->light_ambient = conv_rgb_to_int(255, 255, 255);
 }
