@@ -1,3 +1,4 @@
 *.swp
 rt
 *.DS_Store
+*.o
