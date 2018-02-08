@@ -12,16 +12,58 @@
 
 #include "rt.h"
 
-static int	get_shadow_color(t_env *env, t_collision *collision)
+static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_light *light)
 {
-	return 
+	t_collision 	find_collision;
+	t_ray			new_ray;
+//	int				color_res;
+	t_color_mask	mask;
+	int				collision_found;
+
+	new_ray.pos.x = ray->pos.x;
+	new_ray.pos.y = ray->pos.y;
+	new_ray.pos.z = ray->pos.z;
+	new_ray.dir.x = ray->dir.x;
+	new_ray.dir.y = ray->dir.y;
+	new_ray.dir.z = ray->dir.z;
+	vector_normalize(&new_ray.dir);
+	find_collision.object = NULL;
+//	color_res = 0;
+	collision_found = 0;
+	while (check_collision(env, &new_ray, &find_collision, find_collision.object) && find_collision.distance < vector_distance(&light->pos, &find_collision.pos) && find_collision.distance > 0.0001)
+	{
+//		if (find_collision.object->transparency <= 0)
+//			return ;
+		//color_res = color_add(color_res, color_factor(conv_rgb_to_int(find_collision.object->color_r, find_collision.object->color_g, find_collision.object->color_b), .5));
+		mask.r *= find_collision.object->color_r * .5;
+		mask.g *= find_collision.object->color_g * .5;
+		mask.b *= find_collision.object->color_b * .5;
+		new_ray.pos.x = find_collision.pos.x;
+		new_ray.pos.y = find_collision.pos.y;
+		new_ray.pos.z = find_collision.pos.z;
+		collision_found = 1;
+		//new_ray.dir.x = find_collision.dir.x;
+		//new_ray.dir.y = find_collision.dir.y;
+		//new_ray.dir.z = find_collision.dir.z;
+		//printf("pos: x: %f, y: %f, z: %f, dir: x: %f, y: %f, z: %f\n", new_ray.pos.x, new_ray.pos.y, new_ray.pos.z, new_ray.dir.x, new_ray.dir.y, new_ray.dir.z);
+		//vector_normalize(&new_ray.dir);
+	}
+	if (!collision_found)
+		return (0);
+//	collision->color.r = get_color_r(color_res);
+//	collision->color.g = get_color_g(color_res);
+//	collision->color.b = get_color_b(color_res);
+	collision->color.r = mask.r * light->color_r;
+	collision->color.g = mask.g * light->color_g;
+	collision->color.b = mask.b * light->color_b;
+	return (1);
 }
 
 static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 {
 	t_light_list	*list;
 	t_ray			ray;
-	t_collision		find_collision;
+	//t_collision		find_collision;
 	double			norm_angle;
 
 	list = env->light_list;
@@ -34,12 +76,18 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 		ray.dir.y = list->light->pos.y - collision->pos.y;
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
-		if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
-		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
+		if (get_shadow_color(env, collision, &ray, list->light))
 		{
 			list = list->next;
 			continue ;
 		}
+	/*	if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
+		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
+		{
+			get_shadow_color(env, collision, &ray, list->light);
+			list = list->next;
+			continue ;
+		}*/
 		norm_angle = dmax(0, cos(vector_angle(&ray.dir, normal)));
 		if (norm_angle)
 		{
