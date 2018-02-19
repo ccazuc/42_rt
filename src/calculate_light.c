@@ -28,29 +28,25 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	mask.r = 1;
 	mask.g = 1;
 	mask.b = 1;
-//	find_collision.pos.x = collision->pos.x;
-//	find_collision.pos.y = collision->pos.y;
-//	find_collision.pos.z = collision->pos.z;
 	find_collision.object = collision->object;
 	collision_found = 0;
-	while (check_collision(env, &new_ray, &find_collision, find_collision.object) && find_collision.distance < vector_distance(&light->pos, &collision->pos) && find_collision.distance > 0.01)
+	while (check_collision(env, &new_ray, &find_collision, find_collision.object) && find_collision.distance < vector_distance(&light->pos, &collision->pos) && find_collision.distance > 0.00001)
 	{
 //		if (find_collision.object->transparency <= 0)
 //			return ;
-		mask.r *= find_collision.object->color_r * .5;
-		mask.g *= find_collision.object->color_g * .5;
-		mask.b *= find_collision.object->color_b * .5;
+		mask.r *= find_collision.object->color_r / 255. * .5;
+		mask.g *= find_collision.object->color_g / 255. * .5;
+		mask.b *= find_collision.object->color_b / 255. * .5;
 		new_ray.pos.x = find_collision.pos.x;
 		new_ray.pos.y = find_collision.pos.y;
 		new_ray.pos.z = find_collision.pos.z;
 		collision_found = 1;
-		//printf("pos: x: %f, y: %f, z: %f, dir: x: %f, y: %f, z: %f\n", new_ray.pos.x, new_ray.pos.y, new_ray.pos.z, new_ray.dir.x, new_ray.dir.y, new_ray.dir.z);
 	}
 	if (!collision_found)
 		return (0);
-	collision->color.r = mask.r * light->color_r;
-	collision->color.g = mask.g * light->color_g;
-	collision->color.b = mask.b * light->color_b;
+	collision->color.r = mask.r * light->color_r / 255. + collision->color.r;
+	collision->color.g = mask.g * light->color_g / 255. + collision->color.g;
+	collision->color.b = mask.b * light->color_b / 255. + collision->color.b;
 	return (1);
 }
 
@@ -77,8 +73,10 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 			continue ;
 		}*/
 		if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
-		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos))
+		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos) && find_collision.distance > 0.0001)
 		{
+		//	printf("\n\n\n\nfind_collision: pos.x: %f, pos.y: %f, pos.z: %f, dir.x: %f, dir.y: %f, dir.z: %f, object: %p, distance: %f\n", find_collision.pos.x, find_collision.pos.y, find_collision.pos.z, find_collision.dir.x, find_collision.dir.y, find_collision.dir.z, find_collision.object, find_collision.distance);
+			//printf("find_light pos.x: %f, pos.y: %f, pos.z: %f, dir.x: %f, dir.y: %f, dir.z: %f\n", ray.pos.x, ray.pos.y, ray.pos.z, ray.dir.x, ray.dir.y, ray.dir.z);
 			get_shadow_color(env, collision, &ray, list->light);
 			list = list->next;
 			continue ;

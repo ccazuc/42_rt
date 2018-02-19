@@ -10,24 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-cylindre	pos	-5	0	5	color	255	150	150	scale	1
-cylindre	pos	5	0	5	color	255	150	150	scale	1
-sphere	pos	-5	5	5	color	255	0	0	scale	2
-sphere	pos	-5	-5	5	color	255	0	0	scale	2
-sphere	pos	5	5	5	color	255	255	0	scale	2
-sphere	pos	5	-5	5	color	255	255	0	scale	2
+sphere pos 0 0 50001 color 0 0 0 scale 50001
+sphere pos 0 0 -50001 color 0 0 0 scale 50001
+sphere pos 0 50001 0 color 0 0 0 scale 50001
+sphere pos 0 -50001 0color 0 0 0 scale 50001
+sphere pos 50001 0 0 color 0 0 0 scale 50001
+sphere pos -50001 0 0 color 0 0 0 scale 50001
 
-cylindre	pos	-5	0	30	color	255	0	255	scale	1
-cylindre	pos	5	0	30	color	255	0	255	scale	1
-sphere	pos	-5	5	30	color	0	255	255	scale	2
-sphere	pos	-5	-5	30	color	0	255	255	scale	2
-sphere	pos	5	5	30	color	0	255	0	scale	2
-sphere	pos	5	-5	30	color	0	255	0	scale	2
-
-#plane	pos	0	-5	0	color	255	255	255	rot	0	0	0
-plane	pos	0	0	50	color	255	255	255	rot	90	0	0
-#plane	pos	0	5	0	color	255	255	255	rot	0	0	0
-
-camera	pos	0	0	-20	rot	0	0	0
-light	pos	14	4	-30	power	3	color	255	255	255
-light	pos	-14	4	-30	power	3	color	255	255	255
+camera	pos	0	0	0	rot	0	0	0
+light	pos	0 1 0	power	5	color	255	255	255
+light	pos	0	-1	0	power	3	color	255	255	255
