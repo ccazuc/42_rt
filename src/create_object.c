@@ -29,5 +29,7 @@ t_object	*create_object(void)
 	object->color_g = DEFAULT_COLOR_G;
 	object->color_b = DEFAULT_COLOR_B;
 	object->scale = 1;
+	object->reflection = 0;
+	object->transparency = 0;
 	return (object);
 }

@@ -39,7 +39,7 @@
 # define DEFAULT_COLOR_R 0xFF
 # define DEFAULT_COLOR_G 0
 # define DEFAULT_COLOR_B 0xFF
-# define REFLECTION_DEPTH 3
+# define REFLECTION_DEPTH 6
 
 typedef struct			s_object t_object;
 typedef struct			s_worker t_worker;
@@ -136,6 +136,8 @@ typedef struct			s_object
 	char				has_parsed_color;
 	char				has_parsed_scale;
 	char				has_parsed_rotation;
+	float				transparency;
+	float				reflection;
 	t_vector			pos;
 }						t_object;
 
@@ -202,6 +204,7 @@ typedef struct			s_env
 	int					nb_thread;
 	int					draw_finished;
 	long				render_start;
+	char				sepia_filter;
 }						t_env;
 
 typedef struct					s_worker
@@ -300,5 +303,7 @@ void					create_thread(t_env *env);
 int						loop_handler(void *data);
 void					fill_ray(t_env *env, t_ray *ray, int x, int y);
 void					draw_progress_bar(t_env *env, int line_drawn);
+int						get_sepia_color(int rgb);
+void					save_image(t_env *env);
 
 #endif

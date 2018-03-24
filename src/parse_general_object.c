@@ -56,6 +56,10 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_rotation(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "scale"))
 		parse_object_scale(env, object, datas, i);
+	//else if (check_piece_attribut_name(datas[*i], "reflection"))
+	//	parse_object_reflection(env, object, datas, i);
+	//else if (check_piece_attribut_name(datas[*i], "transparency"))
+	//	parse_object_transparency(env, object, datas, i);
 	else if ((material = find_material(env, datas[*i])))
 		fill_object_with_material(object, material);
 	else

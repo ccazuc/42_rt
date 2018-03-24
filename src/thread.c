@@ -2,8 +2,9 @@
 
 void	thread_loop(t_worker *worker)
 {
-	int		j;
-	t_ray	*ray;
+	int				j;
+	t_ray			*ray;
+	unsigned int	color;
 
 	ray = create_camera_ray(worker->env);
 	worker->current_index = worker->start - 1;
@@ -13,7 +14,10 @@ void	thread_loop(t_worker *worker)
 		while (++j < WINDOW_WIDTH)
 		{
 			fill_ray(worker->env, ray, j, worker->current_index);
-			pixel_put(worker->env, j, worker->current_index, get_pixel_color(worker->env, ray, 0, NULL));
+			color = get_pixel_color(worker->env, ray, 0, NULL);
+			if (worker->env->sepia_filter)
+				color = get_sepia_color(color);
+			pixel_put(worker->env, j, worker->current_index, color);
 		}
 		++worker->line_drawn;
 	}

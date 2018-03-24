@@ -37,6 +37,7 @@ int			main(int argc, char **argv)
 		printf("Color | r: %f, g: %f, b: %f\n", list->object->color_r, list->object->color_g, list->object->color_b);
 		printf("Position | x: %f, y: %f, z: %f\n", list->object->pos.x, list->object->pos.y, list->object->pos.z);
 		printf("Orientation | x: %f, y: %f, z: %f\n", list->object->rot.x, list->object->rot.y, list->object->rot.z);
+		printf("Scale: %d\n", list->object->scale);
 		printf("\n\n\n");
 		list = list->next;
 	}

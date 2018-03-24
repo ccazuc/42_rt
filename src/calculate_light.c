@@ -18,6 +18,7 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	t_ray			new_ray;
 	t_color_mask	mask;
 	int				collision_found;
+//	t_vector		normal;
 
 	new_ray.pos.x = ray->pos.x;
 	new_ray.pos.y = ray->pos.y;
@@ -34,9 +35,14 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	{
 //		if (find_collision.object->transparency <= 0)
 //			return ;
-		mask.r *= find_collision.object->color_r / 255. * .5;
-		mask.g *= find_collision.object->color_g / 255. * .5;
-		mask.b *= find_collision.object->color_b / 255. * .5;
+		mask.r *= find_collision.object->color_r / 255. * .1 * light->power / 5 * light->color_r / 255.;
+		mask.g *= find_collision.object->color_g / 255. * .1 * light->power / 5 * light->color_g / 255.;
+		mask.b *= find_collision.object->color_b / 255. * .1 * light->power / 5 * light->color_b / 255.;
+		/*get_normal_vector(&normal, find_collision.object, &find_collision);
+		vector_normalize(&normal);
+		mask.r *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_r / 255.;
+		mask.g *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_g / 255.;
+		mask.b *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_b / 255.;*/
 		new_ray.pos.x = find_collision.pos.x;
 		new_ray.pos.y = find_collision.pos.y;
 		new_ray.pos.z = find_collision.pos.z;
@@ -44,9 +50,9 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	}
 	if (!collision_found)
 		return (0);
-	collision->color.r = mask.r * light->color_r / 255. + collision->color.r;
-	collision->color.g = mask.g * light->color_g / 255. + collision->color.g;
-	collision->color.b = mask.b * light->color_b / 255. + collision->color.b;
+	collision->color.r = mask.r + collision->color.r;
+	collision->color.g = mask.g + collision->color.g;
+	collision->color.b = mask.b + collision->color.b;
 	return (1);
 }
 

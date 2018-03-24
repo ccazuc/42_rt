@@ -33,10 +33,12 @@ void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision, t_obje
 	quadratic.c = dot_product(&new, &new) - object->scale * object->scale;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
+//	printf("collision found!\n");
 	if (result >= collision->distance || result < 0)
 		return ;
 	if (object == previous_object && result < 0.0001)
 		return ;
+//	printf("collision found!\n");
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;
 	collision->pos.y = ray->pos.y + ray->dir.y * result;

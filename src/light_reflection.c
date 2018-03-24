@@ -15,9 +15,12 @@ int check_reflection(t_env *env, t_collision *collision, t_vector *normal, int r
 	ray.pos.x = collision->pos.x;
 	ray.pos.y = collision->pos.y;
 	ray.pos.z = collision->pos.z;
+	if (collision->object->scale != 50)
+		return (0);
 	tmp_color = get_pixel_color(env, &ray, recursion + 1, collision->object);
-	//printf("tmp_color: %d\n", tmp_color);
-	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b), .8), color_factor(tmp_color, .2));
+	//if (tmp_color)
+	//	printf("tmp_color: %d\n", tmp_color);
+	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b), .5), color_factor(tmp_color, .5));
 	collision->color.r = get_color_r(color_res);
 	collision->color.g = get_color_g(color_res);
 	collision->color.b = get_color_b(color_res);

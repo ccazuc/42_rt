@@ -38,5 +38,6 @@ int		loop_handler(void *data)
 	reset_window(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
 	put_timer(env->render_start, epoch_millis(), "Scene rendered");
+	save_image(env);
 	return (0);
 }

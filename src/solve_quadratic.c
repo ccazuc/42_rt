@@ -22,8 +22,10 @@ int		solve_quadratic(t_quadratic *quadratic, double *distance)
 
 	delta = quadratic->b * quadratic->b - 4 * quadratic->a * quadratic->c;
 	*distance = 0;
+	//printf("a: %f, b: %f, c: %f, delta: %f\n", quadratic->a, quadratic->b, quadratic->c, delta);
 	if (delta < 0)
 		return (0);
+	//printf("delta: %f\n", delta);
 	if (delta == 0)
 		*distance = -quadratic->b / (2 * quadratic->a);
 	else
