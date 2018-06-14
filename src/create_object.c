@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 11:01:33 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 09:58:57 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:33:41 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ t_object	*create_object(void)
 	object->has_parsed_position = 0;
 	object->has_parsed_rotation = 0;
 	object->has_parsed_scale = 0;
+	object->has_parsed_reflection = 0;
+	object->has_parsed_transparency = 0;
 	object->rot.x = 0;
 	object->rot.y = 0;
 	object->rot.z = 0;

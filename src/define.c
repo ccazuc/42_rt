@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 15:59:31 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 16:54:01 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:59:26 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_define	*find_define(t_env *env, char *str)
 	list = env->define_list;
 	while (list)
 	{
-		printf("define_name: %s, current_name: %s, match: %d\n", str, list->define->name, ft_strcmp_ignrcase(list->define->name, str));
 		if (!ft_strcmp_ignrcase(list->define->name, str))
 			return (list->define);
 		list = list->next;

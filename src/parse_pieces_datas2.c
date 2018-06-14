@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:56:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 10:13:53 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:41:17 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_object *object, char **datas, int *start)
 	if (datas[*start + 1] && !ft_str_isdigit(datas[*start + 1]) &&
 	(define = find_define(env, datas[*start + 1])))
 	{
-		fill_object_position_define(object, define, start);
+		fill_object_reflection_define(object, define, start);
 		return ;
 	}
 	if (!datas[*start + 1])
@@ -51,7 +51,7 @@ t_object *object, char **datas, int *start)
 	if (datas[*start + 1] && !ft_str_isdigit(datas[*start + 1]) &&
 	(define = find_define(env, datas[*start + 1])))
 	{
-		fill_object_position_define(object, define, start);
+		fill_object_transparency_define(object, define, start);
 		return ;
 	}
 	if (!datas[*start + 1])

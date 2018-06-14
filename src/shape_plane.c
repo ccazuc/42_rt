@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 09:28:09 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:15:28 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_object *object, t_collision *collision)
 
 	vector->x = 0;
 	vector->y = 1;
-	vector->z = 0;
+	vector->z = 1;
 	vector_rotate(vector, &object->rot);
 	object = NULL;
 	angle = vector_angle(vector, &collision->dir) * 180. / M_PI;
@@ -41,7 +41,7 @@ t_collision *collision, t_object *previous_object)
 
 	norm.x = 0;
 	norm.y = 1;
-	norm.z = 1;
+	norm.z = 0;
 	new.x = object->pos.x - ray->pos.x;
 	new.y = object->pos.y - ray->pos.y;
 	new.z = object->pos.z - ray->pos.z;

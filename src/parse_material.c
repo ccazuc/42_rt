@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 10:12:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:38:34 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		parse_material_name(t_material *material, char *str)
 	material->name = ft_strdup(str);
 }
 
-void		parse_material_color(t_material *material,
+void			parse_material_color(t_material *material,
 char **datas, int *start)
 {
 	if (material->has_parsed_color)
@@ -47,7 +47,7 @@ char **datas, int *start)
 	material->has_parsed_color = 1;
 }
 
-void	parse_material_rotation(t_material *material,
+void			parse_material_rotation(t_material *material,
 char **datas, int *start)
 {
 	if (material->has_parsed_rotation)
@@ -67,7 +67,7 @@ char **datas, int *start)
 	material->has_parsed_rotation = 1;
 }
 
-void		parse_material_position(t_material *material,
+void			parse_material_position(t_material *material,
 char **datas, int *start)
 {
 	if (material->has_parsed_position)

@@ -6,38 +6,48 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 12:04:34 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:03:58 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static int	get_shadow_color(t_env *env, t_collision *collision,
-t_ray *ray, t_light *light)
+static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_light *light)
 {
 	t_collision 	find_collision;
 	t_ray			new_ray;
 	t_color_mask	mask;
 	int				collision_found;
+//	t_vector		normal;
 
-	new_ray.pos = ray->pos;
-	new_ray.dir = ray->dir;
+	new_ray.pos.x = ray->pos.x;
+	new_ray.pos.y = ray->pos.y;
+	new_ray.pos.z = ray->pos.z;
+	new_ray.dir.x = ray->dir.x;
+	new_ray.dir.y = ray->dir.y;
+	new_ray.dir.z = ray->dir.z;
+	//new_ray.pos = ray->pos;
+	//new_ray.dir = ray->dir;
 	mask.r = 1;
 	mask.g = 1;
 	mask.b = 1;
 	find_collision.object = collision->object;
 	collision_found = 0;
-	while (check_collision(env, &new_ray, &find_collision, find_collision.object)
-	&& find_collision.distance < vector_distance(&light->pos, &collision->pos)
-	&& find_collision.distance > 0.00001)
+	while (check_collision(env, &new_ray, &find_collision, find_collision.object) && find_collision.distance < vector_distance(&light->pos, &collision->pos) && find_collision.distance > 0.00001)
 	{
-		mask.r *= find_collision.object->color_r / 255. *
-		find_collision.object->transparency * light->color_r / 255.;
-		mask.g *= find_collision.object->color_g / 255. *
-		find_collision.object->transparency * light->color_g / 255.;
-		mask.b *= find_collision.object->color_b / 255. *
-		find_collision.object->transparency * light->color_b / 255.;
-		new_ray.pos = find_collision.pos;
+//		if (find_collision.object->transparency <= 0)
+//			return ;
+		mask.r *= find_collision.object->color_r / 255. * .5 /** light->color_r / 255.*/;
+		mask.g *= find_collision.object->color_g / 255. * .5 /** light->color_g / 255.*/;
+		mask.b *= find_collision.object->color_b / 255. * .5 /** light->color_b / 255.*/;
+		/*get_normal_vector(&normal, find_collision.object, &find_collision);
+		vector_normalize(&normal);
+		mask.r *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_r / 255.;
+		mask.g *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_g / 255.;
+		mask.b *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_b / 255.;*/
+		new_ray.pos.x = find_collision.pos.x;
+		new_ray.pos.y = find_collision.pos.y;
+		new_ray.pos.z = find_collision.pos.z;
 		collision_found = 1;
 	}
 	if (!collision_found)
@@ -65,9 +75,16 @@ static void	find_light(t_env *env, t_collision *collision, t_vector *normal)
 		ray.dir.y = list->light->pos.y - collision->pos.y;
 		ray.dir.z = list->light->pos.z - collision->pos.z;
 		vector_normalize(&ray.dir);
+	/*	if (get_shadow_color(env, collision, &ray, list->light))
+		{
+			list = list->next;
+			continue ;
+		}*/
 		if (check_collision(env, &ray, &find_collision, collision->object) && find_collision.object
 		&& find_collision.distance < vector_distance(&list->light->pos, &collision->pos) && find_collision.distance > 0.0001)
 		{
+		//	printf("\n\n\n\nfind_collision: pos.x: %f, pos.y: %f, pos.z: %f, dir.x: %f, dir.y: %f, dir.z: %f, object: %p, distance: %f\n", find_collision.pos.x, find_collision.pos.y, find_collision.pos.z, find_collision.dir.x, find_collision.dir.y, find_collision.dir.z, find_collision.object, find_collision.distance);
+			//printf("find_light pos.x: %f, pos.y: %f, pos.z: %f, dir.x: %f, dir.y: %f, dir.z: %f\n", ray.pos.x, ray.pos.y, ray.pos.z, ray.dir.x, ray.dir.y, ray.dir.z);
 			get_shadow_color(env, collision, &ray, list->light);
 			list = list->next;
 			continue ;

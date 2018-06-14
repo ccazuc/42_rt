@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_filter.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/14 12:01:17 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/14 12:01:32 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 int		get_sepia_color(int rgb)
 {
-	unsigned char 	r;
-	unsigned char 	g;
-	unsigned char 	b;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
 	t_color_mask	mask;
 
 	r = get_color_r(rgb);

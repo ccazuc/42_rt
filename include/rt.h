@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 10:13:16 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 11:41:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -299,6 +299,8 @@ void					parse_define(t_env *env, char **datas);
 void					fill_object_color_define(t_object *object, t_define *define, int *i);
 void					fill_object_position_define(t_object *object, t_define *define, int *i);
 void					fill_object_rotation_define(t_object *object, t_define *define, int *i);
+void					fill_object_reflection_define(t_object *object, t_define *define, int *i);
+void					fill_object_transparency_define(t_object *object, t_define *define, int *i);
 int						color_factor(int color, double factor);
 void					light_transparency(t_env *env, t_collision *collision, int recursion);
 void					create_thread(t_env *env);

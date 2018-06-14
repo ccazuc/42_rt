@@ -6,13 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 15:28:10 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:51:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int	check_collision(t_env *env, t_ray *ray, t_collision *collision, t_object *previous_object)
+int	check_collision(t_env *env, t_ray *ray,
+t_collision *collision, t_object *previous_object)
 {
 	t_object_list	*list;
 
