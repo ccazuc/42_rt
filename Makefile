@@ -58,6 +58,9 @@ SRCS_NAME = main.c \
 			draw_progress_bar.c \
 			color_filter.c \
 			save_image.c \
+			parse_pieces_datas2.c \
+			parse_material_attribute.c \
+			create_light.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -67,8 +70,8 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-#LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit
-LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread
+LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit
+#LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread
 
 all: odir $(NAME)
 

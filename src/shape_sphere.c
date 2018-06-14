@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:25 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 18:18:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:24:12 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
 	vector->z = pos->z - object->pos.z;
 }
 
-void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
+void	collide_sphere(t_ray *ray, t_object *object,
+t_collision *collision, t_object *previous_object)
 {
 	t_vector	new;
 	t_quadratic	quadratic;
@@ -33,12 +34,10 @@ void	collide_sphere(t_ray *ray, t_object *object, t_collision *collision, t_obje
 	quadratic.c = dot_product(&new, &new) - object->scale * object->scale;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;
-//	printf("collision found!\n");
 	if (result >= collision->distance || result < 0)
 		return ;
 	if (object == previous_object && result < 0.0001)
 		return ;
-//	printf("collision found!\n");
 	collision->distance = result;
 	collision->pos.x = ray->pos.x + ray->dir.x * result;
 	collision->pos.y = ray->pos.y + ray->dir.y * result;

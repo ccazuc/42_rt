@@ -6,13 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:26:27 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 16:59:56 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:28:23 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	parse_object_position(t_env *env, t_object *object, char **datas, int *start)
+void	parse_object_position(t_env *env,
+t_object *object, char **datas, int *start)
 {
 	t_define	*define;
 
@@ -39,7 +40,8 @@ void	parse_object_position(t_env *env, t_object *object, char **datas, int *star
 	object->has_parsed_position = 1;
 }
 
-void	parse_object_rotation(t_env *env, t_object *object, char **datas, int *start)
+void	parse_object_rotation(t_env *env,
+t_object *object, char **datas, int *start)
 {
 	t_define *define;
 
@@ -66,7 +68,8 @@ void	parse_object_rotation(t_env *env, t_object *object, char **datas, int *star
 	object->has_parsed_rotation = 1;
 }
 
-void	parse_object_color(t_env *env, t_object *object, char **datas, int *start)
+void	parse_object_color(t_env *env,
+t_object *object, char **datas, int *start)
 {
 	t_define *define;
 
@@ -90,13 +93,13 @@ void	parse_object_color(t_env *env, t_object *object, char **datas, int *start)
 	object->color_b = ft_atoi(datas[*start + 3]);
 	if (object->color_r < 0 || object->color_r > 255 || object->color_g < 0
 	|| object->color_g > 255 || object->color_b < 0 || object->color_b > 255)
-		ft_exit("Error, invalid file. Color's value is invalid."
-		, EXIT_FAILURE);
+		ft_exit("Color's value invalid.", EXIT_FAILURE);
 	*start += 3;
 	object->has_parsed_color = 1;
 }
 
-void	parse_object_scale(t_env *env, t_object *object, char **datas, int *start)
+void	parse_object_scale(t_env *env,
+t_object *object, char **datas, int *start)
 {
 	if (object->has_parsed_scale)
 		ft_exit("Error, invalid file. Scale duplicate for an object."

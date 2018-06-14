@@ -6,13 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 14:58:12 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:28:09 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	get_plane_normal(t_vector *vector, t_object *object, t_collision *collision)
+void	get_plane_normal(t_vector *vector,
+t_object *object, t_collision *collision)
 {
 	double		angle;
 
@@ -21,7 +22,7 @@ void	get_plane_normal(t_vector *vector, t_object *object, t_collision *collision
 	vector->z = 0;
 	vector_rotate(vector, &object->rot);
 	object = NULL;
-	angle = vector_angle(vector, &collision->dir) / 180. * M_PI;
+	angle = vector_angle(vector, &collision->dir) * 180. / M_PI;
 	if (angle <= 90)
 	{
 		vector->x = -vector->x;
@@ -30,7 +31,8 @@ void	get_plane_normal(t_vector *vector, t_object *object, t_collision *collision
 	}
 }
 
-void	collide_plane(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
+void	collide_plane(t_ray *ray, t_object *object,
+t_collision *collision, t_object *previous_object)
 {
 	double		result;
 	t_vector	new;
@@ -47,7 +49,7 @@ void	collide_plane(t_ray *ray, t_object *object, t_collision *collision, t_objec
 	result = dot_product(&norm, &ray->dir);
 	if (!result)
 		return ;
-	dist = dot_product(&norm, &new) / result;	
+	dist = dot_product(&norm, &new) / result;
 	if (dist < 0.001 || dist >= collision->distance)
 		return ;
 	if (previous_object == object && dist < 0.0001)

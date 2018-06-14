@@ -7,6 +7,7 @@ int check_reflection(t_env *env, t_collision *collision, t_vector *normal, int r
 	float		dot;
 	int			color_res;
 
+	return (0);
 	dot = dot_product(&collision->dir, normal);
 	ray.dir.x = -2. * dot * normal->x + collision->dir.x;
 	ray.dir.y = -2. * dot * normal->y + collision->dir.y;
@@ -15,8 +16,8 @@ int check_reflection(t_env *env, t_collision *collision, t_vector *normal, int r
 	ray.pos.x = collision->pos.x;
 	ray.pos.y = collision->pos.y;
 	ray.pos.z = collision->pos.z;
-	if (collision->object->scale != 50)
-		return (0);
+	//:if (collision->object->scale != 50)
+	//	return (0);
 	tmp_color = get_pixel_color(env, &ray, recursion + 1, collision->object);
 	//if (tmp_color)
 	//	printf("tmp_color: %d\n", tmp_color);

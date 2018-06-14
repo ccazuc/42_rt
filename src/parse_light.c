@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:07:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 12:59:44 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:10:00 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	parse_light_position(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_position)
-		ft_exit("Error, invalid file. Position duplicate for a light.", EXIT_FAILURE);
+		ft_exit("Error, invalid file. Pos dupli for a light.", EXIT_FAILURE);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for light's position."
+		ft_exit("Error, invalid file. Not enough parameters for light's pos."
 		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
 	|| !ft_str_isdigit(datas[*start + 3]))
@@ -33,12 +33,12 @@ void	parse_light_position(t_light *light, char **datas, int *start)
 void	parse_light_rotation(t_light *light, char **datas, int *start)
 {
 	if (light->has_parsed_rotation)
-		ft_exit("Error, invalid file. Rotation duplicate for a light.", EXIT_FAILURE);
+		ft_exit("Error, invalid file. Rot dupli for a light.", EXIT_FAILURE);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for light's rotation."
+		ft_exit("Error, invalid file. Not enough param for light's rotation."
 		, EXIT_FAILURE);
-	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2]) ||
-	!ft_str_isdigit(datas[*start + 3]))
+	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start
+	+ 2]) || !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Light's Rotation parameters are invalid."
 		, EXIT_FAILURE);
 	light->rot.x = ft_atoi(datas[*start + 1]);
@@ -54,7 +54,8 @@ void	parse_light_color(t_light *light, char **datas, int *start)
 		ft_exit("Error, invalid file. Color duplicate for a light."
 		, EXIT_FAILURE);
 	if (!datas[*start + 1] || !datas[*start + 2] || !datas[*start + 3])
-		ft_exit("Error, invalid file. Not enough parameters for color.", EXIT_FAILURE);
+		ft_exit("Error, invalid file. Not enough params for color."
+		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2])
 	|| !ft_str_isdigit(datas[*start + 3]))
 		ft_exit("Error, invalid file. Color's parameters are invalid."
@@ -75,7 +76,8 @@ void	parse_light_power(t_light *light, char **datas, int *start)
 		ft_exit("Error, invalid file. Power duplicate for a light."
 		, EXIT_FAILURE);
 	if (!datas[*start + 1])
-		ft_exit("Error, invalid file. Not enough parameters for power.", EXIT_FAILURE);
+		ft_exit("Error, invalid file. Not enough parameters for power."
+		, EXIT_FAILURE);
 	if (!ft_str_isdigit(datas[*start + 1]))
 		ft_exit("Error, invalid file. Power's parameters are invalid."
 		, EXIT_FAILURE);
@@ -94,14 +96,8 @@ void	parse_light(t_env *env, char **datas)
 	int			len;
 
 	len = ft_array_len(datas);
-	if (!(light = malloc(sizeof(*light))))
-		ft_exit("Error, of out memory.", EXIT_FAILURE);
+	light = create_light();
 	i = 0;
-	light->has_parsed_rotation = 0;
-	light->has_parsed_position = 0;
-	light->has_parsed_color = 0;
-	light->has_parsed_power = 0;
-	light->power = 1;
 	while (++i < len)
 		if (check_piece_attribut_name(datas[i], "position"))
 			parse_light_position(light, datas, &i);
@@ -112,6 +108,7 @@ void	parse_light(t_env *env, char **datas)
 		else if (check_piece_attribut_name(datas[i], "power"))
 			parse_light_power(light, datas, &i);
 		else
-			ft_exit("Error, invalid file. Unknown light attribut.", EXIT_FAILURE);
+			ft_exit("Error, invalid file. Unknown light attribut."
+			, EXIT_FAILURE);
 	list_add_light(env, light);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 17:01:23 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:02:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_rotation(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "scale"))
 		parse_object_scale(env, object, datas, i);
-	//else if (check_piece_attribut_name(datas[*i], "reflection"))
-	//	parse_object_reflection(env, object, datas, i);
-	//else if (check_piece_attribut_name(datas[*i], "transparency"))
-	//	parse_object_transparency(env, object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "reflection"))
+		parse_object_reflection(env, object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "transparency"))
+		parse_object_transparency(env, object, datas, i);
 	else if ((material = find_material(env, datas[*i])))
 		fill_object_with_material(object, material);
 	else

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   loop_handler.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/14 09:53:29 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/14 09:54:01 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 void	reset_window(t_env *env)
@@ -27,8 +39,6 @@ int		loop_handler(void *data)
 	line_drawn = 0;
 	while (++i < env->nb_thread)
 		line_drawn += env->thread_list[i].line_drawn;
-//	printf("line_drawn: %d\n", line_drawn);
-	//reset_window(env);
 	draw_progress_bar(env, line_drawn);
 	i = -1;
 	while (++i < env->nb_thread)

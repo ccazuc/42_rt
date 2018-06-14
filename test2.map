@@ -6,7 +6,7 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/02 15:01:27 by ccazuc            #+#    #+#              #
-#    Updated: 2018/01/02 15:23:51 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/06/13 09:45:32 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,10 @@ sphere	pos	-5	-5	30	color	0	255	255	scale	2
 sphere	pos	5	5	30	color	0	255	0	scale	2
 sphere	pos	5	-5	30	color	0	255	0	scale	2
 
-#plane	pos	0	-5	0	color	255	255	255	rot	0	0	0
+
+#plane	pos	0	-5	50	color	255	255	255	rot	0	0	0
 plane	pos	0	0	50	color	255	255	255	rot	90	0	0
-#plane	pos	0	5	0	color	255	255	255	rot	0	0	0
+#plane	pos	0	5	50	color	255	255	255	rot	0	0	0
 
 camera	pos	0	0	-20	rot	0	0	0
 light	pos	14	4	-30	power	3	color	255	255	255

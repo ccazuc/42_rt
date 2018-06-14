@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 16:54:06 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:53:21 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ t_material	*find_material(t_env *env, char *str)
 	list = env->material_list;
 	while (list)
 	{
-		printf("material_name: %s, current_name: %s, match: %d\n", str, list->material->name, ft_strcmp_ignrcase(list->material->name, str));
 		if (!ft_strcmp_ignrcase(list->material->name, str))
 			return (list->material);
 		list = list->next;

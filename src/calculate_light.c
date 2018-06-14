@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 15:25:37 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:15:47 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,14 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	int				collision_found;
 //	t_vector		normal;
 
-	new_ray.pos.x = ray->pos.x;
+	/*new_ray.pos.x = ray->pos.x;
 	new_ray.pos.y = ray->pos.y;
 	new_ray.pos.z = ray->pos.z;
 	new_ray.dir.x = ray->dir.x;
 	new_ray.dir.y = ray->dir.y;
-	new_ray.dir.z = ray->dir.z;
+	new_ray.dir.z = ray->dir.z;*/
+	new_ray.pos = ray->pos;
+	new_ray.dir = ray->dir;
 	mask.r = 1;
 	mask.g = 1;
 	mask.b = 1;
@@ -35,9 +37,9 @@ static int	get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_li
 	{
 //		if (find_collision.object->transparency <= 0)
 //			return ;
-		mask.r *= find_collision.object->color_r / 255. * .1 * light->power / 5 * light->color_r / 255.;
-		mask.g *= find_collision.object->color_g / 255. * .1 * light->power / 5 * light->color_g / 255.;
-		mask.b *= find_collision.object->color_b / 255. * .1 * light->power / 5 * light->color_b / 255.;
+		mask.r *= find_collision.object->color_r / 255. * .51 * light->power / 5 * light->color_r / 255.;
+		mask.g *= find_collision.object->color_g / 255. * .51 * light->power / 5 * light->color_g / 255.;
+		mask.b *= find_collision.object->color_b / 255. * .51 * light->power / 5 * light->color_b / 255.;
 		/*get_normal_vector(&normal, find_collision.object, &find_collision);
 		vector_normalize(&normal);
 		mask.r *= dmax(0, cos(vector_angle(&normal, &ray->dir))) * light->power / 5 * .1 * find_collision.object->color_r / 255.;

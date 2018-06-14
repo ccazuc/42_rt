@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:10 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/12/31 13:03:22 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:26:44 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	get_cone_normal(t_vector *vector, t_object *object, t_vector *pos)
 	vector->z = pos->z - object->pos.z;
 }
 
-void	collide_cone(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
+void	collide_cone(t_ray *ray, t_object *object,
+t_collision *collision, t_object *previous_object)
 {
 	t_vector	new;
 	t_quadratic	quadratic;
@@ -28,8 +29,10 @@ void	collide_cone(t_ray *ray, t_object *object, t_collision *collision, t_object
 	new.x = ray->pos.x - object->pos.x;
 	new.y = ray->pos.y - object->pos.y;
 	new.z = ray->pos.z - object->pos.z;
-	quadratic.a = ray->dir.x * ray->dir.x - ray->dir.y * ray->dir.y + ray->dir.z * ray->dir.z;
-	quadratic.b = 2.0 * (ray->dir.x * new.x - ray->dir.y * new.y + ray->dir.z * new.z);
+	quadratic.a = ray->dir.x * ray->dir.x - ray->dir.y
+	* ray->dir.y + ray->dir.z * ray->dir.z;
+	quadratic.b = 2.0 * (ray->dir.x * new.x - ray->dir.y *
+	new.y + ray->dir.z * new.z);
 	quadratic.c = new.x * new.x - new.y * new.y + new.z * new.z;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:18 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 14:53:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:25:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void	get_cylinder_normal(t_vector *vector, t_object *object, t_vector *pos)
 	vector_rotate(vector, &object->rot);
 }
 
-void	collide_cylinder(t_ray *ray, t_object *object, t_collision *collision, t_object *previous_object)
+void	collide_cylinder(t_ray *ray, t_object *object,
+t_collision *collision, t_object *previous_object)
 {
 	t_vector	new;
 	t_quadratic	quadratic;

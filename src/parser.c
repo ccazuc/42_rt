@@ -6,13 +6,13 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 16:25:36 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 09:47:46 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	parse(t_env *env, int argc, char **argv)
+void		parse(t_env *env, int argc, char **argv)
 {
 	int		fd;
 
@@ -56,7 +56,7 @@ static void	parse_line(t_env *env, char *datas)
 	free_2d_array(result);
 }
 
-void	parse_args(t_env *env, int fd)
+void		parse_args(t_env *env, int fd)
 {
 	char	*result;
 

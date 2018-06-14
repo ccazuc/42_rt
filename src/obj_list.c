@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   obj_list.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/14 09:51:36 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/14 09:51:53 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
-void	add_obj_vertex(t_env *env, double x, double y, double z)
+void				add_obj_vertex(t_env *env, double x, double y, double z)
 {
 	t_obj_vertex_list	*result;
 	t_obj_vertex_list	*list;
@@ -22,7 +34,7 @@ void	add_obj_vertex(t_env *env, double x, double y, double z)
 	list->next = result;
 }
 
-void	add_obj_normal(t_env *env, double x, double y, double z)
+void				add_obj_normal(t_env *env, double x, double y, double z)
 {
 	t_obj_normal_list	*result;
 	t_obj_normal_list	*list;

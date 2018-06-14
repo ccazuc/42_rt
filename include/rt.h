@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/01/02 17:00:49 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 10:13:16 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,6 +136,8 @@ typedef struct			s_object
 	char				has_parsed_color;
 	char				has_parsed_scale;
 	char				has_parsed_rotation;
+	char				has_parsed_reflection;
+	char				has_parsed_transparency;
 	float				transparency;
 	float				reflection;
 	t_vector			pos;
@@ -305,5 +307,13 @@ void					fill_ray(t_env *env, t_ray *ray, int x, int y);
 void					draw_progress_bar(t_env *env, int line_drawn);
 int						get_sepia_color(int rgb);
 void					save_image(t_env *env);
+t_light					*create_light(void);
+void					parse_material_attribute(t_material *material, char **datas, int *i);
+void					parse_object_reflection(t_env *env, t_object *object, char **datas, int *start);
+void					parse_object_transparency(t_env *env, t_object *object, char **datas, int *start);
+void					parse_material_color(t_material *material, char **datas, int *start);
+void					parse_material_rotation(t_material *material, char **datas, int *start);
+void					parse_material_position(t_material *material, char **datas, int *start);
+
 
 #endif

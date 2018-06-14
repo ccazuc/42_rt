@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   light_transparency.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/06/14 10:06:33 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/14 10:08:30 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
 void	light_transparency(t_env *env, t_collision *collision, int recursion)
 {
-	t_ray ray;
-	int tmp_color;
-	int color_res;
+	t_ray	ray;
+	int 	tmp_color;
+	int 	color_res;
 
 	//if (collision->object->type != CYLINDRE && collision->object->type != SPHERE)
 	//	return ;
@@ -19,9 +31,8 @@ void	light_transparency(t_env *env, t_collision *collision, int recursion)
 	ray.pos.z = collision->pos.z;
 	vector_normalize(&ray.dir);
 	tmp_color = get_pixel_color(env, &ray, recursion, collision->object);
-//printf("tmp_color: %d, dir.x: %f, dir.y: %f, dir.z: %f, pos.x: %f, pos.y: %f, pos.z: %f\n", tmp_color, ray.dir.x, ray.dir.y, ray.dir.z, ray.pos.x, ray.pos.y, ray.pos.z);
-	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r, collision->color.g, collision->color.b), .9), color_factor(tmp_color, .1));
-	//printf("color_res: %d\n", color_res);
+	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r,
+	collision->color.g, collision->color.b), .9), color_factor(tmp_color, .1));
 	collision->color.r = get_color_r(color_res);
 	collision->color.g = get_color_g(color_res);
 	collision->color.b = get_color_b(color_res);

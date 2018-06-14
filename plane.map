@@ -1,0 +1,36 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    test.map                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
+#    Updated: 2018/06/14 10:18:39 by ccazuc           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+#define WHITE	255	255	255
+#define MIDDLE 	0	0	8
+#material	sphere_a	color	255	255	0	pos	0	0	8
+plane		color	255	255	255	pos	0	0	20	rot	0	0	90
+#cone		color	180	0	100	pos	0	0	20	scale	4
+#trIanGLE	color	1	2	3	pos	4	5	5			scale	1
+sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1
+#sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
+#sphere		color	120	100	0	pos	1	0	5	scale 1
+#cylindre	color	255	0	0	pos	0	0	20	rot	0	0	0	scale	1
+#light		color	255	255	255	pos	2	2	2	power	1
+#light		color	255	255	255	pos	-3	-3	2	power	1
+#light		color	255	255	255	pos	0	13	40	power	2
+#light		color	255	255	255	pos	1	1	17	power	1
+#light		color	255	255	255	pos	1	1	17	power	1
+#light		color	130	130	130	pos	-3	-3	-2	power	1
+light		color	255	255	255	pos	-5	0	2	power	5
+camera			pos 0	0	0		rot 0	0	0
+
+
+#
+#
+          
+ #cube pos 4 5 6 rot 7 8 9 color 66 66 0	scale	1
