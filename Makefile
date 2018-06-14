@@ -61,6 +61,8 @@ SRCS_NAME = main.c \
 			parse_pieces_datas2.c \
 			parse_material_attribute.c \
 			create_light.c \
+			light_transparency_shadow.c \
+			find_light.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

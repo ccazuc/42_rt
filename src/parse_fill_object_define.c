@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:11:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 11:39:28 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 12:18:35 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ t_define *define, int *i)
 		ft_exit("Error, invalid file. Define has too much arguments for refl."
 		, EXIT_FAILURE);
 	object->reflection = define->x / 100.;
+	if (object->reflection < 0 || object->reflection > 1)
+		ft_exit("Error, invalid file. Refl's param's value is invalid."
+		, EXIT_FAILURE);
 	object->has_parsed_reflection = 1;
 	*i += 1;
 }
@@ -70,6 +73,9 @@ t_define *define, int *i)
 		ft_exit("Error, invalid file. Define has too much args for trans."
 		, EXIT_FAILURE);
 	object->transparency = define->x / 100.;
+	if (object->transparency < 0 || object->transparency > 1)
+		ft_exit("Error, invalid file. Transp's param's value is invalid."
+		, EXIT_FAILURE);
 	object->has_parsed_transparency = 1;
 	*i += 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 11:41:49 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 13:48:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@
 # define CONE 5
 # define WINDOW_WIDTH 1200
 # define WINDOW_HEIGHT 900
-# define WINDOW_NAME "cc"
+# define WINDOW_NAME "cc c le air the"
 # define FOV_X 60
 # define FOV_Y 60
 # define BG_COLOR 0
@@ -316,6 +316,8 @@ void					parse_object_transparency(t_env *env, t_object *object, char **datas, i
 void					parse_material_color(t_material *material, char **datas, int *start);
 void					parse_material_rotation(t_material *material, char **datas, int *start);
 void					parse_material_position(t_material *material, char **datas, int *start);
+int						get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_light *light);
+void					find_light(t_env *env, t_collision *collision, t_vector *normal);
 
 
 #endif

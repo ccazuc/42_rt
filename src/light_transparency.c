@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:06:33 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 11:54:31 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 13:36:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	light_transparency(t_env *env, t_collision *collision, int recursion)
 	int		color_res;
 
 	if (collision->distance <= .000000001)
-		return ;
-	if (collision->object->transarency == 0)
 		return ;
 	ray.dir.x = collision->dir.x;
 	ray.dir.y = collision->dir.y;

@@ -6,16 +6,11 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 11:34:44 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 13:27:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-/*static void	print_usage(void)
-{
-	
-}*/
 
 int			main(int argc, char **argv)
 {
