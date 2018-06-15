@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   key_handler.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:28:03 by ccazuc           ###   ########.fr       */
+/*   Created: 2017/11/10 15:13:26 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/14 14:58:23 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+int		key_up_handler(int keycode, void *params)
 {
-	env->material_list = NULL;
-	env->object_list = NULL;
-	env->define_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->thread_list = NULL;
-	env->draw_finished = 0;
-	env->nb_thread = 8;
-	env->light_ambient = conv_rgb_to_int(255, 255, 255);
-	env->sepia_filter = 0;
+	t_env *env;
+
+	env = params;
+	if (keycode == 53)
+		ft_exit("Exit requested.", 0);
+	return (0);
 }

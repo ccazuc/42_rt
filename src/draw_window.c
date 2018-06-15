@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 12:07:38 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 11:35:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,6 @@ void	render(t_env *env)
 	env->render_start = epoch_millis();
 	create_thread(env);
 	mlx_loop_hook(env->mlx_ptr, loop_handler, env);
+	mlx_hook(env->mlx_win, 3, 2, key_up_handler, env);
 	mlx_loop(env->mlx_ptr);
 }

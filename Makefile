@@ -63,6 +63,7 @@ SRCS_NAME = main.c \
 			create_light.c \
 			light_transparency_shadow.c \
 			find_light.c \
+			key_handler.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -78,6 +79,7 @@ LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit
 all: odir $(NAME)
 
 $(NAME): $(OBJS)
+	@Make -C libft
 	@echo " - Making $(NAME)"
 	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH)
 
@@ -89,10 +91,12 @@ odir:
 	@mkdir -p $(OBJS_PATH)
 
 clean:
+	@Make clean -C libft
 	@echo " - Clearing objects files"
 	@rm -f $(OBJS)
 
 fclean: clean
+	@Make fclean -C libft
 	@echo " - Clearing executable file"
 	@rm -f $(NAME)
 

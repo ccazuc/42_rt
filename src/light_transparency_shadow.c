@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 13:39:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/14 14:56:54 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static void		fill_shadow_data(t_color_mask *mask,
 t_collision *find_collision, t_light *light)
 {
 	mask->r *= find_collision->object->color_r / 255. *
-	find_collision->object->transparency * light->color_r / 255.;
+	find_collision->object->transparency * light->color_r / 255. * light->power / 5.;
 	mask->g *= find_collision->object->color_g / 255. *
-	find_collision->object->transparency * light->color_g / 255.;
+	find_collision->object->transparency * light->color_g / 255. * light->power / 5.;
 	mask->b *= find_collision->object->color_b / 255. *
-	find_collision->object->transparency * light->color_b / 255.;
+	find_collision->object->transparency * light->color_b / 255. * light->power / 5.;
 }
 
 int				get_shadow_color(t_env *env, t_collision *collision,

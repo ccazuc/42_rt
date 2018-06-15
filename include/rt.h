@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 13:48:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 11:35:48 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -318,6 +318,7 @@ void					parse_material_rotation(t_material *material, char **datas, int *start)
 void					parse_material_position(t_material *material, char **datas, int *start);
 int						get_shadow_color(t_env *env, t_collision *collision, t_ray *ray, t_light *light);
 void					find_light(t_env *env, t_collision *collision, t_vector *normal);
+int						key_up_handler(int keycode, void *params);
 
 
 #endif
