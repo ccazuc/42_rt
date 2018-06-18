@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 10:02:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:01:06 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	set_object_type(t_object *object, char *datas)
 		object->type = SPHERE;
 	else if (!ft_strcmp_ignrcase(datas, "cylindre"))
 		object->type = CYLINDRE;
-	else if (!ft_strcmp_ignrcase(datas, "triangle"))
-		object->type = TRIANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "rectangle"))
 		object->type = RECTANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "cone"))

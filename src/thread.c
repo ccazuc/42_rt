@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:22:24 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 12:09:21 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:11:30 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	thread_loop(t_worker *worker)
 	while (++worker->current_index < worker->end)
 	{
 		j = -1;
-		while (++j < WINDOW_WIDTH)
+		while (++j < worker->env->window_width)
 		{
 			fill_ray(worker->env, ray, j, worker->current_index);
 			color = get_pixel_color(worker->env, ray, 0, NULL);
@@ -59,12 +59,17 @@ void	create_thread(t_env *env)
 	while (++i < env->nb_thread)
 	{
 		env->thread_list[i].env = env;
-		env->thread_list[i].start = i * WINDOW_HEIGHT / env->nb_thread;
-		env->thread_list[i].end = (i + 1) * WINDOW_HEIGHT / env->nb_thread;
+		env->thread_list[i].start = i * env->window_height / env->nb_thread;
+		env->thread_list[i].end = (i + 1) * env->window_height / env->nb_thread;
 		env->thread_list[i].draw_finished = 0;
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
 		pthread_create(&env->thread_list[i].thread,
 		NULL, thread_run, &env->thread_list[i]);
 	}
+}
+
+void	free_threads(t_env *env)
+{
+	free(env->thread_list);
 }

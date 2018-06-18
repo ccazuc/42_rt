@@ -64,6 +64,11 @@ SRCS_NAME = main.c \
 			light_transparency_shadow.c \
 			find_light.c \
 			key_handler.c \
+			movement_handler.c \
+			movement_handler2.c \
+			parse_config.c \
+			parse_config_attribute.c \
+			parse_config_attribute2.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

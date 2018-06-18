@@ -1,25 +1,16 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    test.map                                           :+:      :+:    :+:    #
+#    mirror.map                                         :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
-#    Updated: 2018/06/18 12:33:33 by ccazuc           ###   ########.fr        #
+#    Created: 2018/06/18 09:14:59 by ccazuc            #+#    #+#              #
+#    Updated: 2018/06/18 09:15:08 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0
-
-
-sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1
-sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
-light		color	255	255	255	pos	0	0	4	power	2
-camera			pos 0	0	0		rot 0	10	0
-
-
-#
-#
-          
- #cube pos 4 5 6 rot 7 8 9 color 66 66 0	scale	1
+sphere		color	255	0	0	pos	0	0	25	rot	90	0	0 refl	50 scale	8
+sphere		color	0	0	255	pos	0	0	-25	rot	90	0	0 refl	50	scale	8
+light		color	255	255	255	pos	0	0	15	power	15
+camera			pos 0	0	16		rot 0	0	0

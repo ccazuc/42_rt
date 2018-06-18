@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:25:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/27 07:40:52 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:10:43 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ void			pixel_put(t_env *env, int x, int y, unsigned int color)
 	unsigned char	g;
 	unsigned char	b;
 
-	if (x < 0 || x >= WINDOW_WIDTH || y < 0 || y >= WINDOW_HEIGHT)
+	if (x < 0 || x >= env->window_width || y < 0 ||
+	y >= env->window_height)
 		return ;
 	r = (color & 0xFF0000) >> 16;
 	g = (color & 0x00FF00) >> 8;
 	b = (color & 0x0000FF);
-	env->mlx_img_data[y * WINDOW_WIDTH * env->bpp / 8 + env->bpp
+	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
 		/ 8 * x] = b;
-	env->mlx_img_data[y * WINDOW_WIDTH * env->bpp / 8 + env->bpp
+	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
 		/ 8 * x + 1] = g;
-	env->mlx_img_data[y * WINDOW_WIDTH * env->bpp / 8 + env->bpp
+	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
 		/ 8 * x + 2] = r;
 }

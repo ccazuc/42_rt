@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/07 07:39:44 by ccazuc            #+#    #+#             */
-/*   Updated: 2017/11/15 08:26:53 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 10:18:53 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,9 +76,9 @@ char			**ft_strsplit(const char *s, char c)
 	i = -1;
 	value[STR_SPLIT_MATCH] = c;
 	tot_word = get_nb_word(s, c);
-	if (!(result = malloc((tot_word + 1) * sizeof(*result))))
-		return (NULL);
 	if (tot_word == -1)
+		return (NULL);
+	if (!(result = malloc((tot_word + 1) * sizeof(*result))))
 		return (NULL);
 	value[STR_SPLIT_CUR_WRD] = 0;
 	while (s[++i] && value[STR_SPLIT_CUR_WRD] < tot_word)

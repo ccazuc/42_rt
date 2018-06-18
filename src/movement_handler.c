@@ -1,31 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_env.c                                         :+:      :+:    :+:   */
+/*   movement_handler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:20:27 by ccazuc           ###   ########.fr       */
+/*   Created: 2018/06/18 09:16:26 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/06/18 10:57:44 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	init_env(t_env *env)
+void	move_forward(t_env *env)
 {
-	env->material_list = NULL;
-	env->object_list = NULL;
-	env->define_list = NULL;
-	env->camera = NULL;
-	env->light_list = NULL;
-	env->thread_list = NULL;
+	free_threads(env);
+	env->camera->pos.x += sin(ft_toradians(env->camera->rot.x)) * 2;
+	env->camera->pos.z += cos(ft_toradians(env->camera->rot.z)) * 2;
 	env->draw_finished = 0;
-	env->nb_thread = 8;
-	env->light_ambient = conv_rgb_to_int(30, 30, 30);
-	env->ambient_power = 0.1;
-	env->sepia_filter = 0;
-	env->window_width = 1200;
-	env->window_height = 900;
-	env->grayscale_filter = 0;
+	render(env);
+}
+
+void	move_backward(t_env *env)
+{
+	free_threads(env);
+	env->camera->pos.x -= sin(ft_toradians(env->camera->rot.x)) * 2;
+	env->camera->pos.z -= cos(ft_toradians(env->camera->rot.z)) * 2;
+	env->draw_finished = 0;
+	render(env);
 }

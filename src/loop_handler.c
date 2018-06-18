@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:53:29 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:35:55 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:11:47 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	reset_window(t_env *env)
 	int		j;
 
 	i = -1;
-	while (++i < WINDOW_HEIGHT)
+	while (++i < env->window_height)
 	{
 		j = -1;
-		while (++j < WINDOW_WIDTH)
+		while (++j < env->window_width)
 			mlx_pixel_put(env->mlx_ptr, env->mlx_win, j, i, 0);
 	}
 }
@@ -48,6 +48,9 @@ int		loop_handler(void *data)
 	reset_window(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
 	put_timer(env->render_start, epoch_millis(), "Scene rendered");
+	ft_putstr("With ");
+	ft_putnbr(env->nb_thread);
+	ft_putstr(" thread(s).\n");
 	save_image(env);
 	return (0);
 }

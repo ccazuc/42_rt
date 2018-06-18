@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 08:41:50 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 10:57:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,17 @@ t_collision *find_collision, t_light *light)
 	find_collision->object->transparency;
 }
 
+static	void	update_color(t_collision *collision, t_color_mask *mask,
+t_light *light)
+{
+	collision->color.r = mask->r * light->color_r / 255.
+	* light->power / 5. + collision->color.r;
+	collision->color.g = mask->g * light->color_g / 255.
+	* light->power / 5. + collision->color.g;
+	collision->color.b = mask->b * light->color_b / 255.
+	* light->power / 5. + collision->color.b;
+}
+
 int				get_shadow_color(t_env *env, t_collision *collision,
 t_ray *ray, t_light *light)
 {
@@ -58,8 +69,6 @@ t_ray *ray, t_light *light)
 	}
 	if (!collision_found)
 		return (0);
-	collision->color.r = mask.r * light->color_r / 255. * light->power / 5. + collision->color.r;
-	collision->color.g = mask.g * light->color_g / 255. * light->power / 5. + collision->color.g;
-	collision->color.b = mask.b * light->color_b / 255. * light->power / 5. + collision->color.b;
+	update_color(collision, &mask, light);
 	return (1);
 }

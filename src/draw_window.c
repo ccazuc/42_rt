@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:35:39 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:34:45 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 {
-	ray->dir.x = (2 * (x + 0.5) / WINDOW_WIDTH - 1) * tan(FOV_X / 2 * M_PI /
-	180) * (WINDOW_WIDTH / WINDOW_HEIGHT) + ft_toradians(env->camera->rot.y);
-	ray->dir.y = (1 - 2 * (y + 0.5) / WINDOW_HEIGHT) * tan(FOV_Y / 2 * M_PI /
+	ray->dir.x = (2 * (x + 0.5) /
+	env->window_width - 1) * tan(FOV_X / 2 * M_PI /
+	180) * (env->window_width / env->window_height) +
+	ft_toradians(env->camera->rot.y);
+	ray->dir.y = (1 - 2 * (y + 0.5) /
+	env->window_height) * tan(FOV_Y / 2 * M_PI /
 	180) + ft_toradians(env->camera->rot.x);
 	ray->dir.z = 1;
 	vector_normalize(&ray->dir);
