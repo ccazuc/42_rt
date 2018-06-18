@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:56:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 12:15:25 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 12:52:30 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_object *object, char **datas, int *start)
 		ft_exit("Error, invalid file. Reflection's parameters are invalid."
 		, EXIT_FAILURE);
 	object->reflection = ft_atoi(datas[*start + 1]) / 100.;
-	if (object->reflection < 0 || object->reflection > 1)
+	if (object->reflection < 0 || object->reflection > 1.)
 		ft_exit("Error, invalid file. Reflection's param's value is invalid."
 		, EXIT_FAILURE);
 	*start += 1;
@@ -61,7 +61,7 @@ t_object *object, char **datas, int *start)
 		ft_exit("Error, invalid file. Transp's parameters are invalid."
 		, EXIT_FAILURE);
 	object->transparency = ft_atoi(datas[*start + 1]) / 100.;
-	if (object->transparency < 0 || object->transparency > 1)
+	if (object->transparency < 0 || object->transparency > 1.)
 		ft_exit("Error, invalid file. Transp's param's value is invalid."
 		, EXIT_FAILURE);
 	*start += 1;

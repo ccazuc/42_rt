@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:31:59 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:02:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,10 +106,14 @@ typedef struct					s_material
 	t_vector					pos;
 	t_vector					rot;
 	int							scale;
+	float						reflection;
+	float						transparency;
 	char						has_parsed_position;
 	char						has_parsed_color;
 	char						has_parsed_scale;
 	char						has_parsed_rotation;
+	char						has_parsed_reflection;
+	char						has_parsed_transparency;
 }								t_material;
 
 typedef struct					s_define
@@ -378,7 +382,11 @@ void							parse_config_filter_sepia(t_env *env,
 								char **datas, int *start);
 void							parse_config_filter_grayscale(t_env *env,
 								char **datas, int *start);
-
-
+void							parse_material_scale(t_material *material,
+								char **datas, int *start);
+void							parse_material_reflection(t_material *material,
+								char **datas, int *start);
+void							parse_material_transparency(t_material *material,
+								char **datas, int *start);
 
 #endif

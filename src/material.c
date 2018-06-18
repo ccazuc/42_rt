@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 09:53:21 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:01:57 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_material	*create_material(void)
 	material->has_parsed_color = 0;
 	material->has_parsed_rotation = 0;
 	material->has_parsed_scale = 0;
+	material->has_parsed_reflection = 0;
+	material->has_parsed_transparency = 0;
 	return (material);
 }
 
