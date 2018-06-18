@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:35:48 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 12:09:43 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,6 +207,7 @@ typedef struct			s_env
 	int					draw_finished;
 	long				render_start;
 	char				sepia_filter;
+	char				grayscale_filter;
 }						t_env;
 
 typedef struct					s_worker
@@ -308,6 +309,7 @@ int						loop_handler(void *data);
 void					fill_ray(t_env *env, t_ray *ray, int x, int y);
 void					draw_progress_bar(t_env *env, int line_drawn);
 int						get_sepia_color(int rgb);
+int						get_grayscale_color(int rgb);
 void					save_image(t_env *env);
 t_light					*create_light(void);
 void					parse_material_attribute(t_material *material, char **datas, int *i);

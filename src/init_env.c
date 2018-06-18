@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:28:03 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 15:14:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,5 @@ void	init_env(t_env *env)
 	env->nb_thread = 8;
 	env->light_ambient = conv_rgb_to_int(255, 255, 255);
 	env->sepia_filter = 0;
+	env->grayscale_filter = 0;
 }

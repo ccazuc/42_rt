@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:22:24 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 11:35:24 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 12:09:21 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	thread_loop(t_worker *worker)
 			color = get_pixel_color(worker->env, ray, 0, NULL);
 			if (worker->env->sepia_filter)
 				color = get_sepia_color(color);
+			if (worker->env->grayscale_filter)
+				color = get_grayscale_color(color);
 			pixel_put(worker->env, j, worker->current_index, color);
 		}
 		++worker->line_drawn;

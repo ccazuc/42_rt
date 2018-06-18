@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:01:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 12:01:32 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/15 12:09:57 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,12 @@ int		get_sepia_color(int rgb)
 	mask.g = dmin(255, r * .349 + g * .686 + b * .168);
 	mask.b = dmin(255, r * .272 + g * .534 + b * .131);
 	return (conv_rgb_to_int(mask.r, mask.g, mask.b));
+}
+
+int		get_grayscale_color(int rgb)
+{
+	unsigned char	res;
+
+	res = (get_color_r(rgb) + get_color_g(rgb) + get_color_b(rgb)) / 3;
+	return (conv_rgb_to_int(res, res, res));	
 }

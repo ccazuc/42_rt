@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 14:56:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 08:41:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ t_color_mask *mask, int *collision_found)
 static void		fill_shadow_data(t_color_mask *mask,
 t_collision *find_collision, t_light *light)
 {
+	light = NULL;
 	mask->r *= find_collision->object->color_r / 255. *
-	find_collision->object->transparency * light->color_r / 255. * light->power / 5.;
+	find_collision->object->transparency;
 	mask->g *= find_collision->object->color_g / 255. *
-	find_collision->object->transparency * light->color_g / 255. * light->power / 5.;
+	find_collision->object->transparency;
 	mask->b *= find_collision->object->color_b / 255. *
-	find_collision->object->transparency * light->color_b / 255. * light->power / 5.;
+	find_collision->object->transparency;
 }
 
 int				get_shadow_color(t_env *env, t_collision *collision,
@@ -47,16 +48,18 @@ t_ray *ray, t_light *light)
 	while (check_collision(env, &new_ray, &find_collision,
 	find_collision.object)
 	&& find_collision.distance < vector_distance(&light->pos, &collision->pos)
-	&& find_collision.distance > 0.00001)
+	&& find_collision.distance > 0.0001)
 	{
+		if (find_collision.object->transparency <= 0)
+			return (0);
 		fill_shadow_data(&mask, &find_collision, light);
 		new_ray.pos = find_collision.pos;
 		collision_found = 1;
 	}
 	if (!collision_found)
 		return (0);
-	collision->color.r = mask.r * light->color_r / 255. + collision->color.r;
-	collision->color.g = mask.g * light->color_g / 255. + collision->color.g;
-	collision->color.b = mask.b * light->color_b / 255. + collision->color.b;
+	collision->color.r = mask.r * light->color_r / 255. * light->power / 5. + collision->color.r;
+	collision->color.g = mask.g * light->color_g / 255. * light->power / 5. + collision->color.g;
+	collision->color.b = mask.b * light->color_b / 255. * light->power / 5. + collision->color.b;
 	return (1);
 }
