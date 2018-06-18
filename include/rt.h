@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 13:09:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:45:26 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define RT_H
 
 # include "libft.h"
+# include "../libpng/png.h"
 # include "get_next_line.h"
 # include "mlx.h"
 # include <stdlib.h>

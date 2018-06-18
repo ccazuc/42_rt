@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:01:06 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:13:45 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 {
 	t_material	*material;
 
-	printf("object attribut: %s\n", datas[*i]);
 	if (check_piece_attribut_name(datas[*i], "color"))
 		parse_object_color(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "position"))
