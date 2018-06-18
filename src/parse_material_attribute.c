@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:39:55 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 13:02:14 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/18 13:09:17 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	parse_material_attribute(t_material *material, char **datas, int *i)
 		EXIT_FAILURE);
 }
 
-void			parse_material_scale(t_material *material,
-char **datas, int *start)
+void	parse_material_scale(t_material *material, char **datas, int *start)
 {
 	if (material->has_parsed_scale)
 		ft_exit("Error, invalid file. Scale duplicate for a material."
@@ -51,7 +50,7 @@ char **datas, int *start)
 	material->has_parsed_scale = 1;
 }
 
-void			parse_material_reflection(t_material *material,
+void	parse_material_reflection(t_material *material,
 char **datas, int *start)
 {
 	if (material->has_parsed_reflection)
@@ -71,7 +70,7 @@ char **datas, int *start)
 	material->has_parsed_reflection = 1;
 }
 
-void			parse_material_transparency(t_material *material,
+void	parse_material_transparency(t_material *material,
 char **datas, int *start)
 {
 	if (material->has_parsed_transparency)
