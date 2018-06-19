@@ -24,9 +24,8 @@ t_color_mask *mask, int *collision_found)
 }
 
 static void		fill_shadow_data(t_color_mask *mask,
-t_collision *find_collision, t_light *light)
+t_collision *find_collision)
 {
-	light = NULL;
 	mask->r *= find_collision->object->color_r / 255. *
 	find_collision->object->transparency;
 	mask->g *= find_collision->object->color_g / 255. *
@@ -63,7 +62,7 @@ t_ray *ray, t_light *light)
 	{
 		if (find_collision.object->transparency <= 0)
 			return (0);
-		fill_shadow_data(&mask, &find_collision, light);
+		fill_shadow_data(&mask, &find_collision);
 		new_ray.pos = find_collision.pos;
 		collision_found = 1;
 	}

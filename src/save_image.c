@@ -90,37 +90,40 @@ void		save_image(t_env *env)
 	title_text.text = file_name;
 	png_set_text(png_ptr, info_ptr, &title_text, 1);
 	png_write_info(png_ptr, info_ptr);
-	png_bytep row[env->window_height];
-	//png_bytep* row;
-	/*if (!(row = malloc(3 * env->window_width * sizeof(png_byte))))
+	//png_bytep row[env->window_height];
+	png_bytep row;
+	if (!(row = malloc(3 * env->window_width * sizeof(png_byte))))
 	{
 		ft_putstr("Out of memory, failed to allocate data buffer.\n");
 		return ;
-	}*/
+	}
 	//row = malloc(env->window_height * sizeof(png_byte));
-	int		i;
+	long		i;
 	
 	i = -1;
-	/*while (++i < env->window_width * env->window_height)
+	while (++i < env->window_width * env->window_height * env->bpp / 8)
 	{
-		row[i % env->window_width] = env->mlx_img_data[i];
-		//row[i % env->window_width + 1] = env->mlx_img_data[i] >> 8;
-		//row[i % env->window_width + 2] = env->mlx_img_data[i];
+		/*row[i % env->window_width] = env->mlx_img_data[i];
+		row[i % env->window_width + 1] = env->mlx_img_data[i] >> 8;
+		row[i % env->window_width + 2] = env->mlx_img_data[i];*/
+		//row[i % (env->window_width * 3)] = 255;
+		row[i % (env->window_width * env->bpp / 8)] = env->mlx_img_data[i];
+		//row[i % env->window_width + 1] = 125;
 		//setRGB(&(row[i % env->window_width]), env->mlx_img_data[i]);
-		if (i % env->window_width == 0)
+		if (i % (env->window_width * env->bpp / 8) == 0)
 		{
 			png_write_row(png_ptr, row);
-			printf("i: %ld\n", i);
+			//printf("i: %ld\n", i);
 		}
 		//printf("i: %ld\n", i);
 		//if (i % 50000 == 0)
 		//	printf("i: %d\n", i);
-	}*/
-	while (++i < env->window_height)
-	{
-		row[i] = (png_bytep)env->mlx_img_data + i * env->window_width * 3;
 	}
-	png_write_image(png_ptr, row);
+	/*while (++i < env->window_height)
+	{
+		row[i] = (png_bytep)env->mlx_img_data + i * env->window_width * 4;
+	}*/
+	//png_write_image(png_ptr, row);
 	//png_write_png (png_ptr, info_ptr, PNG_TRANSFORM_IDENTITY, NULL);
 	png_write_end(png_ptr, NULL);
 	printf("Png created.\n");

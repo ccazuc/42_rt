@@ -1,4 +1,4 @@
-prefix=
+prefix=/usr/local
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include/libpng16
@@ -8,5 +8,5 @@ Description: Loads and saves PNG files
 Version: 1.6.34
 Requires: zlib
 Libs: -L${libdir} -lpng16
-Libs.private: -lz 
+Libs.private: -lm -lz -lm 
 Cflags: -I${includedir}

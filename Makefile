@@ -78,13 +78,13 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz
-#LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread
+#LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz
+LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread -L libpng -lpng16 -L zlib -lz
 
 all: odir $(NAME)
 
 $(NAME): $(OBJS)
-	@Make -C libft
+	@make -C libft
 	@echo " - Making $(NAME)"
 	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH)
 
@@ -96,12 +96,12 @@ odir:
 	@mkdir -p $(OBJS_PATH)
 
 clean:
-	@Make clean -C libft
+	@make clean -C libft
 	@echo " - Clearing objects files"
 	@rm -f $(OBJS)
 
 fclean: clean
-	@Make fclean -C libft
+	@make fclean -C libft
 	@echo " - Clearing executable file"
 	@rm -f $(NAME)
 
