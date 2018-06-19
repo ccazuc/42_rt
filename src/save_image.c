@@ -21,7 +21,7 @@ static char	*get_file_name(void)
 	now = time(NULL);
 	localtime_r(&now, &tm_now);
 	strftime(file_name, sizeof(file_name),
-	"screenshots/render_%Y_%m_%d_%H_%M_%S", &tm_now);
+	"screenshots/render_%Y_%m_%d_%H_%M_%S.png", &tm_now);
 	return (ft_strdup(file_name));
 }
 
@@ -99,25 +99,30 @@ void		save_image(t_env *env)
 	}
 	//row = malloc(env->window_height * sizeof(png_byte));
 	long		i;
-	
+	long		j;
+
 	i = -1;
-	while (++i < env->window_width * env->window_height * env->bpp / 8)
+	/*while (++i < env->window_width * env->window_height * env->bpp / 8)
 	{
-		/*row[i % env->window_width] = env->mlx_img_data[i];
-		row[i % env->window_width + 1] = env->mlx_img_data[i] >> 8;
-		row[i % env->window_width + 2] = env->mlx_img_data[i];*/
-		//row[i % (env->window_width * 3)] = 255;
 		row[i % (env->window_width * env->bpp / 8)] = env->mlx_img_data[i];
-		//row[i % env->window_width + 1] = 125;
-		//setRGB(&(row[i % env->window_width]), env->mlx_img_data[i]);
 		if (i % (env->window_width * env->bpp / 8) == 0)
-		{
 			png_write_row(png_ptr, row);
-			//printf("i: %ld\n", i);
+	}*/
+	while (++i < env->window_height)
+	{
+		j = 0;
+		while (j < env->window_width)
+		{
+			/*row[j * 3] = env->mlx_img_data[i * env->window_width + j];
+			row[j * 3 + 1] = env->mlx_img_data[i * env->window_width + j] << 8;
+			row[j * 3 + 2] = env->mlx_img_data[i * env->window_width + j] << 16;*/
+			row[j * 3] = env->mlx_img_data[(i * env->window_width + j) * env->bpp / 8 + 2];
+			row[j * 3 + 1] = env->mlx_img_data[(i * env->window_width + j ) * env->bpp / 8 + 1];
+			row[j * 3 + 2] = env->mlx_img_data[(i * env->window_width + j) * env->bpp / 8 ];
+
+			j++;
 		}
-		//printf("i: %ld\n", i);
-		//if (i % 50000 == 0)
-		//	printf("i: %d\n", i);
+		png_write_row(png_ptr, row);
 	}
 	/*while (++i < env->window_height)
 	{

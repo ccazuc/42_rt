@@ -18,7 +18,7 @@ sphere		pos	0	0	10	mat
 #sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1000000000000000000000
 sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
 light		color	255	255	255	pos	0	0	4	power	5
-camera			pos 0	0	0		rot 0	10	0
+camera			pos 0	0	0		rot 0	0	0
 
 
 #
