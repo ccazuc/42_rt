@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 13:45:26 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/22 10:51:07 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,16 @@
 
 typedef struct s_object			t_object;
 typedef struct s_worker			t_worker;
+
+typedef struct					s_png_datas
+{
+	FILE						*fp;
+	char						*file_name;
+	png_structp					png_ptr;
+	png_infop					info_ptr;
+	png_text					title_text;
+	png_bytep					row;
+}								t_png_datas;
 
 typedef struct					s_vector
 {
@@ -195,6 +205,8 @@ typedef struct					s_env
 	void						*mlx_img_ptr;
 	char						*mlx_img_data;
 	int							bpp;
+	int							id;
+	struct s_env				**env_list;
 	t_object_list				*object_list;
 	t_light_list				*light_list;
 	t_material_list				*material_list;
@@ -226,7 +238,7 @@ struct							s_worker
 	int							line_drawn;
 };
 
-void							parse(t_env *env, int argc, char **argv);
+void							parse(t_env *env, int argc, char *file_name);
 void							parse_general_object(t_env *env, char **datas);
 void							parse_object_color(t_env *env, t_object *object,
 								char **datas, int *start);
@@ -251,7 +263,7 @@ void							vector_rotate_y(t_vector *vector, float angle);
 void							vector_rotate_z(t_vector *vector, float angle);
 double							vector_length(t_vector *vector);
 void							vector_normalize(t_vector *vector);
-void							render(t_env *env);
+void							render(t_env **env, int i, char should_hook);
 void							pixel_put(t_env *env, int x,
 								int y, unsigned int color);
 int								check_collision(t_env *env, t_ray *ray,

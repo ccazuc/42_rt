@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:13:26 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 10:49:41 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/22 10:45:02 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		key_up_handler(int keycode, void *params)
 	t_env *env;
 
 	env = params;
-	printf("Key: %d\n", keycode);
+	printf("env: %p, key: %d\n", env, keycode);
 	if (keycode == 53)
 		ft_exit("Exit requested.", 0);
 	else if (keycode == 13)
