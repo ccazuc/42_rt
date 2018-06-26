@@ -51,6 +51,24 @@ void	*thread_run(void *data)
 	return (NULL);
 }
 
+static void	create_fsaa_thread(t_env *env)
+{
+	int		i;
+
+	i = -1;
+	while (++i < env->nb_thread)
+	{
+		env->thread_list[i].env = env;
+		env->thread_list[i].start = i * 2 * env->window_height / env->nb_thread;
+		env->thread_list[i].end = (i + 1) * 2 * env->window_height / env->nb_thread;
+		env->thread_list[i].draw_finished = 0;
+		env->thread_list[i].id = i;
+		env->thread_list[i].line_drawn = 0;
+		pthread_create(&env->thread_list[i].thread,
+		NULL, thread_run, &env->thread_list[i]);
+	}
+}
+
 void	create_thread(t_env *env)
 {
 	int	i;
@@ -59,6 +77,11 @@ void	create_thread(t_env *env)
 	* sizeof(*env->thread_list))))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	i = -1;
+	if (env->fsaa)
+	{
+		create_fsaa_thread(env);
+		return ;
+	}
 	while (++i < env->nb_thread)
 	{
 		env->thread_list[i].env = env;
