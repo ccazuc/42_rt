@@ -80,8 +80,8 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-#LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz
-LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread -L libpng -lpng16 -L zlib -lz
+LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz -g
+#LIBRARY = -lGL -L libft -lft -lm -L ../../minilibx -lmlx -lX11 -lXext -pthread -L libpng -lpng16 -L zlib -lz
 
 all: odir $(NAME)
 

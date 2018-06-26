@@ -6,41 +6,60 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 10:25:11 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/22 10:53:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
+static void	init_mlx(t_env **env)
+{
+	void	*mlx_ptr;
+	int		i;
+
+	if (!(mlx_ptr = mlx_init()))
+		ft_exit("Error, failed to init mlx connection.", EXIT_FAILURE);
+	i = -1;
+	while (env[++i])
+		env[i]->mlx_ptr = mlx_ptr;
+}
+
+static void	env_run(t_env **env, int argc, char **argv)
+{
+	int	i;
+
+	i = -1;
+	while (env[++i])
+		parse(env[i], argc, argv[i + 1]);
+	i = -1;
+	init_mlx(env);
+	while (env[++i])
+		init_window(env[i]);
+	i = -1;
+	while (env[++i])
+		render(env, i, 1);
+	mlx_loop(env[0]->mlx_ptr);
+}
+
 int			main(int argc, char **argv)
 {
-	t_env			*env;
-	t_object_list	*list;
-	long			start;
+	t_env	**env;
+	int		i;
 
-	if (!(env = malloc(sizeof(*env))))
+	if (argc == 1)
+		ft_exit("Error, no map specified.", EXIT_FAILURE);
+	if (!(env = malloc(argc * sizeof(*env))))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
-	init_env(env);
-	start = epoch_millis();
-	parse(env, argc, argv);
-	put_timer(start, epoch_millis(), "File parsed");
-	init_window(env);
-	list = env->object_list;
-	while (list)
+	env[argc - 1] = NULL;
+	i = 0;
+	while (++i < argc)
 	{
-		printf("Type: %d\n", list->object->type);
-		printf("Color | r: %f, g: %f, b: %f\n", list->object->color_r, list->object->color_g, list->object->color_b);
-		printf("Position | x: %f, y: %f, z: %f\n", list->object->pos.x, list->object->pos.y, list->object->pos.z);
-		printf("Orientation | x: %f, y: %f, z: %f\n", list->object->rot.x, list->object->rot.y, list->object->rot.z);
-		printf("Transparency: %f\n", list->object->transparency);
-		printf("Reflection: %f\n", list->object->reflection);
-		printf("Scale: %d\n", list->object->scale);
-		printf("\n\n\n");
-		list = list->next;
+		if (!(env[i - 1] = malloc(sizeof(**env))))
+			ft_exit("Error, out of memory.", EXIT_FAILURE);
+		init_env(env[i - 1]);
+		env[i - 1]->id = i - 1;
+		env[i - 1]->env_list = env;
 	}
-	printf("Camera:\n");
-	printf("Position | x: %f, y: %f, z: %f\n", env->camera->pos.x, env->camera->pos.y, env->camera->pos.z);
-	printf("Orientation | x: %f, y: %f, z: %f\n", env->camera->rot.x, env->camera->rot.y, env->camera->rot.z);
-	render(env);
+	env_run(env, argc, argv);
 	return (0);
 }

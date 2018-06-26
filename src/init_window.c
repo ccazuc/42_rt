@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:53:35 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:08:39 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/22 10:53:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ void	init_window(t_env *env)
 	int		bpp;
 	int		order;
 
-	if (!(env->mlx_ptr = mlx_init()))
-		ft_exit("Error, failed to inti connection.", EXIT_FAILURE);
 	if (!(env->mlx_win = mlx_new_window(env->mlx_ptr, env->window_width,
 		env->window_height, WINDOW_NAME)))
 		ft_exit("Error, failed to create window.", EXIT_FAILURE);

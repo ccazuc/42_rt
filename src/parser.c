@@ -6,19 +6,19 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:02:49 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/22 10:34:16 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		parse(t_env *env, int argc, char **argv)
+void		parse(t_env *env, int argc, char *file_name)
 {
 	int		fd;
 
-	if (argc != 2)
+	if (argc < 2)
 		ft_exit("Error, invalid arguments.", EXIT_FAILURE);
-	if ((fd = open(argv[1], O_RDONLY)) == -1)
+	if ((fd = open(file_name, O_RDONLY)) == -1)
 		ft_exit("Error, can't open file.", EXIT_FAILURE);
 	parse_args(env, fd);
 	if (!env->camera)

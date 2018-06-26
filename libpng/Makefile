@@ -98,8 +98,8 @@ POST_INSTALL = :
 NORMAL_UNINSTALL = :
 PRE_UNINSTALL = :
 POST_UNINSTALL = :
-build_triplet = x86_64-unknown-linux-gnu
-host_triplet = x86_64-unknown-linux-gnu
+build_triplet = x86_64-apple-darwin16.7.0
+host_triplet = x86_64-apple-darwin16.7.0
 check_PROGRAMS = pngtest$(EXEEXT) pngunknown$(EXEEXT) \
 	pngstest$(EXEEXT) pngvalid$(EXEEXT) pngimage$(EXEEXT) \
 	pngcp$(EXEEXT) $(am__EXEEXT_1)
@@ -119,10 +119,10 @@ am__append_5 = powerpc/powerpc_init.c\
 
 
 #   Versioned symbols and restricted exports
-#am__append_6 = -Wl,-M -Wl,libpng.vers
-am__append_7 = -Wl,--version-script=libpng.vers
+##am__append_6 = -Wl,-M -Wl,libpng.vers
+#am__append_7 = -Wl,--version-script=libpng.vers
 #   Only restricted exports when possible
-#am__append_8 = -export-symbols libpng.sym
+am__append_8 = -export-symbols libpng.sym
 #am__append_9 = -DPNG_PREFIX=''
 subdir = .
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
@@ -529,15 +529,15 @@ distcleancheck_listfiles = find . -type f -print
 
 #distribute headers in /usr/include/libpng/*
 pkgincludedir = $(includedir)/$(PNGLIB_BASENAME)
-ACLOCAL = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
 AR = ar
 AS = as
-AUTOCONF = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/missing autoconf
-AUTOHEADER = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/missing autoheader
-AUTOMAKE = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/missing automake-1.15
-AWK = mawk
+AUTOCONF = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/missing autoconf
+AUTOHEADER = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/missing autoheader
+AUTOMAKE = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/missing automake-1.15
+AWK = awk
 CC = gcc
 CCAS = gcc
 CCASDEPMODE = depmode=gcc3
@@ -557,39 +557,39 @@ DEPDIR = .deps
 # checks for this and sets DFNCPP appropriately.
 DFNCPP = gcc -E
 DLLTOOL = false
-DSYMUTIL = 
+DSYMUTIL = dsymutil
 DUMPBIN = 
-ECHO_C = 
-ECHO_N = -n
+ECHO_C = \c
+ECHO_N = 
 ECHO_T = 
-EGREP = /bin/grep -E
+EGREP = /usr/bin/grep -E
 EXEEXT = 
-FGREP = /bin/grep -F
-GREP = /bin/grep
+FGREP = /usr/bin/grep -F
+GREP = /usr/bin/grep
 INSTALL = /usr/bin/install -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
 INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
-LD = /usr/bin/ld -m elf_x86_64
+LD = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld
 LDFLAGS = 
 LIBOBJS = 
-LIBS = -lm -lz -lm 
+LIBS = -lz 
 LIBTOOL = $(SHELL) $(top_builddir)/libtool
-LIPO = 
+LIPO = lipo
 LN_S = ln -s
 LTLIBOBJS = 
 LT_SYS_LIBRARY_PATH = 
 MAINT = #
-MAKEINFO = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/missing makeinfo
+MAKEINFO = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/missing makeinfo
 MANIFEST_TOOL = :
-MKDIR_P = /bin/mkdir -p
+MKDIR_P = ./install-sh -c -d
 NM = /usr/bin/nm -B
-NMEDIT = 
+NMEDIT = nmedit
 OBJDUMP = objdump
 OBJEXT = o
-OTOOL = 
-OTOOL64 = 
+OTOOL = otool
+OTOOL64 = :
 PACKAGE = libpng
 PACKAGE_BUGREPORT = png-mng-implement@lists.sourceforge.net
 PACKAGE_NAME = libpng
@@ -610,16 +610,16 @@ PNG_COPTS =
 PNG_PREFIX = 
 POW_LIB = 
 RANLIB = ranlib
-SED = /bin/sed
+SED = /usr/bin/sed
 SET_MAKE = 
-SHELL = /bin/bash
+SHELL = /bin/sh
 STRIP = strip
 SYMBOL_PREFIX = 
 VERSION = 1.6.34
-abs_builddir = /home/mideas/Documents/42/42_rt/libpng
-abs_srcdir = /home/mideas/Documents/42/42_rt/libpng
-abs_top_builddir = /home/mideas/Documents/42/42_rt/libpng
-abs_top_srcdir = /home/mideas/Documents/42/42_rt/libpng
+abs_builddir = /Users/ccazuc/Documents/Github/42_rt/libpng
+abs_srcdir = /Users/ccazuc/Documents/Github/42_rt/libpng
+abs_top_builddir = /Users/ccazuc/Documents/Github/42_rt/libpng
+abs_top_srcdir = /Users/ccazuc/Documents/Github/42_rt/libpng
 ac_ct_AR = ar
 ac_ct_CC = gcc
 ac_ct_DUMPBIN = 
@@ -632,26 +632,26 @@ am__untar = $${TAR-tar} xf -
 # generate the -config scripts if required
 binconfigs = libpng16-config
 bindir = ${exec_prefix}/bin
-build = x86_64-unknown-linux-gnu
+build = x86_64-apple-darwin16.7.0
 build_alias = 
 build_cpu = x86_64
-build_os = linux-gnu
-build_vendor = unknown
+build_os = darwin16.7.0
+build_vendor = apple
 builddir = .
 datadir = ${datarootdir}
 datarootdir = ${prefix}/share
 docdir = ${datarootdir}/doc/${PACKAGE_TARNAME}
 dvidir = ${docdir}
 exec_prefix = ${prefix}
-host = x86_64-unknown-linux-gnu
+host = x86_64-apple-darwin16.7.0
 host_alias = 
 host_cpu = x86_64
-host_os = linux-gnu
-host_vendor = unknown
+host_os = darwin16.7.0
+host_vendor = apple
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/mideas/Documents/42/42_rt/libpng/install-sh
+install_sh = ${SHELL} /Users/ccazuc/Documents/Github/42_rt/libpng/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -746,8 +746,8 @@ libpng16_la_LDFLAGS = -no-undefined \
 	-export-dynamic -version-number \
 	16:34:0 \
 	$(am__append_6) $(am__append_7) $(am__append_8)
-#libpng16_la_DEPENDENCIES = libpng.sym
-libpng16_la_DEPENDENCIES = libpng.vers
+libpng16_la_DEPENDENCIES = libpng.sym
+#libpng16_la_DEPENDENCIES = libpng.vers
 pkginclude_HEADERS = png.h pngconf.h
 nodist_pkginclude_HEADERS = pnglibconf.h
 pkgconfig_DATA = libpng16.pc
