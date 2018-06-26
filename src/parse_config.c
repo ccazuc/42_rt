@@ -26,6 +26,8 @@ static void	check_attribut(t_env *env, char **datas, int *i)
 		parse_config_filter_sepia(env, datas, i);
 	else if (!ft_strcmp_ignrcase(datas[*i], "filter_grayscale"))
 		parse_config_filter_grayscale(env, datas, i);
+	else if (!ft_strcmp_ignrcase(datas[*i], "fsaa"))
+		parse_config_fsaa(env, datas, i);
 	else
 		ft_exit("Error, invalid file. Unknown config param.", EXIT_FAILURE);
 }

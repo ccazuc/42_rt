@@ -210,6 +210,8 @@ typedef struct					s_env
 	long						render_start;
 	char						sepia_filter;
 	char						grayscale_filter;
+	char						fsaa;
+	char						*fsaa_img;
 	int							window_width;
 	int							window_height;
 }								t_env;
@@ -389,5 +391,12 @@ void							parse_material_reflection(t_material *material,
 								char **datas, int *start);
 void							parse_material_transparency(t_material
 								*material, char **datas, int *start);
+void							pixel_put_fsaa(t_env *env, int x, int y,
+								unsigned int color);
+void							parse_config_fsaa(t_env *env, char **datas
+								, int *start);
+unsigned int					get_pixel(t_env *env, char *img, int x
+								, int y);
+void							process_fsaa(t_env *env);
 
 #endif

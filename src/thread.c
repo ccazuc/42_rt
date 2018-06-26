@@ -31,7 +31,10 @@ void	thread_loop(t_worker *worker)
 				color = get_sepia_color(color);
 			if (worker->env->grayscale_filter)
 				color = get_grayscale_color(color);
-			pixel_put(worker->env, j, worker->current_index, color);
+			if (worker->env->fsaa)
+				pixel_put_fsaa(worker->env, j, worker->current_index, color);
+			else
+				pixel_put(worker->env, j, worker->current_index, color);
 		}
 		++worker->line_drawn;
 	}

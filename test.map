@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0
+config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	1
 
 material mat	color	255	0	0	scale	1	reflection	0	transp	50
 

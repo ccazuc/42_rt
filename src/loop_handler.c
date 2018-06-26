@@ -46,6 +46,8 @@ int		loop_handler(void *data)
 			return (0);
 	env->draw_finished = 1;
 	reset_window(env);
+	if (env->fsaa)
+		process_fsaa(env);
 	mlx_put_image_to_window(env->mlx_ptr, env->mlx_win, env->mlx_img_ptr, 0, 0);
 	put_timer(env->render_start, epoch_millis(), "Scene rendered");
 	ft_putstr("With ");

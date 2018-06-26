@@ -69,6 +69,8 @@ SRCS_NAME = main.c \
 			parse_config.c \
 			parse_config_attribute.c \
 			parse_config_attribute2.c \
+			fsaa.c \
+			pixel_get.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
