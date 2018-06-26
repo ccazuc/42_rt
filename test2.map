@@ -12,7 +12,7 @@
 
 define default_trans 39
 
-config	fsaa 1
+config	fsaa 0
 
 cylindre	pos	-5	0	5	color	255	0	0	scale	1	transp default_trans	
 cylindre	pos	5	0	5	color	255	150	150	scale	1	transp default_trans	

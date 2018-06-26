@@ -18,16 +18,15 @@ static int	color_add_fsaa(int c1, int c2, int factor)
 	return ((r << 16) + (g << 8) + b);
 }
 
-static unsigned int handle_overflow(unsigned int w, unsigned int n, unsigned int e, unsigned int s, unsigned int x)
+static unsigned int handle_overflow(unsigned int w, unsigned int n, unsigned int e, unsigned int s)
 {
 	unsigned int	res;
 
 	res = 0;
-	res = color_add_fsaa(res, w, 5);
-	res = color_add_fsaa(res, n, 5);
-	res = color_add_fsaa(res, e, 5);
-	res = color_add_fsaa(res, s, 5);
-	res = color_add_fsaa(res, x, 5);
+	res = color_add_fsaa(res, w, 4);
+	res = color_add_fsaa(res, n, 4);
+	res = color_add_fsaa(res, e, 4);
+	res = color_add_fsaa(res, s, 4);
 	return (res);
 }
 
@@ -54,7 +53,7 @@ static unsigned int	get_pixel_at(t_env *env, int x, int y)
 		s = get_pixel(env, env->fsaa_img, 2 * x, 2 * y + 1);
 	else
 		s = 0;	
-	return (handle_overflow(w, n, e, s, get_pixel(env, env->fsaa_img, 2 * x, 2 * y)));
+	return (handle_overflow(w, n, e, s));
 }
 
 void			process_fsaa(t_env *env)

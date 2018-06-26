@@ -61,6 +61,7 @@ static void	create_fsaa_thread(t_env *env)
 		env->thread_list[i].env = env;
 		env->thread_list[i].start = i * 2 * env->window_height / env->nb_thread;
 		env->thread_list[i].end = (i + 1) * 2 * env->window_height / env->nb_thread;
+		printf("start: %d, end: %d\n", env->thread_list[i].start, env->thread_list[i].end);
 		env->thread_list[i].draw_finished = 0;
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
@@ -88,6 +89,7 @@ void	create_thread(t_env *env)
 		env->thread_list[i].start = i * env->window_height / env->nb_thread;
 		env->thread_list[i].end = (i + 1) * env->window_height / env->nb_thread;
 		env->thread_list[i].draw_finished = 0;
+		printf("start: %d, end: %d\n", env->thread_list[i].start, env->thread_list[i].end);
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
 		pthread_create(&env->thread_list[i].thread,

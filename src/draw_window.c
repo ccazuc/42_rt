@@ -14,12 +14,17 @@
 
 void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 {
+	int	width;
+	int	height;
+
+	width = env->fsaa ? env->window_width * 2 : env->window_width;
+	height = env->fsaa ? env->window_height * 2 : env->window_height;
 	ray->dir.x = (2 * (x + 0.5) /
-	env->window_width - 1) * tan(FOV_X / 2 * M_PI /
-	180) * (env->window_width / env->window_height) +
+	width - 1) * tan(FOV_X / 2 * M_PI /
+	180) * (width / height) +
 	ft_toradians(env->camera->rot.y);
 	ray->dir.y = (1 - 2 * (y + 0.5) /
-	env->window_height) * tan(FOV_Y / 2 * M_PI /
+	height) * tan(FOV_Y / 2 * M_PI /
 	180) + ft_toradians(env->camera->rot.x);
 	ray->dir.z = 1;
 	vector_normalize(&ray->dir);
