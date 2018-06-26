@@ -14,6 +14,8 @@
 
 void	rotate_left(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->rot.y -= 15;
 	env->draw_finished = 0;
@@ -22,6 +24,8 @@ void	rotate_left(t_env *env)
 
 void	rotate_right(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->rot.y += 15;
 	env->draw_finished = 0;
@@ -30,6 +34,8 @@ void	rotate_right(t_env *env)
 
 void	rotate_up(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->rot.x += 15;
 	env->draw_finished = 0;
@@ -38,6 +44,8 @@ void	rotate_up(t_env *env)
 
 void	rotate_down(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->rot.x -= 15;
 	env->draw_finished = 0;

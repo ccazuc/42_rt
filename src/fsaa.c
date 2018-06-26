@@ -38,19 +38,19 @@ static unsigned int	get_pixel_at(t_env *env, int x, int y)
 	unsigned int	s;
 
 	if (x > 0)
-		w = get_pixel(env, env->fsaa_img, 2 * x - 1, 2 * y);
+		w = get_pixel(env, env->fsaa_img, 2 * x, 2 * y);
 	else
 		w = 0;
 	if (y > 0)
-		n = get_pixel(env, env->fsaa_img, 2 * x, 2 * y - 1);
+		n = get_pixel(env, env->fsaa_img, 2 * x + 1, 2 * y);
 	else 
 		n = 0;
 	if (x < 2 * env->window_width - 1)
-		e = get_pixel(env, env->fsaa_img, 2 * x + 1, 2 * y);
+		e = get_pixel(env, env->fsaa_img, 2 * x, 2 * y + 1);
 	else
 		e = 0;
 	if (y < 2 * env->window_height - 1)
-		s = get_pixel(env, env->fsaa_img, 2 * x, 2 * y + 1);
+		s = get_pixel(env, env->fsaa_img, 2 * x + 1, 2 * y + 1);
 	else
 		s = 0;	
 	return (handle_overflow(w, n, e, s));

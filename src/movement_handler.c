@@ -14,6 +14,8 @@
 
 void	move_forward(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->pos.x += sin(ft_toradians(env->camera->rot.x)) * 2;
 	env->camera->pos.z += cos(ft_toradians(env->camera->rot.z)) * 2;
@@ -23,6 +25,8 @@ void	move_forward(t_env *env)
 
 void	move_backward(t_env *env)
 {
+	if (!env->draw_finished)
+		return ;
 	free_threads(env);
 	env->camera->pos.x -= sin(ft_toradians(env->camera->rot.x)) * 2;
 	env->camera->pos.z -= cos(ft_toradians(env->camera->rot.z)) * 2;

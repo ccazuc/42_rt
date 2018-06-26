@@ -17,13 +17,15 @@ void	thread_loop(t_worker *worker)
 	int				j;
 	t_ray			*ray;
 	unsigned int	color;
+	int				width;
 
 	ray = create_camera_ray(worker->env);
 	worker->current_index = worker->start - 1;
+	width = worker->env->fsaa ? worker->env->window_width * 2 : worker->env->window_width;
 	while (++worker->current_index < worker->end)
 	{
 		j = -1;
-		while (++j < worker->env->window_width)
+		while (++j < width)
 		{
 			fill_ray(worker->env, ray, j, worker->current_index);
 			color = get_pixel_color(worker->env, ray, 0, NULL);

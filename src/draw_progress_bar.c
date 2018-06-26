@@ -59,15 +59,19 @@ void		draw_progress_bar(t_env *env, int line_drawn)
 {
 	int		i;
 	int		j;
+	double	ratio;
 	int		max_width;
 
-	max_width = env->window_width / 4 + (double)line_drawn /
-	(double)env->window_height * env->window_width / 2;
+	max_width = env->window_width / 4 + 300;
+	if (env->fsaa)
+		ratio = line_drawn / (env->window_height * 2.);
+	else
+		ratio = (double)line_drawn / (double)env->window_height;
 	i = env->window_height - 200 * env->window_height / 1080;
 	while (++i < env->window_height - 100 * env->window_height / 1080)
 	{
 		j = env->window_width / 4 - 1;
-		while (++j < max_width)
+		while (++j < env->window_width / 4 + ratio * max_width)
 			mlx_pixel_put(env->mlx_ptr, env->mlx_win, j, i,
 			color_factor(16777215, (double)(j - env->window_width / 4 + 150)
 			/ (double)max_width));
