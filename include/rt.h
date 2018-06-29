@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:51:07 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:47:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <pthread.h>
 
 # define PLANE 0
+# define TRIANGLE 1
 # define RECTANGLE 2
 # define SPHERE 3
 # define CYLINDRE 4
@@ -102,11 +103,24 @@ typedef struct					s_light
 	int							color_b;
 	t_vector					pos;
 	t_vector					rot;
+	char						is_direc;
 	char						has_parsed_position;
 	char						has_parsed_color;
 	char						has_parsed_rotation;
 	char						has_parsed_power;
 }								t_light;
+
+typedef struct					s_triangle_collision
+{
+	t_vector					e1;
+	t_vector					e2;
+	t_vector					p;
+	t_vector					q;
+	t_vector					t;
+	double						det;
+	double						u;
+	double						v;
+}								t_triangle_collision;
 
 typedef struct					s_material
 {
@@ -153,6 +167,8 @@ struct							s_object
 	float						transparency;
 	float						reflection;
 	t_vector					pos;
+	t_vector					p3;
+	char						has_parsed_p3;
 };
 
 typedef struct					s_quadratic
@@ -410,5 +426,13 @@ void							parse_config_fsaa(t_env *env, char **datas
 unsigned int					get_pixel(t_env *env, char *img, int x
 								, int y);
 void							process_fsaa(t_env *env);
+void							get_triangle_normal(t_vector *vector
+								, t_object *object,	t_collision *collision);
+void							collide_triangle(t_ray *ray, t_object *object,
+								t_collision *collision, t_object *previous_object);
+void							parse_triangle_p1(t_object *object, char **datas, int *start);
+void							parse_triangle_p2(t_object *object, char **datas, int *start);
+void							parse_triangle_p3(t_object *object, char **datas, int *start);
+void							parse_triangle(t_env *env, char **datas);
 
 #endif

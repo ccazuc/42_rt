@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:34:02 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 11:36:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,9 @@ void	parse_config_fsaa(t_env *env, char **datas, int *start)
 		ft_putstr("Warning, incorrect value for fsaa's param, must be");
 		ft_putstr(" 0 or 1. Default value will be used.\n");
 	}
-	else
+	else if (value == 1)
 	{
 		env->fsaa = value;
-		printf("malloc size: %d\n", env->window_width * env->window_height * 4 * 4);
 		if (!(env->fsaa_img = malloc(env->window_width * env->window_height * 4 * 4)))
 			ft_exit("Error, out of memory.", EXIT_FAILURE);
 	}

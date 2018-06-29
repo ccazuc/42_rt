@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 12:03:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 10:51:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:45:42 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ t_collision *collision, t_object *previous_object)
 			collide_cone(ray, list->object, collision, previous_object);
 		else if (list->object->type == PLANE)
 			collide_plane(ray, list->object, collision, previous_object);
+		else if (list->object->type == TRIANGLE)
+			collide_triangle(ray, list->object, collision, previous_object);
 		list = list->next;
 	}
 	if (collision->object == previous_object)

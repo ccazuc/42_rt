@@ -1,0 +1,27 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    test.map                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
+#    Updated: 2018/06/29 13:51:09 by ccazuc           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	0
+
+material mat	color	255	0	0	scale	1	reflection	0	transp	50
+
+triangle	p1	0	0	10	p2	0	0	15	p3	5	0	10
+#sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1000000000000000000000
+sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
+light		color	255	255	255	pos	0	0	4	power	5
+camera			pos 0	0	0		rot 0	0	0
+
+
+#
+#
+          
+ #cube pos 4 5 6 rot 7 8 9 color 66 66 0	scale	1

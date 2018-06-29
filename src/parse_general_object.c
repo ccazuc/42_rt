@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 13:13:45 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:35:35 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	set_object_type(t_object *object, char *datas)
 		object->type = RECTANGLE;
 	else if (!ft_strcmp_ignrcase(datas, "cone"))
 		object->type = CONE;
+	else if (!ft_strcmp_ignrcase(datas, "triangle"))
+		object->type = TRIANGLE;
 	else
 		ft_exit("Error, invalid file. Unknown object type.", EXIT_FAILURE);
 }
@@ -70,6 +72,8 @@ void		parse_general_object(t_env *env, char **datas)
 	int			len;
 
 	len = ft_array_len(datas);
+	if (len == 0)
+		return ;
 	object = create_object();
 	set_object_type(object, datas[0]);
 	i = 0;

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:34:16 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:24:34 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ static void	parse_line2(t_env *env, char **result)
 	!ft_strcmp_ignrcase(result[0], "cone") ||
 	!ft_strcmp_ignrcase(result[0], "sphere"))
 		parse_general_object(env, result);
+	else if (!ft_strcmp_ignrcase(result[0], "triangle"))
+		parse_triangle(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "camera"))
 		parse_camera(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "light"))

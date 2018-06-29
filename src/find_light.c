@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 13:28:59 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:10:13 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,18 @@ double norm_angle)
 static void		init_find_light_loop_datas(t_ray *ray, t_light *light,
 t_collision *collision)
 {
-	ray->dir.x = light->pos.x - collision->pos.x;
-	ray->dir.y = light->pos.y - collision->pos.y;
-	ray->dir.z = light->pos.z - collision->pos.z;
+	if (light->is_direc && (light->rot.x || light->rot.y || light->rot.z))
+	{
+		ray->dir.x = -light->rot.x / 10.;
+		ray->dir.y = -light->rot.y / 10.;
+		ray->dir.z = -light->rot.z / 10.;
+	}
+	else
+	{
+		ray->dir.x = light->pos.x - collision->pos.x;
+		ray->dir.y = light->pos.y - collision->pos.y;
+		ray->dir.z = light->pos.z - collision->pos.z;	
+	}
 	vector_normalize(&ray->dir);
 }
 

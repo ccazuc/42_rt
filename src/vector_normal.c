@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 10:54:43 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 09:23:36 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 13:22:31 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,6 @@ void	get_normal_vector(t_vector *result, t_object
 		get_cone_normal(result, object, &collision->pos);
 	else if (object->type == PLANE)
 		get_plane_normal(result, object, collision);
+	else if (object->type == TRIANGLE)
+		get_triangle_normal(result, object, collision);
 }
