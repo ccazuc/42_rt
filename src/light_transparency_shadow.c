@@ -6,21 +6,20 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 10:57:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 19:15:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 static void		init_shadow_color_data(t_ray *new_ray, t_ray *ray,
-t_color_mask *mask, int *collision_found)
+t_color_mask *mask)
 {
 	new_ray->pos = ray->pos;
 	new_ray->dir = ray->dir;
 	mask->r = 1;
 	mask->g = 1;
 	mask->b = 1;
-	*collision_found = 0;
 }
 
 static void		fill_shadow_data(t_color_mask *mask,
@@ -53,7 +52,8 @@ t_ray *ray, t_light *light)
 	t_color_mask	mask;
 	int				collision_found;
 
-	init_shadow_color_data(&new_ray, ray, &mask, &collision_found);
+	collision_found = 0;
+	init_shadow_color_data(&new_ray, ray, &mask);
 	find_collision.object = collision->object;
 	while (check_collision(env, &new_ray, &find_collision,
 	find_collision.object)

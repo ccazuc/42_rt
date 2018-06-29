@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 13:47:50 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 15:27:50 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,6 +242,7 @@ typedef struct					s_env
 	char						*fsaa_img;
 	int							window_width;
 	int							window_height;
+	int							fsaa_factor;
 }								t_env;
 
 struct							s_worker

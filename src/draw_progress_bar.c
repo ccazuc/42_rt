@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 11:57:19 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:15:38 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 15:53:19 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		draw_progress_bar(t_env *env, int line_drawn)
 
 	max_width = env->window_width / 4 + 300;
 	if (env->fsaa)
-		ratio = line_drawn / (env->window_height * 2.);
+		ratio = line_drawn / (env->window_height * env->fsaa_factor / 2.);
 	else
 		ratio = (double)line_drawn / (double)env->window_height;
 	i = env->window_height - 200 * env->window_height / 1080;

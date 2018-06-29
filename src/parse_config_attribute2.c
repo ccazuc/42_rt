@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 11:36:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 16:31:42 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,24 +57,28 @@ void	parse_config_filter_grayscale(t_env *env, char **datas, int *start)
 void	parse_config_fsaa(t_env *env, char **datas, int *start)
 {
 	int		value;
+	int		factor;
 
-	if (!datas[*start + 1])
+	if (!datas[*start + 1] || !datas[*start + 2])
 		ft_exit("Error, invalid file. Not enough parameters for fsaa."
 		, EXIT_FAILURE);
-	if (!ft_str_isdigit(datas[*start + 1]))
+	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2]))
 		ft_exit("Error, invalid file. Fsaa's parameter is invalid."
 		, EXIT_FAILURE);
 	value = ft_atoi(datas[*start + 1]);
-	if (value != 1 && value != 0)
+	factor = ft_atoi(datas[*start + 2]);
+	if ((value != 1 && value != 0) || (factor == 0 ||
+	factor % 2 != 0 || factor >= 16))
 	{
 		ft_putstr("Warning, incorrect value for fsaa's param, must be");
 		ft_putstr(" 0 or 1. Default value will be used.\n");
 	}
-	else if (value == 1)
+	else
 	{
 		env->fsaa = value;
-		if (!(env->fsaa_img = malloc(env->window_width * env->window_height * 4 * 4)))
+		env->fsaa_factor = factor;
+		if (!(env->fsaa_img = malloc(env->window_width * env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
 			ft_exit("Error, out of memory.", EXIT_FAILURE);
 	}
-	*start += 1;
+	*start += 2;
 }

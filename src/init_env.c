@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:20:27 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 16:30:28 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,5 @@ void	init_env(t_env *env)
 	env->window_width = 1200;
 	env->window_height = 900;
 	env->grayscale_filter = 0;
+	env->fsaa_factor = 4;
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 14:52:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:46:51 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 16:06:28 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fill_ray(t_env *env, t_ray *ray, int x, int y)
 	int	width;
 	int	height;
 
-	width = env->fsaa ? env->window_width * 2 : env->window_width;
-	height = env->fsaa ? env->window_height * 2 : env->window_height;
+	width = env->fsaa ? env->window_width * env->fsaa_factor / 2 : env->window_width;
+	height = env->fsaa ? env->window_height * env->fsaa_factor / 2 : env->window_height;
 	ray->dir.x = (2 * (x + 0.5) /
 	width - 1) * tan(FOV_X / 2 * M_PI /
 	180) * (width / height) +

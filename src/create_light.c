@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:32:50 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 12:49:10 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 15:20:46 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ t_light	*create_light(void)
 	light->rot.y = 0;
 	light->rot.z = 0;
 	light->power = 1;
-	light->is_direc = 1;
+	light->is_direc = 0;
 	return (light);
 }

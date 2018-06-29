@@ -37,22 +37,22 @@ static unsigned int	get_pixel_at(t_env *env, int x, int y)
 	unsigned int	e;
 	unsigned int	s;
 
-	if (x > 0)
-		w = get_pixel(env, env->fsaa_img, 2 * x, 2 * y);
-	else
-		w = 0;
-	if (y > 0)
-		n = get_pixel(env, env->fsaa_img, 2 * x + 1, 2 * y);
-	else 
-		n = 0;
-	if (x < 2 * env->window_width - 1)
-		e = get_pixel(env, env->fsaa_img, 2 * x, 2 * y + 1);
-	else
-		e = 0;
-	if (y < 2 * env->window_height - 1)
-		s = get_pixel(env, env->fsaa_img, 2 * x + 1, 2 * y + 1);
-	else
-		s = 0;	
+	//if (x > 0)
+		w = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x, env->fsaa_factor / 2 * y);
+	//else
+	//	w = 0;
+	//if (y > 0)
+		n = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x + 1, env->fsaa_factor / 2 * y);
+	//else 
+	//	n = 0;
+	//if (x < env->fsaa_factor / 2 * env->window_width - 1)
+		e = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x, env->fsaa_factor / 2 * y + 1);
+	//else
+	//	e = 0;
+	//if (y < env->fsaa_factor / 2 * env->window_height - 1)
+		s = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x + 1, env->fsaa_factor / 2 * y + 1);
+	//else
+	//	s = 0;	
 	return (handle_overflow(w, n, e, s));
 }
 
@@ -63,10 +63,10 @@ void			process_fsaa(t_env *env)
 
 	i = -1;
 	printf("process fsaa start\n");
-	while (++i < env->window_height)
+	while (++i < env->window_height - 1)
 	{
 		j = -1;
-		while (++j < env->window_width)
+		while (++j < env->window_width - 1)
 			pixel_put(env, j, i, get_pixel_at(env, j, i));
 	}
 	printf("process fsaa ended\n");

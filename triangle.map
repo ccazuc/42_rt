@@ -6,19 +6,23 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
-#    Updated: 2018/06/29 13:51:09 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/06/29 19:16:37 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	0
+config	thread	8	ambient	20	20	20	60	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	1	4
 
 material mat	color	255	0	0	scale	1	reflection	0	transp	50
 
-triangle	p1	0	0	10	p2	0	0	15	p3	5	0	10
-#sphere		pos	0	0	10	color	255	0	0	rot	0	0	0	scale	1000000000000000000000
-sphere		pos	0	0	-10	color	255	0	0	rot	0	0	0	scale	1
-light		color	255	255	255	pos	0	0	4	power	5
-camera			pos 0	0	0		rot 0	0	0
+#triangle	p1	10	3	10	p2	-10	6	15	p3	0	-8	10	color	255	0	0
+#triangle	p1	-10	6	15	p2	10	3	10	p3	0	5	-10	color	0	255	0
+triangle	p1	-5	-5	10	p2	5	-5	10	p3	0	5	10	color	0	155	0	transp	0
+sphere		pos	3	0	15	color	255	0	0	scale	1
+#sphere		pos	10	3	10	color	255	0	0	rot	0	0	0	scale	1	transp	50
+#sphere		pos	-10	6	15	color	0	255	0	rot	0	0	0	scale	1	transp	50
+#sphere		pos	0	-8	10	color	0	0	255	rot	0	0	0	scale	1	transp	50
+light		color	255	255	255	pos	0	0	-10	power	5
+camera			pos 0	0	-20		rot 0	0	0
 
 
 #

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:22:24 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 11:35:16 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/06/29 16:04:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	thread_loop(t_worker *worker)
 
 	ray = create_camera_ray(worker->env);
 	worker->current_index = worker->start - 1;
-	width = worker->env->fsaa ? worker->env->window_width * 2 : worker->env->window_width;
+	width = worker->env->fsaa ? worker->env->window_width * worker->env->fsaa_factor / 2 : worker->env->window_width;
 	while (++worker->current_index < worker->end)
 	{
 		j = -1;
@@ -61,8 +61,8 @@ static void	create_fsaa_thread(t_env *env)
 	while (++i < env->nb_thread)
 	{
 		env->thread_list[i].env = env;
-		env->thread_list[i].start = i * 2 * env->window_height / env->nb_thread;
-		env->thread_list[i].end = (i + 1) * 2 * env->window_height / env->nb_thread;
+		env->thread_list[i].start = i * env->fsaa_factor / 2 * env->window_height / env->nb_thread;
+		env->thread_list[i].end = (i + 1) * env->fsaa_factor / 2 * env->window_height / env->nb_thread;
 		env->thread_list[i].draw_finished = 0;
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
