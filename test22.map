@@ -6,15 +6,15 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/02 15:01:27 by ccazuc            #+#    #+#              #
-#    Updated: 2018/09/10 18:14:40 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/09/10 18:31:41 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-define default_trans 39
+define default_trans 20
 
-define	drefl	50
+define	drefl	0
 
-config	fsaa 1	4	window_width 2300	window_height 1200
+config	fsaa 0	0	window_width 2300	window_height 1200
 
 cylindre	pos	-5	0	5	color	255	0	0	scale	1	transp default_trans	refl drefl
 cylindre	pos	5	0	5	color	255	150	150	scale	1	transp default_trans	refl drefl

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:05:32 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:16:45 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/10 18:29:55 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,13 @@ void	parse_config_window_width(t_env *env, char **datas, int *start)
 	*start += 1;
 	if (env->fsaa)
 		return ; 
-	if (!datas[*start + 1])
+	if (!datas[*start])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
-	if (!ft_str_isdigit(datas[*start + 1]))
+	if (!ft_str_isdigit(datas[*start]))
 		ft_exit("Error, invalid file. Window's parameter is invalid."
 		, EXIT_FAILURE);
-	value = ft_atoi(datas[*start + 1]);
+	value = ft_atoi(datas[*start]);
 	if (value < 100 || value > 2400)
 	{
 		ft_putstr("Warning, incorrect value for window_width's param, must be");
@@ -91,13 +91,13 @@ void	parse_config_window_height(t_env *env, char **datas, int *start)
 	*start += 1;
 	if (env->fsaa)
 		return ;
-	if (!datas[*start + 1])
+	if (!datas[*start])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
-	if (!ft_str_isdigit(datas[*start + 1]))
+	if (!ft_str_isdigit(datas[*start]))
 		ft_exit("Error, invalid file. Window's parameter is invalid."
 		, EXIT_FAILURE);
-	value = ft_atoi(datas[*start + 1]);
+	value = ft_atoi(datas[*start]);
 	if (value < 100 || value > 1300)
 	{
 		ft_putstr("Warning, incorrect value for window_height's param, must");
