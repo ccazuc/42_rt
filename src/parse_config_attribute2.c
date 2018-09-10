@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:28:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/10 18:35:30 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,8 @@ void	parse_config_fsaa(t_env *env, char **datas, int *start)
 	{
 		env->fsaa = value;
 		env->fsaa_factor = factor;
-		if (!(env->fsaa_img = malloc(env->window_width * env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
-			ft_exit("Error, out of memory.", EXIT_FAILURE);
+		//if (!(env->fsaa_img = malloc(env->window_width * env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
+		//	ft_exit("Error, out of memory.", EXIT_FAILURE);
 	}
 	*start += 2;
 }

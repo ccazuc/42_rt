@@ -6,29 +6,30 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/02 15:01:27 by ccazuc            #+#    #+#              #
-#    Updated: 2018/06/14 12:09:02 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/09/10 19:30:43 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-define refl_def 70
+define refl_def 90	
+config	fsaa	1	4	window_width 2350 window_height 1250
 
-sphere	pos	-4	2	2	color	255	0	0	scale	1 refl refl_def
+sphere	pos	-4	0	2	color	255	0	0	scale	1 refl refl_def
 sphere	pos	-4	2	4	color	255	0	0	scale	1 refl refl_def
-sphere	pos	-4	2	6	color	255	255	0	scale	1
-sphere	pos	-4	2	8	color	255	255	0	scale	1
+sphere	pos	-4	0	6	color	255	255	0	scale	1 refl	refl_def
+sphere	pos	-4	2	8	color	255	255	0	scale	1	refl	refl_def
 
-sphere	pos	4	2	2	color	255	0	0	scale	1 refl refl_def
+sphere	pos	4	0	2	color	255	0	0	scale	1 refl refl_def
 sphere	pos	4	2	4	color	255	0	0	scale	1 refl refl_def
-sphere	pos	4	2	6	color	255	255	0	scale	1
-sphere	pos	4	2	8	color	255	255	0	scale	1 
+sphere	pos	4	0	6	color	255	255	0	scale	1	refl refl_def
+sphere	pos	4	2	8	color	255	255	0	scale	1 	refl	refl_def
 
-sphere	pos	-2	2	8	color	0	255	0	scale	1 transp refl_def
+sphere	pos	-2	0	8	color	0	255	0	scale	1 refl	refl_def
 sphere	pos	0	2	8	color	0	255	0	scale	1 refl refl_def
-sphere	pos	2	2	8	color	0	255	0	scale	1 transp refl_def
+sphere	pos	2	0	8	color	0	255	0	scale	1 refl	refl_def
 
 plane	pos	0	0	50	color	255	255	255	rot	90	0	0
 
-camera	pos	0	5	-5	rot	0	0	30
+camera	pos	0	5	-10	rot	0	0	50
 light	pos	-3	3	2	power	3	color	255	255	255
 light	pos	3	3	2	power	3	color	255	255	255
 #light	pos	-14	4	-30	power	3	color	255	255	255

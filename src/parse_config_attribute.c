@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:05:32 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:29:55 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/10 18:40:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	parse_config_window_width(t_env *env, char **datas, int *start)
 	int		value;
 
 	*start += 1;
-	if (env->fsaa)
-		return ; 
+	//if (env->fsaa)
+	//	return ; 
 	if (!datas[*start])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
@@ -75,10 +75,10 @@ void	parse_config_window_width(t_env *env, char **datas, int *start)
 		ft_exit("Error, invalid file. Window's parameter is invalid."
 		, EXIT_FAILURE);
 	value = ft_atoi(datas[*start]);
-	if (value < 100 || value > 2400)
+	if (value < 100 || value > 2500)
 	{
 		ft_putstr("Warning, incorrect value for window_width's param, must be");
-		ft_putstr(" between 100 and 2400. Default value will be used.\n");
+		ft_putstr(" between 100 and 2500. Default value will be used.\n");
 	}
 	else
 		env->window_width = value;
@@ -89,8 +89,8 @@ void	parse_config_window_height(t_env *env, char **datas, int *start)
 	int		value;
 
 	*start += 1;
-	if (env->fsaa)
-		return ;
+	//if (env->fsaa)
+	//	return ;
 	if (!datas[*start])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
