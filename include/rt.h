@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 15:27:50 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/10 18:15:54 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -248,8 +248,8 @@ typedef struct					s_env
 struct							s_worker
 {
 	int							current_index;
-	int							start;
-	int							end;
+	long						start;
+	long						end;
 	char						draw_finished;
 	t_env						*env;
 	pthread_t					thread;

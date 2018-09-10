@@ -6,11 +6,11 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
-#    Updated: 2018/06/29 13:10:21 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/09/10 17:52:08 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	0
+config	thread	8	ambient	20	20	20	10	window_width	1200	window_height	900	filter_sepia	0	filter_grayscale	0	fsaa	2 2
 
 material mat	color	255	0	0	scale	1	reflection	0	transp	50
 

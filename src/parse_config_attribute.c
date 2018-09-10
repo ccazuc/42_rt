@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 11:05:32 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:35:23 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/10 18:16:45 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void	parse_config_window_width(t_env *env, char **datas, int *start)
 {
 	int		value;
 
+	*start += 1;
+	if (env->fsaa)
+		return ; 
 	if (!datas[*start + 1])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
@@ -79,13 +82,15 @@ void	parse_config_window_width(t_env *env, char **datas, int *start)
 	}
 	else
 		env->window_width = value;
-	*start += 1;
 }
 
 void	parse_config_window_height(t_env *env, char **datas, int *start)
 {
 	int		value;
 
+	*start += 1;
+	if (env->fsaa)
+		return ;
 	if (!datas[*start + 1])
 		ft_exit("Error, invalid file. Not enough parameters for window."
 		, EXIT_FAILURE);
@@ -100,5 +105,4 @@ void	parse_config_window_height(t_env *env, char **datas, int *start)
 	}
 	else
 		env->window_height = value;
-	*start += 1;
 }
