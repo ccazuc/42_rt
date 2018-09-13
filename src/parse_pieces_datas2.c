@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:56:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:52:30 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/13 16:37:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ t_object *object, char **datas, int *start)
 {
 	t_define	*define;
 
-	if (object->has_parsed_reflection)
+	if (object->has_parsed_transparency)
 		ft_exit("Error, invalid file. Transparency duplicate for an object."
 		, EXIT_FAILURE);
 	if (datas[*start + 1] && !ft_str_isdigit(datas[*start + 1]) &&
