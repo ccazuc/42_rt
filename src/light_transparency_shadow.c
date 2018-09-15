@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 19:15:50 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/15 14:45:17 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ t_ray *ray, t_light *light)
 	&& find_collision.distance < vector_distance(&light->pos, &collision->pos)
 	&& find_collision.distance > 0.0001)
 	{
-		if (find_collision.object->transparency <= 0)
+		if (find_collision.object->transparency <= 0 || find_collision.object->is_light)
 			return (0);
 		fill_shadow_data(&mask, &find_collision);
 		new_ray.pos = find_collision.pos;

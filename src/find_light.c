@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 19:13:56 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/15 14:46:15 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 static void		fill_light_data(t_collision *collision, t_light *light,
 double norm_angle)
 {
+	if (collision->object->is_light)
+		return ;
 	collision->color.r = dmin(255, collision->color.r + norm_angle *
 	light->power / 5. * light->color_r / 255. *
 	collision->object->color_r / 255.);

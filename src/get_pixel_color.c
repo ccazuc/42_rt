@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:48:47 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:34:55 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/15 14:47:13 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int recursion, t_object *previous_object)
 		color = conv_rgb_to_int(collision.object->color_r,
 		collision.object->color_g, collision.object->color_b);
 		color = get_light_color(env, &collision, recursion);
-		color = check_ambient(env, collision.object, color);
+		if (!collision.object->is_light)
+			color = check_ambient(env, collision.object, color);
 	}
 	return (color);
 }

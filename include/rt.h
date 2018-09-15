@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:15:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/09/15 14:38:14 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ struct							s_object
 	t_vector					pos;
 	t_vector					p3;
 	char						has_parsed_p3;
+	char						is_light;
 };
 
 typedef struct					s_quadratic
