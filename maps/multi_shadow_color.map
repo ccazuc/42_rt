@@ -1,0 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    multi_shadow_color.map                             :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/06/22 12:07:00 by ccazuc            #+#    #+#              #
+#    Updated: 2018/11/29 17:34:43 by ccazuc           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+config window_width 2200 window_height 1200 fsaa 1 4
+
+sphere	pos	0	0	5	color	255	255	255	scale	2	transp	0
+
+plane	pos	0	0	15	color	255	255	255	rot	90	0	0
+
+
+camera	pos	0	0	-10	rot	0	0	0
+light	pos	-2	0	0	power	5	color	255	0	0
+light	pos	0	0	0	power	5	color	0	255	0
+light	pos	2	0	0	power	5	color	0	0	255

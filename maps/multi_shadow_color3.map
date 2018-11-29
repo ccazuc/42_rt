@@ -1,0 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    multi_shadow_color3.map                            :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/06/22 12:13:27 by ccazuc            #+#    #+#              #
+#    Updated: 2018/06/22 12:14:16 by ccazuc           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+cylindre	pos	0	0	5	color	255 255	255	scale	1	transp	40
+
+plane	pos	0	0	15	color	255	255	255	rot	90	0	0
+
+
+camera	pos	0	0	-10	rot	0	0	0
+light	pos	-2	0	0	power	5	color	255	0	0
+light	pos	0	0	0	power	5	color	0	255	0
+light	pos	2	0	0	power	5	color	0	0	255

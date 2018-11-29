@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:46:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:47:54 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_collision *collision)
 	{
 		ray->dir.x = light->pos.x - collision->pos.x;
 		ray->dir.y = light->pos.y - collision->pos.y;
-		ray->dir.z = light->pos.z - collision->pos.z;	
+		ray->dir.z = light->pos.z - collision->pos.z;
 	}
 	vector_normalize(&ray->dir);
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:35:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:43:36 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void		parse(t_env *env, int argc, char *file_name)
 	parse_args(env, fd);
 	if (!env->camera)
 		ft_exit("Error, no camera found.", EXIT_FAILURE);
-	if (!(env->fsaa_img = malloc(env->window_width * env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
-			ft_exit("Error, out of memory.", EXIT_FAILURE);
+	if (!(env->fsaa_img = malloc(env->window_width *
+	env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
+		ft_exit("Error, out of memory.", EXIT_FAILURE);
 }
 
 static void	parse_line2(t_env *env, char **result)

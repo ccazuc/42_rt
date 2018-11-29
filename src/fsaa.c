@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fsaa.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/29 18:15:01 by ccazuc            #+#    #+#             */
+/*   Updated: 2018/11/29 18:17:21 by ccazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "rt.h"
 
-static int	color_add_fsaa(int c1, int c2, int factor)
+static int			color_add_fsaa(int c1, int c2, int factor)
 {
 	int	r;
 	int	g;
@@ -18,7 +30,8 @@ static int	color_add_fsaa(int c1, int c2, int factor)
 	return ((r << 16) + (g << 8) + b);
 }
 
-static unsigned int handle_overflow(unsigned int w, unsigned int n, unsigned int e, unsigned int s)
+static unsigned int	handle_overflow(unsigned int w,
+unsigned int n, unsigned int e, unsigned int s)
 {
 	unsigned int	res;
 
@@ -37,37 +50,27 @@ static unsigned int	get_pixel_at(t_env *env, int x, int y)
 	unsigned int	e;
 	unsigned int	s;
 
-	//if (x > 0)
-		w = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x, env->fsaa_factor / 2 * y);
-	//else
-	//	w = 0;
-	//if (y > 0)
-		n = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x + 1, env->fsaa_factor / 2 * y);
-	//else 
-	//	n = 0;
-	//if (x < env->fsaa_factor / 2 * env->window_width - 1)
-		e = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x, env->fsaa_factor / 2 * y + 1);
-	//else
-	//	e = 0;
-	//if (y < env->fsaa_factor / 2 * env->window_height - 1)
-		s = get_pixel(env, env->fsaa_img, env->fsaa_factor / 2 * x + 1, env->fsaa_factor / 2 * y + 1);
-	//else
-	//	s = 0;	
+	w = get_pixel(env, env->fsaa_img, env->fsaa_factor
+	/ 2 * x, env->fsaa_factor / 2 * y);
+	n = get_pixel(env, env->fsaa_img, env->fsaa_factor
+	/ 2 * x + 1, env->fsaa_factor / 2 * y);
+	e = get_pixel(env, env->fsaa_img, env->fsaa_factor
+	/ 2 * x, env->fsaa_factor / 2 * y + 1);
+	s = get_pixel(env, env->fsaa_img, env->fsaa_factor
+	/ 2 * x + 1, env->fsaa_factor / 2 * y + 1);
 	return (handle_overflow(w, n, e, s));
 }
 
-void			process_fsaa(t_env *env)
+void				process_fsaa(t_env *env)
 {
 	int		i;
 	int		j;
 
 	i = -1;
-	printf("process fsaa start\n");
 	while (++i < env->window_height - 1)
 	{
 		j = -1;
 		while (++j < env->window_width - 1)
 			pixel_put(env, j, i, get_pixel_at(env, j, i));
 	}
-	printf("process fsaa ended\n");
 }

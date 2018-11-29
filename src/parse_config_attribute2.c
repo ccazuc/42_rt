@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/10 18:35:30 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/11/29 18:18:51 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ void	parse_config_fsaa(t_env *env, char **datas, int *start)
 	if (!datas[*start + 1] || !datas[*start + 2])
 		ft_exit("Error, invalid file. Not enough parameters for fsaa."
 		, EXIT_FAILURE);
-	if (!ft_str_isdigit(datas[*start + 1]) || !ft_str_isdigit(datas[*start + 2]))
+	if (!ft_str_isdigit(datas[*start + 1]) ||
+	!ft_str_isdigit(datas[*start + 2]))
 		ft_exit("Error, invalid file. Fsaa's parameter is invalid."
 		, EXIT_FAILURE);
 	value = ft_atoi(datas[*start + 1]);
@@ -77,8 +78,6 @@ void	parse_config_fsaa(t_env *env, char **datas, int *start)
 	{
 		env->fsaa = value;
 		env->fsaa_factor = factor;
-		//if (!(env->fsaa_img = malloc(env->window_width * env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
-		//	ft_exit("Error, out of memory.", EXIT_FAILURE);
 	}
 	*start += 2;
 }

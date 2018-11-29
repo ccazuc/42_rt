@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:42:52 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/11/29 18:17:54 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int recursion)
 	collision->color.b = 0;
 	find_light(env, collision, &normal);
 	if (!collision->object->is_light)
-	{	
+	{
 		check_reflection(env, collision, &normal, recursion);
 		light_transparency(env, collision, recursion);
 	}

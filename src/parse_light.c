@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:07:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:50:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/11/29 17:46:45 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,5 @@ void	parse_light(t_env *env, char **datas)
 		else
 			ft_exit("Error, invalid file. Unknown light attribut."
 			, EXIT_FAILURE);
-	create_light_sphere(env, light);
 	list_add_light(env, light);
 }
