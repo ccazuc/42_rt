@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 13:46:26 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 15:36:55 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 15:40:33 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void	free_materials(t_env *env)
 	{
 		tmp = material;
 		material = material->next;
+		free(tmp->material->name);
 		free(tmp->material);
 		free(tmp);
 	}
@@ -70,6 +71,7 @@ static void	free_defines(t_env *env)
 	{
 		tmp = define;
 		define = define->next;
+		free(tmp->define->name);
 		free(tmp->define);
 		free(tmp);
 	}
