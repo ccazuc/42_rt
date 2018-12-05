@@ -74,6 +74,7 @@ SRCS_NAME = main.c \
 			shape_triangle.c \
 			parse_triangle.c \
 			parse_triangle_attribute.c \
+			reload_file.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

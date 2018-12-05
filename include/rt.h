@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:38:14 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:12:54 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,6 +244,8 @@ typedef struct					s_env
 	int							window_width;
 	int							window_height;
 	int							fsaa_factor;
+	char						*file_name;
+	int							was_loaded;
 }								t_env;
 
 struct							s_worker
@@ -258,7 +260,7 @@ struct							s_worker
 	int							line_drawn;
 };
 
-void							parse(t_env *env, int argc, char *file_name);
+void							parse(t_env *env, char *file_name);
 void							parse_general_object(t_env *env, char **datas);
 void							parse_object_color(t_env *env, t_object *object,
 								char **datas, int *start);
@@ -436,5 +438,6 @@ void							parse_triangle_p1(t_object *object, char **datas, int *start);
 void							parse_triangle_p2(t_object *object, char **datas, int *start);
 void							parse_triangle_p3(t_object *object, char **datas, int *start);
 void							parse_triangle(t_env *env, char **datas);
+void							reload_file(t_env *env);
 
 #endif

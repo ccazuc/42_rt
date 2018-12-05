@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/10 15:13:26 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:59:49 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:44:38 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,7 @@ int		key_up_handler(int keycode, void *params)
 		rotate_up(env);
 	else if (keycode == 125)
 		rotate_down(env);
+	else if (keycode == 96)
+		reload_file(env);
 	return (0);
 }

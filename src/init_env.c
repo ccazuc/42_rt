@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 16:30:28 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:00:44 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_env(t_env *env)
 	env->object_list = NULL;
 	env->define_list = NULL;
 	env->camera = NULL;
+	env->file_name = NULL;
 	env->light_list = NULL;
 	env->thread_list = NULL;
 	env->draw_finished = 0;
@@ -31,4 +32,5 @@ void	init_env(t_env *env)
 	env->window_height = 900;
 	env->grayscale_filter = 0;
 	env->fsaa_factor = 4;
+	env->was_loaded = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 13:53:35 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:53:39 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:14:18 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	init_window(t_env *env)
 		&line_size, &order)))
 		ft_exit("Error, failed to load image datas.", EXIT_FAILURE);
 	env->bpp = bpp;
+	env->was_loaded = 1;
 }

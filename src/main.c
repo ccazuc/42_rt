@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:53:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:15:19 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ static void	init_mlx(t_env **env)
 		env[i]->mlx_ptr = mlx_ptr;
 }
 
-static void	env_run(t_env **env, int argc, char **argv)
+static void	env_run(t_env **env, char **argv)
 {
 	int	i;
 
 	i = -1;
 	while (env[++i])
-		parse(env[i], argc, argv[i + 1]);
+		parse(env[i], argv[i + 1]);
 	i = -1;
 	init_mlx(env);
 	while (env[++i])
@@ -59,7 +59,8 @@ int			main(int argc, char **argv)
 		init_env(env[i - 1]);
 		env[i - 1]->id = i - 1;
 		env[i - 1]->env_list = env;
+		env[i - 1]->file_name = argv[i];
 	}
-	env_run(env, argc, argv);
+	env_run(env, argv);
 	return (0);
 }

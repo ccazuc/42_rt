@@ -6,26 +6,25 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/11/29 17:43:36 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 14:23:03 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void		parse(t_env *env, int argc, char *file_name)
+void		parse(t_env *env, char *file_name)
 {
 	int		fd;
 
-	if (argc < 2)
-		ft_exit("Error, invalid arguments.", EXIT_FAILURE);
 	if ((fd = open(file_name, O_RDONLY)) == -1)
 		ft_exit("Error, can't open file.", EXIT_FAILURE);
 	parse_args(env, fd);
 	if (!env->camera)
 		ft_exit("Error, no camera found.", EXIT_FAILURE);
-	if (!(env->fsaa_img = malloc(env->window_width *
+	if (!env->was_loaded && !(env->fsaa_img = malloc(env->window_width *
 	env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
+	close(fd);
 }
 
 static void	parse_line2(t_env *env, char **result)
