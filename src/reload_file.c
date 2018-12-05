@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 13:46:26 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 14:32:14 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 15:36:55 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static void	free_objects(t_env *env)
 	{
 		tmp = object;
 		object = object->next;
-		printf("freed object, %p\n", object);
 		free(tmp->object);
 		free(tmp);
 	}
@@ -45,7 +44,7 @@ static void	free_lights(t_env *env)
 	env->light_list = NULL;
 }
 
-static void free_materials(t_env *env)
+static void	free_materials(t_env *env)
 {
 	t_material_list	*material;
 	t_material_list	*tmp;
@@ -61,7 +60,7 @@ static void free_materials(t_env *env)
 	env->material_list = NULL;
 }
 
-static void free_defines(t_env *env)
+static void	free_defines(t_env *env)
 {
 	t_define_list	*define;
 	t_define_list	*tmp;
@@ -77,7 +76,6 @@ static void free_defines(t_env *env)
 	env->define_list = NULL;
 }
 
-
 void		reload_file(t_env *env)
 {
 	if (!env->draw_finished)
@@ -92,4 +90,3 @@ void		reload_file(t_env *env)
 	parse(env, env->file_name);
 	render(env->env_list, env->id, 0);
 }
-
