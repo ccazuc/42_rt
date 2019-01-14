@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 10:06:33 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 19:05:52 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 14:22:48 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ void	light_transparency(t_env *env, t_collision *collision, int recursion)
 	vector_normalize(&ray.dir);
 	tmp_color = get_pixel_color(env, &ray, recursion, collision->object);
 	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r,
-	collision->color.g, collision->color.b), 1. -
-	collision->object->transparency), color_factor(tmp_color,
-	collision->object->transparency));
+					collision->color.g, collision->color.b),
+				1. - collision->object->transparency),
+			color_factor(tmp_color, collision->object->transparency));
 	collision->color.r = get_color_r(color_res);
 	collision->color.g = get_color_g(color_res);
 	collision->color.b = get_color_b(color_res);

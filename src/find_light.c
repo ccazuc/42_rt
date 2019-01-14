@@ -6,30 +6,30 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/11/29 17:47:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 14:24:49 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 static void		fill_light_data(t_collision *collision, t_light *light,
-double norm_angle)
+		double norm_angle)
 {
 	if (collision->object->is_light)
 		return ;
-	collision->color.r = dmin(255, collision->color.r + norm_angle *
-	light->power / 5. * light->color_r / 255. *
-	collision->object->color_r / 255.);
-	collision->color.g = dmin(255, collision->color.g + norm_angle *
-	light->power / 5. * light->color_g / 255. *
-	collision->object->color_g / 255.);
-	collision->color.b = dmin(255, collision->color.b + norm_angle *
-	light->power / 5. * light->color_b / 255. *
-	collision->object->color_b / 255.);
+	collision->color.r = dmin(255, collision->color.r + norm_angle
+			* light->power / 5. * light->color_r / 255.
+			* collision->object->color_r / 255.);
+	collision->color.g = dmin(255, collision->color.g + norm_angle
+			* light->power / 5. * light->color_g / 255.
+			* collision->object->color_g / 255.);
+	collision->color.b = dmin(255, collision->color.b + norm_angle
+			* light->power / 5. * light->color_b / 255.
+			* collision->object->color_b / 255.);
 }
 
 static void		init_find_light_loop_datas(t_ray *ray, t_light *light,
-t_collision *collision)
+		t_collision *collision)
 {
 	if (light->is_direc && (light->rot.x || light->rot.y || light->rot.z))
 	{
@@ -47,7 +47,7 @@ t_collision *collision)
 }
 
 static void		calc_light_angle(t_ray *ray, t_vector *normal,
-t_collision *collision, t_light *light)
+		t_collision *collision, t_light *light)
 {
 	double	norm_angle;
 
@@ -71,9 +71,9 @@ void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 	{
 		init_find_light_loop_datas(&ray, list->light, collision);
 		if (check_collision(env, &ray, &find_collision, collision->object)
-		&& find_collision.object
-		&& find_collision.distance < vector_distance(&list->light->pos,
-		&collision->pos) && find_collision.distance > 0.0001)
+				&& find_collision.object
+				&& find_collision.distance < vector_distance(&list->light->pos,
+					&collision->pos) && find_collision.distance > 0.0001)
 		{
 			get_shadow_color(env, collision, &ray, list->light);
 			list = list->next;

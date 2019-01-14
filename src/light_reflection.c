@@ -6,14 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 11:54:47 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 11:57:09 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 14:22:31 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 int	check_reflection(t_env *env, t_collision *collision,
-t_vector *normal, int recursion)
+		t_vector *normal, int recursion)
 {
 	t_ray		ray;
 	int			tmp_color;
@@ -32,9 +32,9 @@ t_vector *normal, int recursion)
 	ray.pos.z = collision->pos.z;
 	tmp_color = get_pixel_color(env, &ray, recursion + 1, collision->object);
 	color_res = color_add(color_factor(conv_rgb_to_int(collision->color.r,
-	collision->color.g, collision->color.b), 1. -
-	collision->object->reflection), color_factor(tmp_color,
-	collision->object->reflection));
+					collision->color.g, collision->color.b),
+				1. - collision->object->reflection),
+			color_factor(tmp_color, collision->object->reflection));
 	collision->color.r = get_color_r(color_res);
 	collision->color.g = get_color_g(color_res);
 	collision->color.b = get_color_b(color_res);

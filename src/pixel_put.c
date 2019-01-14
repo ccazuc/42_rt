@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:25:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:10:43 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 14:27:36 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void			pixel_put(t_env *env, int x, int y, unsigned int color)
 	unsigned char	g;
 	unsigned char	b;
 
-	if (x < 0 || x >= env->window_width || y < 0 ||
-	y >= env->window_height)
+	if (x < 0 || x >= env->window_width || y < 0
+			|| y >= env->window_height)
 		return ;
 	r = (color & 0xFF0000) >> 16;
 	g = (color & 0x00FF00) >> 8;
