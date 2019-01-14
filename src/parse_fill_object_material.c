@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:30 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 12:57:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:12:48 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@ static void	fill_object_with_material2(t_object *object, t_material *material)
 	{
 		object->reflection = material->reflection;
 		object->has_parsed_reflection = 1;
+	}
+	if (material->has_parsed_refraction && !object->has_parsed_refraction)
+	{
+		object->refraction = material->refraction;
+		object->has_parsed_refraction = 1;
 	}
 	if (material->has_parsed_transparency && !object->has_parsed_transparency)
 	{

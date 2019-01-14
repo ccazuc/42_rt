@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:39:55 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/18 13:09:17 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:14:35 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	parse_material_attribute(t_material *material, char **datas, int *i)
 		parse_material_reflection(material, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "transparency"))
 		parse_material_transparency(material, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "refraction"))
+		parse_material_refraction(material, datas, i);
 	else
 		ft_exit("Error, invalid file. Unknown material attribut.",
 		EXIT_FAILURE);
@@ -68,6 +70,26 @@ char **datas, int *start)
 		, EXIT_FAILURE);
 	*start += 1;
 	material->has_parsed_reflection = 1;
+}
+
+void	parse_material_refraction(t_material *material,
+char **datas, int *start)
+{
+	if (material->has_parsed_refraction)
+		ft_exit("Error, invalid file. Refraction duplicate for a material."
+		, EXIT_FAILURE);
+	if (!datas[*start + 1])
+		ft_exit("Error, invalid file. Not enough param for material's refr."
+		, EXIT_FAILURE);
+	if (!ft_str_isdigit(datas[*start + 1]))
+		ft_exit("Error, invalid file. Material refr parameter is invalid."
+		, EXIT_FAILURE);
+	material->refraction = ft_atoi(datas[*start + 1]) / 100.;
+	if (material->refraction < 1. || material->refraction > 2.)
+		ft_exit("Error, invalid file. Material refraction value is invalid."
+		, EXIT_FAILURE);
+	*start += 1;
+	material->has_parsed_refraction = 1;
 }
 
 void	parse_material_transparency(t_material *material,

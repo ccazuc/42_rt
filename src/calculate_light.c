@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/11/29 18:17:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:39:39 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int recursion)
 		check_reflection(env, collision, &normal, recursion);
 		light_transparency(env, collision, recursion);
 	}
+	check_refraction(env, collision, &normal, recursion);
 	return (conv_rgb_to_int(collision->color.r, collision->color.g,
 	collision->color.b));
 }

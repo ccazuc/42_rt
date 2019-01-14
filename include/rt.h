@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 17:24:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:31:46 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define DEFAULT_COLOR_R 0xFF
 # define DEFAULT_COLOR_G 0
 # define DEFAULT_COLOR_B 0xFF
-# define REFLECTION_DEPTH 6
+# define REFLECTION_DEPTH 10
 
 typedef struct s_object			t_object;
 typedef struct s_worker			t_worker;
@@ -126,12 +126,14 @@ typedef struct					s_material
 	int							scale;
 	float						reflection;
 	float						transparency;
+	float						refraction;
 	char						has_parsed_position;
 	char						has_parsed_color;
 	char						has_parsed_scale;
 	char						has_parsed_rotation;
 	char						has_parsed_reflection;
 	char						has_parsed_transparency;
+	char						has_parsed_refraction;
 }								t_material;
 
 typedef struct					s_define
@@ -157,8 +159,10 @@ struct							s_object
 	char						has_parsed_rotation;
 	char						has_parsed_reflection;
 	char						has_parsed_transparency;
+	char						has_parsed_refraction;
 	float						transparency;
 	float						reflection;
+	float						refraction;
 	t_vector					pos;
 	t_vector					p3;
 	char						has_parsed_p3;
@@ -432,5 +436,19 @@ void							parse_triangle_p2(t_object *object, char **datas, int *start);
 void							parse_triangle_p3(t_object *object, char **datas, int *start);
 void							parse_triangle(t_env *env, char **datas);
 void							reload_file(t_env *env);
+void							fill_object_refraction_define(t_object *object,
+								t_define *define, int *i);
+void							parse_object_refraction(t_env *env, t_object *object,
+								char **datas, int *start);
+void							parse_material_refraction(t_material *material,
+								char **datas, int *start);
+void							fill_object_refraction_define(t_object *object,
+								t_define *define, int *i);
+t_vector						add_vector(t_vector const a, t_vector const b);
+t_vector						sub_vector(t_vector const a, t_vector const b);
+t_vector						mul_vector(t_vector const a, float const b);
+int								check_refraction(t_env *env, t_collision *collision,
+								t_vector *normal, int recursion);
+
 
 #endif

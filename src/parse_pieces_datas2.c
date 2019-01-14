@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:56:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/13 16:37:15 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:46:49 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,32 @@ t_object *object, char **datas, int *start)
 		, EXIT_FAILURE);
 	*start += 1;
 	object->has_parsed_transparency = 1;
+}
+
+void	parse_object_refraction(t_env *env, t_object *object,
+char **datas, int *start)
+{
+	t_define	*define;
+
+	if (object->has_parsed_refraction)
+		ft_exit("Error, invalid file. Refraction duplicate for an object."
+		, EXIT_FAILURE);
+	if (datas[*start + 1] && !ft_str_isdigit(datas[*start + 1]) &&
+	(define = find_define(env, datas[*start + 1])))
+	{
+		fill_object_refraction_define(object, define, start);
+		return ;
+	}
+	if (!datas[*start + 1])
+		ft_exit("Error, invalid file. Not enough parameters for refra."
+		, EXIT_FAILURE);
+	if (!ft_str_isdigit(datas[*start + 1]))
+		ft_exit("Error, invalid file. Refra's parameters are invalid."
+		, EXIT_FAILURE);
+	object->refraction = ft_atoi(datas[*start + 1]) / 100.;
+	if (object->refraction < 1. || object->refraction > 2.)
+		ft_exit("Error, invalid file. Refraction's param's value is invalid."
+		, EXIT_FAILURE);
+	*start += 1;
+	object->has_parsed_refraction = 1;
 }

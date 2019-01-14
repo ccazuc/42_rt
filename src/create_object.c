@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 11:01:33 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:41:57 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 14:57:40 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_object	*create_object(void)
 	object->has_parsed_scale = 0;
 	object->has_parsed_reflection = 0;
 	object->has_parsed_transparency = 0;
+	object->has_parsed_refraction = 0;
 	object->has_parsed_p3 = 0;
 	object->rot.x = 0;
 	object->rot.y = 0;
@@ -33,6 +34,7 @@ t_object	*create_object(void)
 	object->color_b = DEFAULT_COLOR_B;
 	object->scale = 1;
 	object->reflection = 0;
+	object->refraction = 0;
 	object->transparency = 0;
 	object->is_light = 0;
 	return (object);

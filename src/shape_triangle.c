@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 12:19:15 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:15:09 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/14 15:49:22 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static t_vector	mul_vec_tri(t_vector const a, t_vector const b)
 	return (n);
 }
 
-static void	get_determinant(t_ray const *ray, t_object const *object,
+static void		get_determinant(t_ray const *ray, t_object const *object,
 		t_triangle_collision *tri_coll)
 {
 	tri_coll->e1 = sub_vector(object->rot, object->pos);
@@ -32,7 +32,7 @@ static void	get_determinant(t_ray const *ray, t_object const *object,
 	tri_coll->det = dot_product(&tri_coll->e1, &tri_coll->p);
 }
 
-void	get_triangle_normal(t_vector *vector, t_object *object,
+void			get_triangle_normal(t_vector *vector, t_object *object,
 		t_collision *collision)
 {
 	t_vector	u;
@@ -47,7 +47,7 @@ void	get_triangle_normal(t_vector *vector, t_object *object,
 		*vector = mul_vector(*vector, -1.0f);
 }
 
-void	collide_triangle(t_ray *ray, t_object *object,
+void			collide_triangle(t_ray *ray, t_object *object,
 t_collision *collision, t_object *previous_object)
 {
 	t_triangle_collision	tri_coll;

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:25:26 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/14 15:47:42 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int				get_shadow_color(t_env *env, t_collision *collision,
 	find_collision.object = collision->object;
 	while (check_collision(env, &new_ray, &find_collision,
 				find_collision.object)
-			&& find_collision.distance < vector_distance(&light->pos, &collision->pos)
+			&& find_collision.distance <
+				vector_distance(&light->pos, &collision->pos)
 			&& find_collision.distance > 0.0001)
 	{
 		if (find_collision.object->transparency <= 0
