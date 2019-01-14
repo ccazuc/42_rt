@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/02 16:11:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:52:03 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/14 16:21:35 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	fill_object_color_define(t_object *object, t_define *define, int *i)
 	if (define->nb_value != 3)
 		ft_exit("Error, invalid file. Define has not enough argument for color."
 				, EXIT_FAILURE);
-	if (define->x < 0 || define->x > 255 || define->y < 0 ||
-			define->y > 255 || define->z < 0 || define->z > 255)
+	if (define->x < 0 || define->x > 255 || define->y < 0
+			|| define->y > 255 || define->z < 0 || define->z > 255)
 		ft_exit("Error, invalid file. Define has - value for an object color."
 				, EXIT_FAILURE);
 	object->color_r = define->x;
