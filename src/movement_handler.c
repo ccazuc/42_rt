@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 09:16:26 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 10:50:52 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:33:37 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	move_forward(t_env *env)
 {
 	if (!env->draw_finished)
 		return ;
-	free_threads(env);
+	free(env->thread_list);
 	env->camera->pos.x += sin(ft_toradians(env->camera->rot.x)) * 2;
 	env->camera->pos.z += cos(ft_toradians(env->camera->rot.z)) * 2;
 	env->draw_finished = 0;
@@ -27,7 +27,7 @@ void	move_backward(t_env *env)
 {
 	if (!env->draw_finished)
 		return ;
-	free_threads(env);
+	free(env->thread_list);
 	env->camera->pos.x -= sin(ft_toradians(env->camera->rot.x)) * 2;
 	env->camera->pos.z -= cos(ft_toradians(env->camera->rot.z)) * 2;
 	env->draw_finished = 0;

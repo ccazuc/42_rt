@@ -6,11 +6,23 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:22:24 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/13 16:58:40 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:36:37 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+static void	apply_effect(t_worker *worker, unsigned int *color, int const j)
+{
+	if (worker->env->sepia_filter)
+		*color = get_sepia_color(*color);
+	if (worker->env->grayscale_filter)
+		*color = get_grayscale_color(*color);
+	if (worker->env->fsaa)
+		pixel_put_fsaa(worker->env, j, worker->current_index, *color);
+	else
+		pixel_put(worker->env, j, worker->current_index, *color);
+}
 
 void		thread_loop(t_worker *worker)
 {
@@ -22,7 +34,7 @@ void		thread_loop(t_worker *worker)
 	ray = create_camera_ray(worker->env);
 	worker->current_index = worker->start - 1;
 	width = worker->env->fsaa ? worker->env->window_width
-	* worker->env->fsaa_factor / 2 : worker->env->window_width;
+		* worker->env->fsaa_factor / 2 : worker->env->window_width;
 	while (++worker->current_index < worker->end)
 	{
 		j = -1;
@@ -30,14 +42,7 @@ void		thread_loop(t_worker *worker)
 		{
 			fill_ray(worker->env, ray, j, worker->current_index);
 			color = get_pixel_color(worker->env, ray, 0, NULL);
-			if (worker->env->sepia_filter)
-				color = get_sepia_color(color);
-			if (worker->env->grayscale_filter)
-				color = get_grayscale_color(color);
-			if (worker->env->fsaa)
-				pixel_put_fsaa(worker->env, j, worker->current_index, color);
-			else
-				pixel_put(worker->env, j, worker->current_index, color);
+			apply_effect(worker, &color, j);
 		}
 		++worker->line_drawn;
 	}
@@ -63,14 +68,14 @@ static void	create_fsaa_thread(t_env *env)
 	{
 		env->thread_list[i].env = env;
 		env->thread_list[i].start = i * env->fsaa_factor
-		/ 2 * env->window_height / env->nb_thread;
+			/ 2 * env->window_height / env->nb_thread;
 		env->thread_list[i].end = (i + 1) * env->fsaa_factor
-		/ 2 * env->window_height / env->nb_thread;
+			/ 2 * env->window_height / env->nb_thread;
 		env->thread_list[i].draw_finished = 0;
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
 		pthread_create(&env->thread_list[i].thread,
-		NULL, thread_run, &env->thread_list[i]);
+				NULL, thread_run, &env->thread_list[i]);
 	}
 }
 
@@ -79,7 +84,7 @@ void		create_thread(t_env *env)
 	int	i;
 
 	if (!(env->thread_list = malloc(env->nb_thread
-	* sizeof(*env->thread_list))))
+					* sizeof(*env->thread_list))))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	i = -1;
 	if (env->fsaa)
@@ -96,11 +101,6 @@ void		create_thread(t_env *env)
 		env->thread_list[i].id = i;
 		env->thread_list[i].line_drawn = 0;
 		pthread_create(&env->thread_list[i].thread,
-		NULL, thread_run, &env->thread_list[i]);
+				NULL, thread_run, &env->thread_list[i]);
 	}
-}
-
-void		free_threads(t_env *env)
-{
-	free(env->thread_list);
 }
