@@ -6,11 +6,13 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/22 12:07:25 by ccazuc            #+#    #+#              #
-#    Updated: 2018/12/05 14:55:52 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/12/05 17:10:15 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 define refl_def 70
+
+config thread 8 fsaa 1 4 filter_grayscale 1 
 
 sphere	pos	-4	2	2	color	255	0	0	scale	1 refl refl_def
 sphere	pos	-4	2	4	color	255	0	0	scale	1 refl refl_def

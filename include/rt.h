@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 14:12:54 by ccazuc           ###   ########.fr       */
+/*   Updated: 2018/12/05 17:24:08 by ccazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,11 @@ typedef struct					s_vector
 	double						z;
 }								t_vector;
 
-typedef struct					s_light_mask
-{
-	unsigned int				r;
-	unsigned int				g;
-	unsigned int				b;
-}								t_light_mask;
-
 typedef struct					s_color_mask
 {
-	float						r;
-	float						g;
-	float						b;
+	double						r;
+	double						g;
+	double						b;
 }								t_color_mask;
 
 typedef struct					s_ray

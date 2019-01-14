@@ -6,11 +6,11 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/02 15:01:27 by ccazuc            #+#    #+#              #
-#    Updated: 2018/06/29 19:18:24 by ccazuc           ###   ########.fr        #
+#    Updated: 2018/12/13 16:24:06 by ccazuc           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-define default_trans 39
+define default_trans 69
 
 config	fsaa 1	4
 
