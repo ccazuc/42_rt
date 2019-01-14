@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:16:08 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:17 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	check_object_state(t_object *object)
 		ft_putstr("Warning, found object without color.\n");
 	if (!object->has_parsed_position)
 		ft_exit("Error, invalid file. Position not found for an object.",
-		EXIT_FAILURE);
+				EXIT_FAILURE);
 	if (!object->has_parsed_rotation)
 		ft_putstr("Warning, found an object without rotation.\n");
 	if (!object->has_parsed_scale)

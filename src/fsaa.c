@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 18:15:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:10:05 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:15 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int			color_add_fsaa(int c1, int c2, int factor)
 }
 
 static unsigned int	handle_overflow(unsigned int w,
-unsigned int n, unsigned int e, unsigned int s)
+		unsigned int n, unsigned int e, unsigned int s)
 {
 	unsigned int	res;
 
@@ -51,13 +51,13 @@ static unsigned int	get_pixel_at(t_env *env, int x, int y)
 	unsigned int	s;
 
 	w = get_pixel(env, env->fsaa_img, env->fsaa_factor
-	/ 2 * x, env->fsaa_factor / 2 * y);
+			/ 2 * x, env->fsaa_factor / 2 * y);
 	n = get_pixel(env, env->fsaa_img, env->fsaa_factor
-	/ 2 * x + 1, env->fsaa_factor / 2 * y);
+			/ 2 * x + 1, env->fsaa_factor / 2 * y);
 	e = get_pixel(env, env->fsaa_img, env->fsaa_factor
-	/ 2 * x, env->fsaa_factor / 2 * y + 1);
+			/ 2 * x, env->fsaa_factor / 2 * y + 1);
 	s = get_pixel(env, env->fsaa_img, env->fsaa_factor
-	/ 2 * x + 1, env->fsaa_factor / 2 * y + 1);
+			/ 2 * x + 1, env->fsaa_factor / 2 * y + 1);
 	return (handle_overflow(w, n, e, s));
 }
 

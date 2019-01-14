@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:38:45 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/22 09:43:32 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:12 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*get_file_name(void)
 	now = time(NULL);
 	localtime_r(&now, &tm_now);
 	strftime(file_name, sizeof(file_name),
-	"screenshots/render_%Y_%m_%d_%H_%M_%S.png", &tm_now);
+			"screenshots/render_%Y_%m_%d_%H_%M_%S.png", &tm_now);
 	return (ft_strdup(file_name));
 }
 
@@ -37,11 +37,11 @@ static void	fill_img_data(t_env *env, t_png_datas *img_datas)
 		while (++j < env->window_width)
 		{
 			img_datas->row[j * 3] = env->mlx_img_data[(i * env->window_width
-			+ j) * env->bpp / 8 + 2];
+					+ j) * env->bpp / 8 + 2];
 			img_datas->row[j * 3 + 1] = env->mlx_img_data[(i * env->window_width
-			+ j) * env->bpp / 8 + 1];
+					+ j) * env->bpp / 8 + 1];
 			img_datas->row[j * 3 + 2] = env->mlx_img_data[(i * env->window_width
-			+ j) * env->bpp / 8];
+					+ j) * env->bpp / 8];
 		}
 		png_write_row(img_datas->png_ptr, img_datas->row);
 	}
@@ -55,7 +55,7 @@ static void	free_img_datas(t_png_datas *img_datas)
 		fclose(img_datas->fp);
 	if (img_datas->info_ptr)
 		png_free_data(img_datas->png_ptr, img_datas->info_ptr,
-		PNG_FREE_ALL, -1);
+				PNG_FREE_ALL, -1);
 	if (img_datas->png_ptr)
 		png_destroy_write_struct(&img_datas->png_ptr, &img_datas->info_ptr);
 	if (img_datas->row)
@@ -70,7 +70,7 @@ static char	alloc_png_datas(t_png_datas *img_datas)
 		return (0);
 	}
 	img_datas->png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING,
-	NULL, NULL, NULL);
+			NULL, NULL, NULL);
 	if (!img_datas->png_ptr)
 	{
 		ft_putstr("Failed to allocate write structure.\n");
@@ -99,13 +99,13 @@ void		save_image(t_env *env)
 	alloc_png_datas(&img_datas);
 	png_init_io(img_datas.png_ptr, img_datas.fp);
 	png_set_IHDR(img_datas.png_ptr, img_datas.info_ptr, env->window_width,
-	env->window_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
-	PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+			env->window_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
+			PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 	img_datas.title_text.compression = PNG_TEXT_COMPRESSION_NONE;
 	img_datas.title_text.key = "Raytracer";
 	img_datas.title_text.text = img_datas.file_name;
 	png_set_text(img_datas.png_ptr, img_datas.info_ptr,
-	&img_datas.title_text, 1);
+			&img_datas.title_text, 1);
 	png_write_info(img_datas.png_ptr, img_datas.info_ptr);
 	if (!(img_datas.row = malloc(3 * env->window_width * sizeof(png_byte))))
 	{

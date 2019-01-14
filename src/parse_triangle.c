@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 13:29:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/29 13:50:35 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 16:04:59 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@ static void	check_object_state(t_object *object)
 {
 	if (!object->has_parsed_color)
 		ft_putstr("Warning, found object without color.\n");
-	if (!object->has_parsed_position || !object->has_parsed_rotation ||
-	!object->has_parsed_p3)
+	if (!object->has_parsed_position || !object->has_parsed_rotation
+			|| !object->has_parsed_p3)
 		ft_exit("Error, invalid file. Found a triangle without 3 points.",
-		EXIT_FAILURE);
+				EXIT_FAILURE);
 }
 
 static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)

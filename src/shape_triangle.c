@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 12:19:15 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:49:22 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:10 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void			get_triangle_normal(t_vector *vector, t_object *object,
 }
 
 void			collide_triangle(t_ray *ray, t_object *object,
-t_collision *collision, t_object *previous_object)
+		t_collision *collision, t_object *previous_object)
 {
 	t_triangle_collision	tri_coll;
 	double					factor;

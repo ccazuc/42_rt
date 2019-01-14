@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:25 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/15 12:22:49 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:02 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	get_sphere_normal(t_vector *vector, t_object *object, t_vector *pos)
 }
 
 void	collide_sphere(t_ray *ray, t_object *object,
-t_collision *collision, t_object *previous_object)
+		t_collision *collision, t_object *previous_object)
 {
 	t_vector	new;
 	t_quadratic	quadratic;

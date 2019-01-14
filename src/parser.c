@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:38:20 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 14:23:03 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 16:05:34 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,18 +21,18 @@ void		parse(t_env *env, char *file_name)
 	parse_args(env, fd);
 	if (!env->camera)
 		ft_exit("Error, no camera found.", EXIT_FAILURE);
-	if (!env->was_loaded && !(env->fsaa_img = malloc(env->window_width *
-	env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
+	if (!env->was_loaded && !(env->fsaa_img = malloc(env->window_width
+					* env->window_height * pow(env->fsaa_factor / 2, 2) * 4)))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
 	close(fd);
 }
 
 static void	parse_line2(t_env *env, char **result)
 {
-	if (!ft_strcmp_ignrcase(result[0], "plane") ||
-	!ft_strcmp_ignrcase(result[0], "cylindre") ||
-	!ft_strcmp_ignrcase(result[0], "cone") ||
-	!ft_strcmp_ignrcase(result[0], "sphere"))
+	if (!ft_strcmp_ignrcase(result[0], "plane")
+			|| !ft_strcmp_ignrcase(result[0], "cylindre")
+			|| !ft_strcmp_ignrcase(result[0], "cone")
+			|| !ft_strcmp_ignrcase(result[0], "sphere"))
 		parse_general_object(env, result);
 	else if (!ft_strcmp_ignrcase(result[0], "triangle"))
 		parse_triangle(env, result);
@@ -56,7 +56,7 @@ static void	parse_line(t_env *env, char *datas)
 
 	result = NULL;
 	if (!datas[0] || !(result = ft_strsplit(replace_tab_by_space(datas), ' '))
-	|| !result[0])
+			|| !result[0])
 	{
 		if (result)
 			free(result);

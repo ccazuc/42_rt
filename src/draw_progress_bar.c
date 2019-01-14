@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 11:57:19 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/13 17:12:38 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:56:19 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ void		draw_progress_bar(t_env *env, int line_drawn)
 		j = env->window_width / 4 - 1;
 		while (++j < env->window_width / 4 + ratio * max_width)
 			mlx_pixel_put(env->mlx_ptr, env->mlx_win, j, i,
-			color_factor(16777215, (double)(j - env->window_width / 4 + 150)
-			/ (double)max_width));
+					color_factor(16777215, (double)(j - env->window_width / 4
+							+ 150) / (double)max_width));
 	}
 	draw_borders(env);
 }

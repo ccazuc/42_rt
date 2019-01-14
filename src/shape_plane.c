@@ -6,14 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:27:04 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/06/14 14:17:40 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:12 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 void	get_plane_normal(t_vector *vector,
-t_object *object, t_collision *collision)
+		t_object *object, t_collision *collision)
 {
 	double		angle;
 
@@ -32,7 +32,7 @@ t_object *object, t_collision *collision)
 }
 
 void	collide_plane(t_ray *ray, t_object *object,
-t_collision *collision, t_object *previous_object)
+		t_collision *collision, t_object *previous_object)
 {
 	double		result;
 	t_vector	new;

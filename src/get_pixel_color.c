@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:48:47 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/09/15 14:47:13 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:06 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static float		add_color(float color, double factor)
 }
 
 static unsigned int	check_ambient(t_env *env, t_object *object,
-unsigned int color)
+		unsigned int color)
 {
 	t_color_mask	mask;
 
@@ -40,7 +40,7 @@ unsigned int color)
 }
 
 unsigned int		get_pixel_color(t_env *env, t_ray *ray,
-int recursion, t_object *previous_object)
+		int recursion, t_object *previous_object)
 {
 	unsigned int	color;
 	t_collision		collision;
@@ -52,10 +52,10 @@ int recursion, t_object *previous_object)
 	collision.color.g = 0;
 	collision.color.b = 0;
 	if (check_collision(env, ray, &collision, previous_object)
-	&& collision.object)
+			&& collision.object)
 	{
 		color = conv_rgb_to_int(collision.object->color_r,
-		collision.object->color_g, collision.object->color_b);
+				collision.object->color_g, collision.object->color_b);
 		color = get_light_color(env, &collision, recursion);
 		if (!collision.object->is_light)
 			color = check_ambient(env, collision.object, color);

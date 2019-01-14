@@ -6,14 +6,14 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/23 07:56:06 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:39:39 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:51:12 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
 unsigned int	get_light_color(t_env *env, t_collision *collision,
-int recursion)
+		int recursion)
 {
 	t_vector		normal;
 
@@ -32,5 +32,5 @@ int recursion)
 	}
 	check_refraction(env, collision, &normal, recursion);
 	return (conv_rgb_to_int(collision->color.r, collision->color.g,
-	collision->color.b));
+				collision->color.b));
 }

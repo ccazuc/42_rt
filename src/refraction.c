@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 14:17:57 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:46:38 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/14 15:52:09 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int				check_refraction(t_env *env, t_collision *collision,
 	if (collision->object->refraction == 0)
 		return (0);
 	ray.dir = get_refraction_dir(collision->dir,
-		*normal, collision->object->refraction);
+			*normal, collision->object->refraction);
 	vector_normalize(&ray.dir);
 	ray.pos.x = collision->pos.x;
 	ray.pos.y = collision->pos.y;
