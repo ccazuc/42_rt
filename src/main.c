@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:34:08 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 14:15:19 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/16 12:48:10 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int			main(int argc, char **argv)
 		env[i - 1]->env_list = env;
 		env[i - 1]->file_name = argv[i];
 	}
+	srand(time(NULL));
 	env_run(env, argv);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:24:49 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/16 17:20:29 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void		fill_light_data(t_collision *collision, t_light *light,
+void			fill_light_data(t_collision *collision, t_light *light,
 		double norm_angle)
 {
 	collision->color.r = dmin(255, collision->color.r + norm_angle
@@ -26,7 +26,7 @@ static void		fill_light_data(t_collision *collision, t_light *light,
 			* collision->object->color_b / 255.);
 }
 
-static void		init_find_light_loop_datas(t_ray *ray, t_light *light,
+void			init_find_light_loop_datas(t_ray *ray, t_light *light,
 		t_collision *collision)
 {
 	if (light->is_direc && (light->rot.x || light->rot.y || light->rot.z))
@@ -62,6 +62,7 @@ void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 	t_light_list	*list;
 	t_ray			ray;
 	t_collision		find_collision;
+	t_color_mask	gi_clr;
 
 	list = env->light_list;
 	ray.pos = collision->pos;
@@ -83,4 +84,17 @@ void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 	collision->color.r = dmin(255, collision->color.r * 255);
 	collision->color.g = dmin(255, collision->color.g * 255);
 	collision->color.b = dmin(255, collision->color.b * 255);
+	if (env->n_sample_ray > 0)
+	{
+		gi_clr = glob_illum(env, collision->pos, *normal);
+		collision->color.r += gi_clr.r;
+		if (collision->color.r > 255.0)
+			collision->color.r = 255.0;
+		collision->color.g += gi_clr.g;
+		if (collision->color.g > 255.0)
+			collision->color.g = 255.0;
+		collision->color.b += gi_clr.b;
+		if (collision->color.b > 255.0)
+			collision->color.b = 255.0;
+	}
 }

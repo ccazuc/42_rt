@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:31:46 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/16 16:50:44 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -457,5 +457,13 @@ t_vector						mul_vector(t_vector const a, float const b);
 int								check_refraction(t_env *env, t_collision *collision,
 								t_vector *normal, int recursion);
 
+void							fill_light_data(t_collision *collision,
+								t_light *light, double norm_angle);
+void							init_find_light_loop_datas(t_ray *ray,
+								t_light *light, t_collision *collision);
+
+t_color_mask					glob_illum(t_env *env,
+								t_vector const obj_hit,
+								t_vector const obj_normal);
 
 #endif

@@ -78,6 +78,7 @@ SRCS_NAME = main.c \
 			reload_file.c \
 			vector_utils.c \
 			refraction.c \
+			global_illumination.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

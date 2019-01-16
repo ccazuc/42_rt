@@ -1,0 +1,23 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    gi_test.map                                        :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2017/11/15 13:46:35 by ccazuc            #+#    #+#              #
+#    Updated: 2019/01/16 17:17:11 by kehuang          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+config	thread	4	ambient	20	20	20	10	window_width	800	window_height	800	n_sample_ray 10
+
+material mat	color	255	0	0	scale	1
+
+sphere		pos	0	0	10	mat	rot	1	0	0
+plane		color	0	155	0	pos	0	10	0	rot	0	0	0	has_gi	1
+plane		color	0	0	155	pos	0	-10	0	rot	0	0	0	has_gi	1
+plane		color	0	155	155	pos	10	0	0	rot	0	0	90	has_gi	1
+plane		color	155	0	0	pos	-10	0	0	rot	0	0	90	has_gi	1
+light		color	255	255	255	pos	0	0	4	power	5	rot	10	0	10
+camera			pos 0	0	0		rot 0	0	0
