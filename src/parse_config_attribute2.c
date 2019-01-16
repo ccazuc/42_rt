@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 16:21:24 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/16 21:43:50 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,10 @@ void	parse_config_sample_ray(t_env *env, char **datas, int *start)
 		ft_exit("Error, invalid file. Sample ray's parameter is invalid."
 				, EXIT_FAILURE);
 	value = ft_atoi(datas[*start + 1]);
-	if (value < 1 || value > 10000)
+	if (value < 0 || value > 10000)
 	{
 		ft_putstr("Warning, incorrect value for Sample_ray's param, must be");
-		ft_putstr(" between 1 and 10000.  Default value will be used.\n");
+		ft_putstr(" between 0 and 10000.  Default value will be used.\n");
 	}
 	else
 		env->n_sample_ray = value;

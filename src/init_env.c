@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 12:57:17 by ccazuc            #+#    #+#             */
-/*   Updated: 2018/12/05 14:00:44 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/16 20:37:46 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ void	init_env(t_env *env)
 	env->grayscale_filter = 0;
 	env->fsaa_factor = 4;
 	env->was_loaded = 0;
-	env->n_sample_ray = 1;
+	env->n_sample_ray = 0;
 }
