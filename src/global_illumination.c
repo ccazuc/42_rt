@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 15:25:29 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/16 17:25:41 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/16 20:08:14 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_color_mask		glob_illum(t_env *env,
 	t_color_mask	gi;
 	t_vector		random_angle;
 	unsigned int	pxl;
-	unsigned int	idx_iter;
+	int				idx_iter;
 
 	ft_bzero((void *)&gi, sizeof(t_color_mask));
 	ray.pos = obj_hit;

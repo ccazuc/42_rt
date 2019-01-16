@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/16 17:20:29 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/16 20:12:01 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 	collision->color.r = dmin(255, collision->color.r * 255);
 	collision->color.g = dmin(255, collision->color.g * 255);
 	collision->color.b = dmin(255, collision->color.b * 255);
-	if (env->n_sample_ray > 0)
+	if (env->n_sample_ray > 0 && collision->object->has_gi == 0)
 	{
 		gi_clr = glob_illum(env, collision->pos, *normal);
 		collision->color.r += gi_clr.r;
