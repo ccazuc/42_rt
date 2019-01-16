@@ -61,8 +61,7 @@ int				get_shadow_color(t_env *env, t_collision *collision,
 			< vector_distance(&light->pos, &collision->pos)
 			&& find_collision.distance > 0.0001)
 	{
-		if (find_collision.object->transparency <= 0
-				|| find_collision.object->is_light)
+		if (find_collision.object->transparency <= 0)
 			return (0);
 		fill_shadow_data(&mask, &find_collision);
 		new_ray.pos = find_collision.pos;

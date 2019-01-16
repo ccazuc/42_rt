@@ -2,3 +2,5 @@
 rt
 *.DS_Store
 *.o
+libpng
+zlib

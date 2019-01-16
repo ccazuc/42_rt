@@ -95,3 +95,24 @@ void	parse_object_refraction(t_env *env, t_object *object,
 	*start += 1;
 	object->has_parsed_refraction = 1;
 }
+
+void	parse_object_gi(t_env *env, t_object *object,
+		char **datas, int *start)
+{
+	(void)env;
+	if (object->has_parsed_gi)
+		ft_exit("Error, invalid file. GI duplicate for an object."
+				, EXIT_FAILURE);
+	if (!datas[*start + 1])
+		ft_exit("Error, invalid file. Not enough parameters for GI."
+				, EXIT_FAILURE);
+	if (!ft_str_isdigit(datas[*start + 1]))
+		ft_exit("Error, invalid file. GI's parameters are invalid."
+				, EXIT_FAILURE);
+	object->has_gi = ft_atoi(datas[*start + 1]);
+	if (object->has_gi != 0 && object->has_gi != 1)
+		ft_exit("Error, invalid file. GI's param's value is invalid."
+				, EXIT_FAILURE);
+	*start += 1;
+	object->has_parsed_gi = 1;
+}

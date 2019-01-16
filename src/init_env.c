@@ -33,4 +33,5 @@ void	init_env(t_env *env)
 	env->grayscale_filter = 0;
 	env->fsaa_factor = 4;
 	env->was_loaded = 0;
+	env->n_sample_ray = 1;
 }

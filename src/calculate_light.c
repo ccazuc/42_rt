@@ -25,12 +25,8 @@ unsigned int	get_light_color(t_env *env, t_collision *collision,
 	collision->color.g = 0;
 	collision->color.b = 0;
 	find_light(env, collision, &normal);
-	if (!collision->object->is_light)
-	{
-		check_reflection(env, collision, &normal, recursion);
-		light_transparency(env, collision, recursion);
-	}
-	check_refraction(env, collision, &normal, recursion);
+	check_reflection(env, collision, &normal, recursion);
+	light_transparency(env, collision, recursion);
 	return (conv_rgb_to_int(collision->color.r, collision->color.g,
 				collision->color.b));
 }

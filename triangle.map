@@ -16,7 +16,7 @@ material mat	color	255	0	0	scale	1	reflection	0	transp	50
 
 #triangle	p1	10	3	10	p2	-10	6	15	p3	0	-8	10	color	255	0	0
 #triangle	p1	-10	6	15	p2	10	3	10	p3	0	5	-10	color	0	255	0
-triangle	p1	-5	-5	10	p2	5	-5	10	p3	0	5	10	color	0	155	0	transp	0
+triangle	has_gi 1 p1	-5	-5	10	p2	5	-5	10	p3	0	5	10	color	0	155	0	transp	0
 sphere		pos	3	0	15	color	255	0	0	scale	1
 #sphere		pos	10	3	10	color	255	0	0	rot	0	0	0	scale	1	transp	50
 #sphere		pos	-10	6	15	color	0	255	0	rot	0	0	0	scale	1	transp	50

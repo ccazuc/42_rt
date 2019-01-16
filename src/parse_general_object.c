@@ -61,6 +61,8 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_transparency(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "refraction"))
 		parse_object_refraction(env, object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "has_gi"))
+		parse_object_gi(env, object, datas, i);
 	else if ((material = find_material(env, datas[*i])))
 		fill_object_with_material(object, material);
 	else

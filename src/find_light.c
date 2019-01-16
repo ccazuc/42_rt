@@ -15,8 +15,6 @@
 static void		fill_light_data(t_collision *collision, t_light *light,
 		double norm_angle)
 {
-	if (collision->object->is_light)
-		return ;
 	collision->color.r = dmin(255, collision->color.r + norm_angle
 			* light->power / 5. * light->color_r / 255.
 			* collision->object->color_r / 255.);

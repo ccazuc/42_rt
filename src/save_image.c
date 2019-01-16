@@ -96,7 +96,8 @@ void		save_image(t_env *env)
 
 	img_datas.file_name = get_file_name();
 	img_datas.fp = fopen(img_datas.file_name, "wb");
-	alloc_png_datas(&img_datas);
+	if (!alloc_png_datas(&img_datas))
+		return ;
 	png_init_io(img_datas.png_ptr, img_datas.fp);
 	png_set_IHDR(img_datas.png_ptr, img_datas.info_ptr, env->window_width,
 			env->window_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,

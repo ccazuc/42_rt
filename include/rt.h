@@ -160,13 +160,14 @@ struct							s_object
 	char						has_parsed_reflection;
 	char						has_parsed_transparency;
 	char						has_parsed_refraction;
+	char						has_parsed_gi;
 	float						transparency;
 	float						reflection;
 	float						refraction;
 	t_vector					pos;
 	t_vector					p3;
 	char						has_parsed_p3;
-	char						is_light;
+	char						has_gi;
 };
 
 typedef struct					s_quadratic
@@ -243,6 +244,7 @@ typedef struct					s_env
 	int							fsaa_factor;
 	char						*file_name;
 	int							was_loaded;
+	int							n_sample_ray;
 }								t_env;
 
 struct							s_worker
@@ -268,6 +270,8 @@ void							parse_object_position(t_env *env,
 void							parse_object_rotation(t_env *env,
 								t_object *object, char **datas, int *start);
 void							parse_object_scale(t_env *env, t_object *object,
+								char **datas, int *start);
+void							parse_object_gi(t_env *env, t_object *object,
 								char **datas, int *start);
 void							parse_args(t_env *env, int fd);
 void							list_add_object(t_env *env, t_object *object);
@@ -408,6 +412,9 @@ void							parse_config_ambient(t_env *env,
 								char **datas, int *start);
 void							parse_config_window_width(t_env *env,
 								char **datas, int *start);
+void							parse_config_sample_ray(t_env *env,
+								char **datas, int *start);
+
 void							parse_config_window_height(t_env *env,
 								char **datas, int *start);
 void							parse_config_filter_sepia(t_env *env,

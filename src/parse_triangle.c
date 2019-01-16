@@ -54,6 +54,8 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_reflection(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "transparency"))
 		parse_object_transparency(env, object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "has_gi"))
+		parse_object_gi(env, object, datas, i);
 	else
 		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
 }

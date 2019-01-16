@@ -26,6 +26,7 @@ t_object	*create_object(void)
 	object->has_parsed_transparency = 0;
 	object->has_parsed_refraction = 0;
 	object->has_parsed_p3 = 0;
+	object->has_parsed_gi = 0;
 	object->rot.x = 0;
 	object->rot.y = 0;
 	object->rot.z = 0;
@@ -36,6 +37,6 @@ t_object	*create_object(void)
 	object->reflection = 0;
 	object->refraction = 0;
 	object->transparency = 0;
-	object->is_light = 0;
+	object->has_gi = 0;
 	return (object);
 }
