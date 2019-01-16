@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 15:25:29 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/16 17:14:20 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/16 17:25:41 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,14 +96,12 @@ t_color_mask		glob_illum(t_env *env,
 	t_color_mask	gi;
 	t_vector		random_angle;
 	unsigned int	pxl;
-	unsigned int	sample_ray_max;
 	unsigned int	idx_iter;
 
 	ft_bzero((void *)&gi, sizeof(t_color_mask));
-	sample_ray_max = env->n_sample_ray;
 	ray.pos = obj_hit;
 	idx_iter = 0;
-	while (idx_iter < sample_ray_max)
+	while (idx_iter < env->n_sample_ray)
 	{
 		ray.dir = obj_normal;
 		random_angle = rnew_vector();
@@ -114,8 +112,8 @@ t_color_mask		glob_illum(t_env *env,
 		gi.b += (pxl & 0xff) / 255.0;
 		++idx_iter;
 	}
-	gi.r = gi.r / sample_ray_max * 255.0;
-	gi.g = gi.g / sample_ray_max * 255.0;
-	gi.b = gi.b / sample_ray_max * 255.0;
+	gi.r = gi.r / env->n_sample_ray * 255.0;
+	gi.g = gi.g / env->n_sample_ray * 255.0;
+	gi.b = gi.b / env->n_sample_ray * 255.0;
 	return (gi);
 }
