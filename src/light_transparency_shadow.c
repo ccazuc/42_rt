@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 20:34:23 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/18 00:07:42 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static	void	update_color(t_collision *collision, t_color_mask *mask,
 	c.b /= 255.0;
 	collision->color.r = mask->r * light->color_r / 255.
 		* light->power / 5. + c.r;
-	collision->g = mask->g * light->color_g / 255.
+	collision->color.g = mask->g * light->color_g / 255.
 		* light->power / 5. + c.g;
-	collision->b = mask->b * light->color_b / 255.
+	collision->color.b = mask->b * light->color_b / 255.
 		* light->power / 5. + c.b;
 }
 
