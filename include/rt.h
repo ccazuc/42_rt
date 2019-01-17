@@ -156,6 +156,8 @@ struct							s_object
 	float						color_g;
 	float						color_b;
 	t_vector					rot;
+	t_vector					texu_size;
+	t_vector					texu_offs;
 	int							scale;
 	char						has_parsed_position;
 	char						has_parsed_color;
@@ -165,6 +167,7 @@ struct							s_object
 	char						has_parsed_transparency;
 	char						has_parsed_refraction;
 	char						has_parsed_gi;
+	char						has_parsed_texture;
 	float						transparency;
 	float						reflection;
 	float						refraction;
@@ -172,6 +175,8 @@ struct							s_object
 	t_vector					p3;
 	char						has_parsed_p3;
 	char						has_gi;
+	char						has_texture;
+	char						texture_id;
 };
 
 typedef struct					s_quadratic
@@ -460,17 +465,16 @@ t_vector						sub_vector(t_vector const a, t_vector const b);
 t_vector						mul_vector(t_vector const a, float const b);
 int								check_refraction(t_env *env, t_collision *collision,
 								t_vector *normal, int recursion);
-
 void							fill_light_data(t_collision *collision,
 								t_light *light, double norm_angle);
 void							init_find_light_loop_datas(t_ray *ray,
 								t_light *light, t_collision *collision);
-
 t_color_mask					glob_illum(t_env *env,
 								t_vector const obj_hit,
 								t_vector const obj_normal);
-
 t_color_mask					texture_checkboard(t_vector hit_pos,
 								t_vector rot);
+void							parse_object_texture(t_env *env, t_object *object
+								, char **datas, int *start);
 
 #endif

@@ -38,5 +38,11 @@ t_object	*create_object(void)
 	object->refraction = 0;
 	object->transparency = 0;
 	object->has_gi = 0;
+	object->texu_size.x = 1.;
+	object->texu_size.y = 1.;
+	object->texu_size.z = 1.;
+	object->texu_offs.x = .0;
+	object->texu_offs.y = .0;
+	object->texu_offs.z = .0;
 	return (object);
 }
