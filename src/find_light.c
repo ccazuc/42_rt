@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/16 20:12:01 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/17 02:28:09 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,22 @@
 void			fill_light_data(t_collision *collision, t_light *light,
 		double norm_angle)
 {
+	t_color_mask	c;
+
+	if (collision->object->type == TARGET)
+		c = texture_checkboard(collision->pos, collision->object->rot);
+	else
+	{
+		c.r = collision->object->color_r;
+		c.g = collision->object->color_g;
+		c.b = collision->object->color_b;
+	}
 	collision->color.r = dmin(255, collision->color.r + norm_angle
-			* light->power / 5. * light->color_r / 255.
-			* collision->object->color_r / 255.);
+			* light->power / 5. * light->color_r / 255. * c.r / 255.);
 	collision->color.g = dmin(255, collision->color.g + norm_angle
-			* light->power / 5. * light->color_g / 255.
-			* collision->object->color_g / 255.);
+			* light->power / 5. * light->color_g / 255. * c.g / 255.);
 	collision->color.b = dmin(255, collision->color.b + norm_angle
-			* light->power / 5. * light->color_b / 255.
-			* collision->object->color_b / 255.);
+			* light->power / 5. * light->color_b / 255. * c.b / 255.);
 }
 
 void			init_find_light_loop_datas(t_ray *ray, t_light *light,
