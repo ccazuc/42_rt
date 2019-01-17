@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:56:41 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 16:04:30 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:16:43 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,4 @@ void	parse_object_texture(t_env *env, t_object *object
 	object->texture_id = ft_atoi(datas[*start + 1]);
 	*start += 1;
 	object->has_parsed_texture = 1;
-}
-
 }
