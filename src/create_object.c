@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/27 11:01:33 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 17:26:43 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:39:42 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,6 @@ t_object	*create_object(void)
 	object->texu_offs.y = .0;
 	object->texu_offs.z = .0;
 	object->has_texture = 0;
+	object->has_parsed_texture = 0;
 	return (object);
 }

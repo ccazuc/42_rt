@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 02:28:25 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:28:20 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,22 @@ static void		init_shadow_color_data(t_ray *new_ray, t_ray *ray,
 }
 
 static void		fill_shadow_data(t_color_mask *mask,
-		t_collision *find_collision)
+		t_collision *hit)
 {
 	t_color_mask	c;
 
-	if (find_collision->object->type == TARGET)
-		c = texture_checkboard(find_collision->pos,
-				find_collision->object->rot);
+	if (hit->object->has_texture)
+		c = texture_checkboard(hit->pos, hit->object->rot,
+				hit->object->texu_offs, hit->object->texu_size);
 	else
 	{
-		c.r = find_collision->object->color_r;
-		c.g = find_collision->object->color_g;
-		c.b = find_collision->object->color_b;
+		c.r = hit->object->color_r;
+		c.g = hit->object->color_g;
+		c.b = hit->object->color_b;
 	}
-	mask->r *= c.r / 255. * find_collision->object->transparency;
-	mask->g *= c.g / 255. * find_collision->object->transparency;
-	mask->b *= c.b / 255. * find_collision->object->transparency;
+	mask->r *= c.r / 255. * hit->object->transparency;
+	mask->g *= c.g / 255. * hit->object->transparency;
+	mask->b *= c.b / 255. * hit->object->transparency;
 }
 
 static	void	update_color(t_collision *collision, t_color_mask *mask,
@@ -46,8 +46,9 @@ static	void	update_color(t_collision *collision, t_color_mask *mask,
 {
 	t_color_mask	c;
 
-	if (collision->object->type == TARGET)
-		c = texture_checkboard(collision->pos, collision->object->rot);
+	if (collision->object->has_texture)
+		c = texture_checkboard(collision->pos, collision->object->rot,
+				collision->object->texu_offs, collision->object->texu_size);
 	else
 	{
 		c.r = collision->object->color_r;
@@ -68,24 +69,22 @@ static	void	update_color(t_collision *collision, t_color_mask *mask,
 int				get_shadow_color(t_env *env, t_collision *collision,
 		t_ray *ray, t_light *light)
 {
-	t_collision		find_collision;
+	t_collision		hit;
 	t_ray			new_ray;
 	t_color_mask	mask;
 	int				collision_found;
 
 	collision_found = 0;
 	init_shadow_color_data(&new_ray, ray, &mask);
-	find_collision.object = collision->object;
-	while (check_collision(env, &new_ray, &find_collision,
-				find_collision.object)
-			&& find_collision.distance
-			< vector_distance(&light->pos, &collision->pos)
-			&& find_collision.distance > 0.0001)
+	hit.object = collision->object;
+	while (check_collision(env, &new_ray, &hit, hit.object)
+			&& hit.distance < vector_distance(&light->pos, &collision->pos)
+			&& hit.distance > 0.0001)
 	{
-		if (find_collision.object->transparency <= 0)
+		if (hit.object->transparency <= 0)
 			return (0);
-		fill_shadow_data(&mask, &find_collision);
-		new_ray.pos = find_collision.pos;
+		fill_shadow_data(&mask, &hit);
+		new_ray.pos = hit.pos;
 		collision_found = 1;
 	}
 	if (!collision_found)

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 02:27:36 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/17 17:18:46 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,6 @@
 # define DEFAULT_COLOR_G 0
 # define DEFAULT_COLOR_B 0xFF
 # define REFLECTION_DEPTH 10
-
-//# define TARGET TRIANGLE
-# define TARGET PLANE
-//# define TARGET SPHERE
 
 typedef struct s_object			t_object;
 typedef struct s_worker			t_worker;
@@ -473,7 +469,9 @@ t_color_mask					glob_illum(t_env *env,
 								t_vector const obj_hit,
 								t_vector const obj_normal);
 t_color_mask					texture_checkboard(t_vector hit_pos,
-								t_vector rot);
+								t_vector rot,
+								t_vector const offs,
+								t_vector const size);
 void							parse_object_texture(t_env *env, t_object *object
 								, char **datas, int *start);
 
