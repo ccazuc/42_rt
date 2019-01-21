@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:24:43 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/21 01:18:20 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 14:16:00 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	get_uv_sphere_mapping(t_collision *hit, double *uv)
 	phi = acos(dot_product(&vn, &vp));
 	theta = (acos(dot_product(&vp, &vw) / sin(phi))) / (2.0 * M_PI);
     if (dot_product(&ve, &vp) < 0)
-		uv[0] = theta;
-	else
 		uv[0] = 1.0 - theta;
+	else
+		uv[0] = theta;
 	uv[1] = phi / M_PI;
 }
 
@@ -39,17 +39,13 @@ t_color_mask	get_texu_pxl_sphere(t_collision *hit)
 {
 	t_color_mask	c;
 	double			uv[2];
-	size_t			idx;
 	size_t			x;
 	size_t			y;
 
 	get_uv_sphere_mapping(hit, uv);
 	x = (size_t)((double)(hit->object->texu.size_x) * uv[0]);
 	y = (size_t)((double)(hit->object->texu.size_y) * uv[1]);
-	idx = x + y * hit->object->texu.size_x;
-	c.r = hit->object->texu.buf[idx + 2];
-	c.g = hit->object->texu.buf[idx + 1];
-	c.b = hit->object->texu.buf[idx];
+	c = hit->object->texu.buf[y * hit->object->texu.size_x + x];
 	return (c);
 }
 
@@ -78,19 +74,15 @@ t_color_mask	get_texu_pxl_cylinder(t_collision *hit)
 {
 	t_color_mask	c;
 	double			uv[2];
-	size_t			idx;
 	int				x;
 	int				y;
 
 	get_uv_cylinder_mapping(hit, uv);
 	x = (int)(hit->object->texu.size_x * uv[0]);
-	y = (hit->object->texu.size_y / 2) - (int)uv[1];
+	y = hit->object->texu.size_y - (int)uv[1];
 	y %= hit->object->texu.size_y;
 	if (y < 0)
 		y = hit->object->texu.size_y + y;
-	idx = x + y * hit->object->texu.size_x;
-	c.r = hit->object->texu.buf[idx + 2];
-	c.g = hit->object->texu.buf[idx + 1];
-	c.b = hit->object->texu.buf[idx];
+	c = hit->object->texu.buf[(size_t)(y * hit->object->texu.size_x + x)];
 	return (c);
 }

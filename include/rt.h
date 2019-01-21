@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/21 01:40:50 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 14:11:14 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,6 @@
 typedef struct s_object			t_object;
 typedef struct s_worker			t_worker;
 
-typedef struct					s_texu
-{
-	char						*file_path;
-	char						*buf;
-	size_t						size_x;
-	size_t						size_y;
-	size_t						offs_x;
-	size_t						offs_y;
-	double						scale;
-}								t_texu;
-
 typedef struct					s_png_datas
 {
 	FILE						*fp;
@@ -77,6 +66,17 @@ typedef struct					s_color_mask
 	double						g;
 	double						b;
 }								t_color_mask;
+
+typedef struct					s_texu
+{
+	t_color_mask				*buf;
+	size_t						size_x;
+	size_t						size_y;
+	size_t						offs_x;
+	size_t						offs_y;
+	double						scale;
+	char						*file_path;
+}								t_texu;
 
 typedef struct					s_ray
 {
