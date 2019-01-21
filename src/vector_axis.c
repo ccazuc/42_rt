@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   texture_checkboard.c                               :+:      :+:    :+:   */
+/*   vector_axis.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 23:12:09 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/18 18:08:02 by kehuang          ###   ########.fr       */
+/*   Created: 2019/01/21 01:18:09 by kehuang           #+#    #+#             */
+/*   Updated: 2019/01/21 01:18:29 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-t_color_mask	texture_checkboard(t_vector hit_pos,
-		t_vector rot,
-		t_vector const offs,
-		t_vector const size)
+t_vector		get_x_normal(t_vector rot)
 {
-	static t_color_mask const	c[2] = {{233.0, 233.0, 233.0}, {0.0, 0.0, 0.0}};
+	t_vector	n;
 
-	vector_rotate(&hit_pos, &rot);
-	return (c[((long)(round((hit_pos.x + offs.x) / size.x)) & 0b1)
-			^ ((long)(round((hit_pos.y + offs.y) / size.y)) & 0b1)
-			^ ((long)(round((hit_pos.z + offs.z) / size.z)) & 0b1)]);
+	n.x = -1.0;
+	n.y = 0.0;
+	n.z = 0.0;
+	vector_rotate(&n, &rot);
+	return (n);
+}
+
+t_vector		get_y_normal(t_vector rot)
+{
+	t_vector	n;
+
+	n.x = 0.0;
+	n.y = 1.0;
+	n.z = 0.0;
+	vector_rotate(&n, &rot);
+	return (n);
+}
+
+t_vector		get_z_normal(t_vector rot)
+{
+	t_vector	n;
+
+	n.x = 0.0;
+	n.y = 0.0;
+	n.z = 1.0;
+	vector_rotate(&n, &rot);
+	return (n);
 }

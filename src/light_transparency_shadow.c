@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 12:47:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/18 00:07:42 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 01:47:11 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,7 @@ static void		fill_shadow_data(t_color_mask *mask,
 {
 	t_color_mask	c;
 
-	if (hit->object->has_texture)
-		c = texture_checkboard(hit->pos, hit->object->rot,
-				hit->object->texu_offs, hit->object->texu_size);
-	else
-	{
-		c.r = hit->object->color_r;
-		c.g = hit->object->color_g;
-		c.b = hit->object->color_b;
-	}
+	c = get_object_color(hit);
 	mask->r *= c.r / 255. * hit->object->transparency;
 	mask->g *= c.g / 255. * hit->object->transparency;
 	mask->b *= c.b / 255. * hit->object->transparency;
@@ -46,15 +38,7 @@ static	void	update_color(t_collision *collision, t_color_mask *mask,
 {
 	t_color_mask	c;
 
-	if (collision->object->has_texture)
-		c = texture_checkboard(collision->pos, collision->object->rot,
-				collision->object->texu_offs, collision->object->texu_size);
-	else
-	{
-		c.r = collision->object->color_r;
-		c.g = collision->object->color_g;
-		c.b = collision->object->color_b;
-	}
+	c = get_object_color(collision);
 	c.r /= 255.0;
 	c.g /= 255.0;
 	c.b /= 255.0;

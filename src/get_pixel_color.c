@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/17 15:48:47 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 19:53:19 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 01:42:42 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,7 @@ static unsigned int	check_ambient(t_env *env, t_collision *hit,
 	t_color_mask	mask;
 	t_color_mask	obj_clr;
 
-	if (hit->object->has_texture)
-		obj_clr = texture_checkboard(hit->pos, hit->object->rot,
-				hit->object->texu_offs, hit->object->texu_size);
-	else
-	{
-		obj_clr.r = hit->object->color_r;
-		obj_clr.g = hit->object->color_g;
-		obj_clr.b = hit->object->color_b;
-	}
+	obj_clr = get_object_color(hit);
 	if (get_color_r(color) < get_color_r(env->light_ambient))
 		mask.r = add_color(obj_clr.r, env->ambient_power);
 	else

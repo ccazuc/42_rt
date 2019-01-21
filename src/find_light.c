@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 17:28:15 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 01:46:49 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,7 @@ void			fill_light_data(t_collision *collision, t_light *light,
 {
 	t_color_mask	c;
 
-	if (collision->object->has_texture)
-		c = texture_checkboard(collision->pos, collision->object->rot,
-				collision->object->texu_offs, collision->object->texu_size);
-	else
-	{
-		c.r = collision->object->color_r;
-		c.g = collision->object->color_g;
-		c.b = collision->object->color_b;
-	}
+	c = get_object_color(collision);
 	collision->color.r = dmin(255, collision->color.r + norm_angle
 			* light->power / 5. * light->color_r / 255. * c.r / 255.);
 	collision->color.g = dmin(255, collision->color.g + norm_angle

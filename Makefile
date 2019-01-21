@@ -1,6 +1,6 @@
 NAME = rt
 
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
 
 CC = gcc
 
@@ -80,6 +80,9 @@ SRCS_NAME = main.c \
 			refraction.c \
 			global_illumination.c \
 			texture_checkboard.c \
+			texture.c \
+			vector_axis.c \
+			get_object_color.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 

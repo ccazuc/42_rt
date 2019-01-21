@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/17 17:18:46 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 01:40:50 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@
 
 typedef struct s_object			t_object;
 typedef struct s_worker			t_worker;
+
+typedef struct					s_texu
+{
+	char						*file_path;
+	char						*buf;
+	size_t						size_x;
+	size_t						size_y;
+	size_t						offs_x;
+	size_t						offs_y;
+	double						scale;
+}								t_texu;
 
 typedef struct					s_png_datas
 {
@@ -152,6 +163,7 @@ struct							s_object
 	float						color_g;
 	float						color_b;
 	t_vector					rot;
+	t_texu						texu;
 	t_vector					texu_size;
 	t_vector					texu_offs;
 	int							scale;
@@ -474,5 +486,11 @@ t_color_mask					texture_checkboard(t_vector hit_pos,
 								t_vector const size);
 void							parse_object_texture(t_env *env, t_object *object
 								, char **datas, int *start);
+t_vector						get_x_normal(t_vector rot);
+t_vector						get_y_normal(t_vector rot);
+t_vector						get_z_normal(t_vector rot);
+t_color_mask					get_texu_pxl_sphere(t_collision *hit);
+t_color_mask					get_texu_pxl_cylinder(t_collision *hit);
+t_color_mask					get_object_color(t_collision *hit);
 
 #endif
