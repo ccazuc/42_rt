@@ -6,11 +6,17 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:24:43 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/21 14:16:00 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/21 15:47:40 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
+
+t_color_mask const	g_texu[3*3] = {
+	{155, 0, 255}, {255, 0, 0}, {255, 255, 255},
+	{255, 255, 0}, {0, 0, 255}, {255, 0, 255},
+	{255, 255, 255}, {0, 255, 0}, {155, 0, 155}
+};
 
 static void	get_uv_sphere_mapping(t_collision *hit, double *uv)
 {
@@ -42,10 +48,13 @@ t_color_mask	get_texu_pxl_sphere(t_collision *hit)
 	size_t			x;
 	size_t			y;
 
+	hit->object->texu.size_x = 3;
+	hit->object->texu.size_y = 3;
 	get_uv_sphere_mapping(hit, uv);
 	x = (size_t)((double)(hit->object->texu.size_x) * uv[0]);
 	y = (size_t)((double)(hit->object->texu.size_y) * uv[1]);
-	c = hit->object->texu.buf[y * hit->object->texu.size_x + x];
+//	c = hit->object->texu.buf[y * hit->object->texu.size_x + x];
+	c = g_texu[y * hit->object->texu.size_x + x];
 	return (c);
 }
 
@@ -77,12 +86,17 @@ t_color_mask	get_texu_pxl_cylinder(t_collision *hit)
 	int				x;
 	int				y;
 
+	hit->object->scale = 100;
+	hit->object->texu.size_x = 3;
+	hit->object->texu.size_y = 3;
+
 	get_uv_cylinder_mapping(hit, uv);
 	x = (int)(hit->object->texu.size_x * uv[0]);
 	y = hit->object->texu.size_y - (int)uv[1];
 	y %= hit->object->texu.size_y;
 	if (y < 0)
 		y = hit->object->texu.size_y + y;
-	c = hit->object->texu.buf[(size_t)(y * hit->object->texu.size_x + x)];
+//	c = hit->object->texu.buf[(size_t)(y * hit->object->texu.size_x + x)];
+	c = g_texu[y * hit->object->texu.size_x + x];
 	return (c);
 }

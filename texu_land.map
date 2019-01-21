@@ -1,0 +1,38 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    texu_land.map                                      :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/01/17 19:40:40 by kehuang           #+#    #+#              #
+#    Updated: 2019/01/21 15:50:27 by kehuang          ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+config	thread	4	ambient	50	50	50	10	window_width	800	window_height	800
+
+light		color	255	255	255	pos	-100	500	-800	power	5
+light		color	255	255	255	pos	300		2	-3000	power	5
+camera		pos 0	5	-500	rot	0		0	0
+
+#	texture loaded
+sphere		color	255	0	0	pos	0	5	-450	rot	0	0	0	scale	5
+sphere		color	255	0	0	pos	-20	5	-450	rot	0	0	0	scale	5
+#sphere		color	255	0	0	pos	20	5	-450	rot	0	0	0	scale	5
+
+sphere		color	255	0	0	pos	0	25	-450	rot	0	180	0	scale	5
+sphere		color	255	0	0	pos	-20	25	-450	rot	-20	45	0	scale	5
+#sphere		color	255	0	0	pos	20	25	-450	rot	20	-45	0	scale	5
+
+cylindre	color	255	0	0	pos	20	25	-450	rot	0	0	0	scale	5
+
+#	texture checkboard
+#sphere		color	255	0	0	pos	0	5	-450	rot	0	0	10	scale	5	texture	1
+#
+#sphere		color	255	0	0	pos	100		35	-250	rot	0	0	0	scale	35	texture	1
+#sphere		color	255	0	0	pos	-100	35	-250	rot	0	0	0	scale	35	texture	1
+#
+#sphere		color	255	0	0	pos	0	400	1000	rot	0	0	0	scale	400	texture	1
+
+plane		color	0	155	0	pos	0	0	0		rot	0	45	0				texture	1
