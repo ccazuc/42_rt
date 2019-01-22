@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/21 14:11:14 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/22 22:34:54 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ typedef struct					s_texu
 	size_t						offs_x;
 	size_t						offs_y;
 	double						scale;
-	char						*file_path;
 }								t_texu;
 
 typedef struct					s_ray
@@ -163,7 +162,7 @@ struct							s_object
 	float						color_g;
 	float						color_b;
 	t_vector					rot;
-	t_texu						texu;
+	t_texu						*texu;
 	t_vector					texu_size;
 	t_vector					texu_offs;
 	int							scale;
@@ -492,5 +491,6 @@ t_vector						get_z_normal(t_vector rot);
 t_color_mask					get_texu_pxl_sphere(t_collision *hit);
 t_color_mask					get_texu_pxl_cylinder(t_collision *hit);
 t_color_mask					get_object_color(t_collision *hit);
+t_texu							*load_bmp(char const *file);
 
 #endif

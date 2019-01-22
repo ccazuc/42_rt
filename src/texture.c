@@ -6,13 +6,13 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:24:43 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/21 14:16:00 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/22 22:30:08 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-static void	get_uv_sphere_mapping(t_collision *hit, double *uv)
+static void		get_uv_sphere_mapping(t_collision *hit, double *uv)
 {
 	t_vector	vp;
 	t_vector	vn;
@@ -43,13 +43,14 @@ t_color_mask	get_texu_pxl_sphere(t_collision *hit)
 	size_t			y;
 
 	get_uv_sphere_mapping(hit, uv);
-	x = (size_t)((double)(hit->object->texu.size_x) * uv[0]);
-	y = (size_t)((double)(hit->object->texu.size_y) * uv[1]);
-	c = hit->object->texu.buf[y * hit->object->texu.size_x + x];
+	x = (size_t)((double)(hit->object->texu->size_x) * uv[0]);
+	y = (size_t)((double)(hit->object->texu->size_y) * uv[1]);
+	ft_bzero(&c, sizeof(c));
+	c = hit->object->texu->buf[y * hit->object->texu->size_x + x];
 	return (c);
 }
 
-static void	get_uv_cylinder_mapping(t_collision *hit, double *uv)
+static void		get_uv_cylinder_mapping(t_collision *hit, double *uv)
 {
 	t_vector	vp;
 	t_vector	vn;
@@ -67,7 +68,7 @@ static void	get_uv_cylinder_mapping(t_collision *hit, double *uv)
 		/ (2 * M_PI);
 	if (dot_product(&vp, &ve) < 0)
 		uv[0] = 1.0 - uv[0];
-	uv[1] = dot_product(&vp, &vn) * vp_len / (hit->object->texu.scale * .01);
+	uv[1] = dot_product(&vp, &vn) * vp_len / (hit->object->texu->scale * .01);
 }
 
 t_color_mask	get_texu_pxl_cylinder(t_collision *hit)
@@ -78,11 +79,11 @@ t_color_mask	get_texu_pxl_cylinder(t_collision *hit)
 	int				y;
 
 	get_uv_cylinder_mapping(hit, uv);
-	x = (int)(hit->object->texu.size_x * uv[0]);
-	y = hit->object->texu.size_y - (int)uv[1];
-	y %= hit->object->texu.size_y;
+	x = (int)(hit->object->texu->size_x * uv[0]);
+	y = hit->object->texu->size_y - (int)uv[1];
+	y %= hit->object->texu->size_y;
 	if (y < 0)
-		y = hit->object->texu.size_y + y;
-	c = hit->object->texu.buf[(size_t)(y * hit->object->texu.size_x + x)];
+		y = hit->object->texu->size_y + y;
+	c = hit->object->texu->buf[(size_t)(y * hit->object->texu->size_x + x)];
 	return (c);
 }

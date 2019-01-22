@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 01:27:15 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/22 20:22:56 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/22 22:29:38 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ t_color_mask	get_object_color(t_collision *hit)
 	};
 	t_color_mask	c;
 
-	if (hit->object->has_texture)
-		c = texture_checkboard(hit->pos, hit->object->rot,
-				hit->object->texu_offs, hit->object->texu_size);
-	else if (hit->object->texu.buf != NULL
+	if (hit->object->texu != NULL
 			&& get_texu_clr[hit->object->type] != NULL)
 		c = get_texu_clr[hit->object->type](hit);
+	else if (hit->object->has_texture)
+		c = texture_checkboard(hit->pos, hit->object->rot,
+				hit->object->texu_offs, hit->object->texu_size);
 	else
 	{
 		c.r = hit->object->color_r;

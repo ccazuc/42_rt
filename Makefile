@@ -83,6 +83,7 @@ SRCS_NAME = main.c \
 			texture.c \
 			vector_axis.c \
 			get_object_color.c \
+			load_bmp.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))
 
@@ -92,6 +93,9 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
+INC_SDL			:=			-I/Users/$(USER)/.brew/include/SDL2 -D_THREAD_SAFE
+LIB_SDL			:=			-L/Users/$(USER)/.brew/lib -lSDL2
+
 LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz -g
 #LIBRARY = -lGL -L libft -lft -lm -L ../minilibx -lmlx -lX11 -lXext -pthread -L libpng -lpng16 -L zlib -lz
 
@@ -100,11 +104,11 @@ all: odir $(NAME)
 $(NAME): $(OBJS)
 	@make -C libft
 	@echo " - Making $(NAME)"
-	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH)
+	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH) $(LIB_SDL)
 
 $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
 	@echo " - Compiling $<"
-	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
+	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH) $(INC_SDL)
 
 odir:
 	@mkdir -p $(OBJS_PATH)
