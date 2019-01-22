@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 01:27:15 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/21 01:36:52 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/22 20:22:56 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_color_mask	get_object_color(t_collision *hit)
 		[TRIANGLE] = NULL,
 		[RECTANGLE] = NULL,
 		[SPHERE] = &get_texu_pxl_sphere,
-		[CYLINDRE] = &get_texu_pxl_cylinder,
+		[CYLINDRE] = NULL,
 		[CONE] = NULL,
 	};
 	t_color_mask	c;
