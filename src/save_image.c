@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 09:38:45 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:52:12 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 20:51:36 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,10 @@ void		save_image(t_env *env)
 
 	img_datas.file_name = get_file_name();
 	img_datas.fp = fopen(img_datas.file_name, "wb");
+	img_datas.row = NULL;
+	img_datas.png_ptr = NULL;
 	if (!alloc_png_datas(&img_datas))
-		return ;
+		return (free_img_datas(&img_datas));
 	png_init_io(img_datas.png_ptr, img_datas.fp);
 	png_set_IHDR(img_datas.png_ptr, img_datas.info_ptr, env->window_width,
 			env->window_height, 8, PNG_COLOR_TYPE_RGB, PNG_INTERLACE_NONE,
