@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 15:52:17 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 16:10:05 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_gi(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "texture"))
 		parse_object_texture(env, object, datas, i);
+	else if (check_piece_attribut_name(datas[*i], "texu"))
+		parse_object_texu(env, object, datas, i);
 	else if ((material = find_material(env, datas[*i])))
 		fill_object_with_material(object, material);
 	else

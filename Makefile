@@ -83,6 +83,7 @@ SRCS_NAME = main.c \
 			texture.c \
 			vector_axis.c \
 			get_object_color.c \
+			parse_pieces_datas3.c \
 			load_bmp.c \
 
 SRCS = $(addprefix $(SRCS_PATH), $(SRCS_NAME))

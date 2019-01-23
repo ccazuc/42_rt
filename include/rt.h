@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/22 22:34:54 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 16:27:55 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,6 +175,7 @@ struct							s_object
 	char						has_parsed_refraction;
 	char						has_parsed_gi;
 	char						has_parsed_texture;
+	char						has_parsed_texu;
 	float						transparency;
 	float						reflection;
 	float						refraction;
@@ -492,5 +493,7 @@ t_color_mask					get_texu_pxl_sphere(t_collision *hit);
 t_color_mask					get_texu_pxl_cylinder(t_collision *hit);
 t_color_mask					get_object_color(t_collision *hit);
 t_texu							*load_bmp(char const *file);
+void							parse_object_texu(t_env *env, t_object *object
+								, char **datas, int *start);
 
 #endif
