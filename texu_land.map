@@ -6,7 +6,7 @@
 #    By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/01/17 19:40:40 by kehuang           #+#    #+#              #
-#    Updated: 2019/01/23 16:43:40 by kehuang          ###   ########.fr        #
+#    Updated: 2019/01/23 19:24:50 by kehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,8 @@ sphere		color	255	0	0	pos	0	5	-450	rot	0	0	0	scale	5 texu texture/rock.bmp
 sphere		color	255	0	0	pos	-20	5	-450	rot	0	0	0	scale	5 texu texture/bricks.bmp
 sphere		color	255	0	0	pos	20	5	-450	rot	0	0	0	scale	5 texture 1
 
-sphere		color	255	0	0	pos	0	25	-450	rot	0	180	0	scale	5 texu texture/checkerboard.bmp
-sphere		color	255	0	0	pos	-20	25	-450	rot	-20	45	0	scale	5 texu texture/world_map.bmp
+sphere		color	255	0	0	pos	0	25	-450	rot	0	180	0	scale	10 texu texture/checkerboard.bmp
+sphere		color	255	0	0	pos	-20	25	-450	rot	-20	45	0	scale	5 texu texture/world.bmp
 sphere		color	255	0	0	pos	20	25	-450	rot	20	-45	0	scale	5 texture 1
 
 plane		color	0	155	0	pos	0	0	0		rot	0	45	0 texture 1

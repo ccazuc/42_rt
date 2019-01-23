@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/31 13:09:38 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:23:03 by ccazuc           ###   ########.fr       */
+/*   Updated: 2019/01/23 21:12:59 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,7 @@ t_material	*create_material(void)
 
 	if (!(material = malloc(sizeof(*material))))
 		ft_exit("Error, out of memory.", EXIT_FAILURE);
-	material->pos.x = 0;
-	material->pos.y = 0;
-	material->pos.z = 0;
-	material->rot.x = 0;
-	material->rot.y = 0;
-	material->rot.z = 0;
-	material->has_parsed_position = 0;
-	material->has_parsed_color = 0;
-	material->has_parsed_rotation = 0;
-	material->has_parsed_scale = 0;
-	material->has_parsed_reflection = 0;
-	material->has_parsed_transparency = 0;
-	material->has_parsed_refraction = 0;
+	ft_bzero((void *)material, sizeof(*material));
 	return (material);
 }
 

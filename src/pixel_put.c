@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/11 14:25:23 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:27:36 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 21:23:48 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int				get_color_b(unsigned int color)
 
 void			pixel_put(t_env *env, int x, int y, unsigned int color)
 {
+	size_t			pos;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
@@ -44,10 +45,8 @@ void			pixel_put(t_env *env, int x, int y, unsigned int color)
 	r = (color & 0xFF0000) >> 16;
 	g = (color & 0x00FF00) >> 8;
 	b = (color & 0x0000FF);
-	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
-		/ 8 * x] = b;
-	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
-		/ 8 * x + 1] = g;
-	env->mlx_img_data[y * env->window_width * env->bpp / 8 + env->bpp
-		/ 8 * x + 2] = r;
+	pos = y * env->window_width * env->bpp / 8 + env->bpp / 8 * x;
+	env->mlx_img_data[pos] = b;
+	env->mlx_img_data[pos + 1] = g;
+	env->mlx_img_data[pos + 2] = r;
 }

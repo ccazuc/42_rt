@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/21 01:27:15 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/22 22:29:38 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 21:09:47 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_color_mask	get_object_color(t_collision *hit)
 		[CYLINDRE] = NULL,
 		[CONE] = NULL,
 	};
-	t_color_mask	c;
+	t_color_mask		c;
 
 	if (hit->object->texu != NULL
 			&& get_texu_clr[hit->object->type] != NULL)

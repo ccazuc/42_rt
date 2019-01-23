@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/14 13:28:48 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/21 01:46:49 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 19:52:19 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,31 @@ static void		calc_light_angle(t_ray *ray, t_vector *normal,
 	}
 }
 
+static void		get_glob_illum_clr(t_env *env, t_collision *collision,
+		t_vector normal)
+{
+	t_color_mask	gi_clr;
+
+	if (env->n_sample_ray > 0 && collision->object->has_gi == 0)
+	{
+		gi_clr = glob_illum(env, collision->pos, normal);
+		collision->color.r += gi_clr.r;
+		if (collision->color.r > 255.0)
+			collision->color.r = 255.0;
+		collision->color.g += gi_clr.g;
+		if (collision->color.g > 255.0)
+			collision->color.g = 255.0;
+		collision->color.b += gi_clr.b;
+		if (collision->color.b > 255.0)
+			collision->color.b = 255.0;
+	}
+}
+
 void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 {
 	t_light_list	*list;
 	t_ray			ray;
 	t_collision		find_collision;
-	t_color_mask	gi_clr;
 
 	list = env->light_list;
 	ray.pos = collision->pos;
@@ -84,17 +103,5 @@ void			find_light(t_env *env, t_collision *collision, t_vector *normal)
 	collision->color.r = dmin(255, collision->color.r * 255);
 	collision->color.g = dmin(255, collision->color.g * 255);
 	collision->color.b = dmin(255, collision->color.b * 255);
-	if (env->n_sample_ray > 0 && collision->object->has_gi == 0)
-	{
-		gi_clr = glob_illum(env, collision->pos, *normal);
-		collision->color.r += gi_clr.r;
-		if (collision->color.r > 255.0)
-			collision->color.r = 255.0;
-		collision->color.g += gi_clr.g;
-		if (collision->color.g > 255.0)
-			collision->color.g = 255.0;
-		collision->color.b += gi_clr.b;
-		if (collision->color.b > 255.0)
-			collision->color.b = 255.0;
-	}
+	get_glob_illum_clr(env, collision, *normal);
 }

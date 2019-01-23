@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/20 11:26:10 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/22 00:09:10 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 20:55:12 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void	collide_cone(t_ray *ray, t_object *object,
 	dir = ray->dir;
 	vector_unrotate(&new, &object->rot);
 	vector_unrotate(&dir, &object->rot);
-	quadratic.a = dir.x * dir.x - dir.y
-		* dir.y + dir.z * dir.z;
-	quadratic.b = 2.0 * (dir.x * new.x - dir.y
-			* new.y + dir.z * new.z);
+	quadratic.a = dir.x * dir.x - dir.y * dir.y + dir.z * dir.z;
+	quadratic.b = 2.0 * (dir.x * new.x - dir.y * new.y + dir.z * new.z);
 	quadratic.c = new.x * new.x - new.y * new.y + new.z * new.z;
 	if (!solve_quadratic(&quadratic, &result))
 		return ;

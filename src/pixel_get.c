@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 17:41:42 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/14 14:26:56 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 21:21:22 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 unsigned int	get_pixel(t_env *env, char *img, int x, int y)
 {
+	size_t			pos;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
 
-	r = img[(y * env->window_width * env->fsaa_factor / 2 + x)
-		* env->bpp / 8 + 2];
-	g = img[(y * env->window_width * env->fsaa_factor / 2 + x)
-		* env->bpp / 8 + 1];
-	b = img[(y * env->window_width * env->fsaa_factor / 2 + x)
-		* env->bpp / 8];
+	pos = (y * env->window_width * env->fsaa_factor / 2 + x) * env->bpp / 8;
+	r = img[pos + 2];
+	g = img[pos + 1];
+	b = img[pos];
 	return (conv_rgb_to_int(r, g, b));
 }
 
 void			pixel_put_fsaa(t_env *env, int x, int y, unsigned int color)
 {
+	size_t			pos;
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
@@ -39,10 +39,9 @@ void			pixel_put_fsaa(t_env *env, int x, int y, unsigned int color)
 	r = (color & 0xFF0000) >> 16;
 	g = (color & 0x00FF00) >> 8;
 	b = (color & 0x0000FF);
-	env->fsaa_img[y * env->window_width * env->fsaa_factor / 2
-		* env->bpp / 8 + env->bpp / 8 * x] = b;
-	env->fsaa_img[y * env->window_width * env->fsaa_factor / 2
-		* env->bpp / 8 + env->bpp / 8 * x + 1] = g;
-	env->fsaa_img[y * env->window_width * env->fsaa_factor / 2
-		* env->bpp / 8 + env->bpp / 8 * x + 2] = r;
+	pos = y * env->window_width * env->fsaa_factor / 2
+		* env->bpp / 8 + env->bpp / 8 * x;
+	env->fsaa_img[pos] = b;
+	env->fsaa_img[pos + 1] = g;
+	env->fsaa_img[pos + 2] = r;
 }

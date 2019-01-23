@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/23 16:10:05 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/23 21:03:33 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,18 @@ static void	check_object_state(t_object *object)
 		ft_putstr("Warning, found an object without scale.\n");
 }
 
-static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
+static void	check_attribut2(t_env *env, t_object *object, char **datas, int *i)
 {
 	t_material	*material;
 
+	if ((material = find_material(env, datas[*i])))
+		fill_object_with_material(object, material);
+	else
+		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
+}
+
+static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
+{
 	if (check_piece_attribut_name(datas[*i], "color"))
 		parse_object_color(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "position"))
@@ -67,10 +75,8 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_texture(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "texu"))
 		parse_object_texu(env, object, datas, i);
-	else if ((material = find_material(env, datas[*i])))
-		fill_object_with_material(object, material);
 	else
-		ft_exit("Error, invalid file. Unknown object attribut.", EXIT_FAILURE);
+		check_attribut2(env, object, datas, i);
 }
 
 void		parse_general_object(t_env *env, char **datas)
