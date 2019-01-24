@@ -6,7 +6,7 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:45 by ccazuc            #+#    #+#              #
-#    Updated: 2018/04/30 09:23:20 by ccazuc           ###   ########.fr        #
+#    Updated: 2019/01/24 10:25:45 by kehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,18 +107,18 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-all: odir $(NAME)
+all: $(OBJS_PATH) $(NAME)
 
 $(NAME): $(OBJS)
 	@echo " - Making $(NAME)"
 	@ar -rc $(NAME) $(OBJS)
 	@ranlib $(NAME)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INCLUDES_PATH)libft.h
 	@echo " - Compiling $<"
 	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH)
 
-odir:
+$(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 
 clean:
@@ -129,6 +129,8 @@ fclean: clean
 	@echo " - Cleaning executable"
 	@rm -f $(NAME)
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
 .PHONY: clean fclean re odir
