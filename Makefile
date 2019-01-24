@@ -1,6 +1,7 @@
 NAME = rt
 
 CFLAGS = -Wall -Wextra -Werror
+#CFLAGS += -O2
 
 CC = gcc
 
@@ -94,24 +95,23 @@ OBJS_NAME = $(SRCS_NAME:.c=.o)
 
 OBJS = $(addprefix $(OBJS_PATH), $(OBJS_NAME))
 
-INC_SDL			:=			-I/Users/$(USER)/.brew/include/SDL2 -D_THREAD_SAFE
-LIB_SDL			:=			-L/Users/$(USER)/.brew/lib -lSDL2
+INC_SDL = -I/Users/$(USER)/.brew/include/SDL2 -D_THREAD_SAFE
+LIB_SDL = -L/Users/$(USER)/.brew/lib -lSDL2
 
-LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz -g
-#LIBRARY = -lGL -L libft -lft -lm -L ../minilibx -lmlx -lX11 -lXext -pthread -L libpng -lpng16 -L zlib -lz
+LIBRARY = -lmlx -L libft -lft -framework OpenGL -framework AppKit -L libpng -lpng16 -L zlib -lz
 
-all: odir $(NAME)
+all: $(OBJS_PATH) $(NAME)
 
 $(NAME): $(OBJS)
 	@make -C libft
 	@echo " - Making $(NAME)"
 	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBRARY) -I$(INCLUDES_PATH) $(LIB_SDL)
 
-$(OBJS_PATH)%.o: $(SRCS_PATH)%.c
+$(OBJS_PATH)%.o: $(SRCS_PATH)%.c $(INCLUDES_PATH)/libft.h $(INCLUDES_PATH)/rt.h $(INCLUDES_PATH)/get_next_line.h
 	@echo " - Compiling $<"
 	@$(CC) $(CFLAGS) -o $@ -c $< -I$(INCLUDES_PATH) $(INC_SDL)
 
-odir:
+$(OBJS_PATH):
 	@mkdir -p $(OBJS_PATH)
 
 clean:
@@ -124,6 +124,8 @@ fclean: clean
 	@echo " - Clearing executable file"
 	@rm -f $(NAME)
 
-re: fclean all
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
 
-.PHONY: clean fclean re odir
+.PHONY: all clean fclean re $(OBJS_PATH)
