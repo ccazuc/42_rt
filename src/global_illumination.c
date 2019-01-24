@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 15:25:29 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/16 20:08:14 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/24 10:17:09 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static t_vector		rnew_vector(void)
 	return (v);
 }
 
-static void			find_gi_light(t_env *env, t_collision *collision, t_vector *normal)
+static void			find_gi_light(t_env *env, t_collision *collision,
+		t_vector *normal)
 {
 	t_light_list	*list;
 	t_ray			ray;

@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 10:35:01 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/23 16:27:55 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/24 10:16:25 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -452,18 +452,22 @@ unsigned int					get_pixel(t_env *env, char *img, int x
 								, int y);
 void							process_fsaa(t_env *env);
 void							get_triangle_normal(t_vector *vector
-								, t_object *object,	t_collision *collision);
+								, t_object *object, t_collision *collision);
 void							collide_triangle(t_ray *ray, t_object *object,
-								t_collision *collision, t_object *previous_object);
-void							parse_triangle_p1(t_object *object, char **datas, int *start);
-void							parse_triangle_p2(t_object *object, char **datas, int *start);
-void							parse_triangle_p3(t_object *object, char **datas, int *start);
+								t_collision *collision,
+								t_object *previous_object);
+void							parse_triangle_p1(t_object *object,
+								char **datas, int *start);
+void							parse_triangle_p2(t_object *object,
+								char **datas, int *start);
+void							parse_triangle_p3(t_object *object,
+								char **datas, int *start);
 void							parse_triangle(t_env *env, char **datas);
 void							reload_file(t_env *env);
 void							fill_object_refraction_define(t_object *object,
 								t_define *define, int *i);
-void							parse_object_refraction(t_env *env, t_object *object,
-								char **datas, int *start);
+void							parse_object_refraction(t_env *env,
+								t_object *object, char **datas, int *start);
 void							parse_material_refraction(t_material *material,
 								char **datas, int *start);
 void							fill_object_refraction_define(t_object *object,
@@ -471,8 +475,9 @@ void							fill_object_refraction_define(t_object *object,
 t_vector						add_vector(t_vector const a, t_vector const b);
 t_vector						sub_vector(t_vector const a, t_vector const b);
 t_vector						mul_vector(t_vector const a, float const b);
-int								check_refraction(t_env *env, t_collision *collision,
-								t_vector *normal, int recursion);
+int								check_refraction(t_env *env,
+								t_collision *collision, t_vector *normal,
+								int recursion);
 void							fill_light_data(t_collision *collision,
 								t_light *light, double norm_angle);
 void							init_find_light_loop_datas(t_ray *ray,
@@ -484,8 +489,8 @@ t_color_mask					texture_checkboard(t_vector hit_pos,
 								t_vector rot,
 								t_vector const offs,
 								t_vector const size);
-void							parse_object_texture(t_env *env, t_object *object
-								, char **datas, int *start);
+void							parse_object_texture(t_env *env,
+								t_object *object, char **datas, int *start);
 t_vector						get_x_normal(t_vector rot);
 t_vector						get_y_normal(t_vector rot);
 t_vector						get_z_normal(t_vector rot);

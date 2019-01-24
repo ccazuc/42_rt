@@ -6,7 +6,7 @@
 /*   By: kehuang <kehuang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:24:43 by kehuang           #+#    #+#             */
-/*   Updated: 2019/01/22 22:30:08 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/24 10:20:54 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void		get_uv_sphere_mapping(t_collision *hit, double *uv)
 	t_vector	vn;
 	t_vector	ve;
 	t_vector	vw;
-	double		phi;
-	double		theta;
+	double		phi_theta[2];
 
 	vp = sub_vector(hit->pos, hit->object->pos);
 	vector_normalize(&vp);
 	vw = get_x_normal(hit->object->rot);
 	vn = get_y_normal(hit->object->rot);
 	ve = get_z_normal(hit->object->rot);
-	phi = acos(dot_product(&vn, &vp));
-	theta = (acos(dot_product(&vp, &vw) / sin(phi))) / (2.0 * M_PI);
-    if (dot_product(&ve, &vp) < 0)
-		uv[0] = 1.0 - theta;
+	phi_theta[0] = acos(dot_product(&vn, &vp));
+	phi_theta[1] = (acos(dot_product(&vp, &vw) / sin(phi_theta[0])))
+		/ (2.0 * M_PI);
+	if (dot_product(&ve, &vp) < 0)
+		uv[0] = 1.0 - phi_theta[1];
 	else
-		uv[0] = theta;
-	uv[1] = phi / M_PI;
+		uv[0] = phi_theta[1];
+	uv[1] = phi_theta[0] / M_PI;
 }
 
 t_color_mask	get_texu_pxl_sphere(t_collision *hit)

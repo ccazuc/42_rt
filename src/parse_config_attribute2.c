@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 12:27:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/16 21:43:50 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/24 10:18:01 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ void	parse_config_fsaa(t_env *env, char **datas, int *start)
 		env->fsaa_factor = factor;
 	}
 	*start += 2;
-
 }
+
 void	parse_config_sample_ray(t_env *env, char **datas, int *start)
 {
 	int		value;
