@@ -6,7 +6,7 @@
 /*   By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 11:31:11 by ccazuc            #+#    #+#             */
-/*   Updated: 2019/01/23 21:03:33 by kehuang          ###   ########.fr       */
+/*   Updated: 2019/01/24 11:39:09 by kehuang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ static void	check_attribut(t_env *env, t_object *object, char **datas, int *i)
 		parse_object_gi(env, object, datas, i);
 	else if (check_piece_attribut_name(datas[*i], "texture"))
 		parse_object_texture(env, object, datas, i);
-	else if (check_piece_attribut_name(datas[*i], "texu"))
+	else if (check_piece_attribut_name(datas[*i], "texu")
+			&& object->type == SPHERE)
 		parse_object_texu(env, object, datas, i);
 	else
 		check_attribut2(env, object, datas, i);
