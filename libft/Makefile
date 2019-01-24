@@ -6,7 +6,7 @@
 #    By: ccazuc <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/07 11:15:45 by ccazuc            #+#    #+#              #
-#    Updated: 2019/01/24 10:25:45 by kehuang          ###   ########.fr        #
+#    Updated: 2019/01/24 10:39:10 by kehuang          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,6 +124,7 @@ $(OBJS_PATH):
 clean:
 	@echo " - Cleaning objs"
 	@rm -f $(OBJS)
+	@rm -rf $(OBJS_PATH)
 
 fclean: clean
 	@echo " - Cleaning executable"
@@ -133,4 +134,4 @@ re:
 	@$(MAKE) fclean
 	@$(MAKE) all
 
-.PHONY: clean fclean re odir
+.PHONY: all clean fclean re $(OBJS_PATH)
