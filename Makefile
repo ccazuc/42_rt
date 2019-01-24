@@ -118,6 +118,7 @@ clean:
 	@make clean -C libft
 	@echo " - Clearing objects files"
 	@rm -f $(OBJS)
+	@rm -rf $(OBJS_PATH)
 
 fclean: clean
 	@make fclean -C libft
